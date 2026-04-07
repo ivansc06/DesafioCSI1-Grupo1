@@ -1,0 +1,21 @@
+* text=auto
+*.sln text eol=crlf
+*.xml text eol=crlf
+*.mf text eol=crlf
+*.properties text eol=crlf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.svg binary
+*.mp3 binary
+*.wav binary
+*.aac binary
+*.ogg binary
+*.3dm lfs
+*.3ds lfs
+*.blend lfs
+*.c4d lfs
+*.collada lfs
+*.dae lfs
+*.dxf lfs

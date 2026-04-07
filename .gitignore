@@ -1,0 +1,18 @@
+/[Bb]uild/
+/[Bb]uilds/
+/[Tt]arget/
+*.class
+*.exe
+*.log
+*.tmp
+*.swp
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.mp3
+*.wav
+*.aac
+*.ogg
+/DesafioCSI1-Grupo 1/build/
