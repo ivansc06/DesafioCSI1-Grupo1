@@ -15,4 +15,5 @@
 *.wav
 *.aac
 *.ogg
+*.env
 /DesafioCSI1-Grupo 1/build/
