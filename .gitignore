@@ -6,11 +6,6 @@
 *.log
 *.tmp
 *.swp
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.svg
 *.mp3
 *.wav
 *.aac
