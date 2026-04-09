@@ -3,11 +3,6 @@
 *.xml text eol=crlf
 *.mf text eol=crlf
 *.properties text eol=crlf
-*.jpg binary
-*.jpeg binary
-*.png binary
-*.gif binary
-*.svg binary
 *.mp3 binary
 *.wav binary
 *.aac binary
