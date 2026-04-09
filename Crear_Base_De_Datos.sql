@@ -4,7 +4,7 @@
 --  Entidades: Productos, Clientes, Empleados, Ventas, Reparaciones
 --  Equipo: José Luis Pérez, Javier Maza, Markel, Iván
 -- ============================================================
- -- prueba git
+
 CREATE DATABASE IF NOT EXISTS tienda_informatica
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
