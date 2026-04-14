@@ -1,8 +1,6 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Tt]arget/
-*.class
-*.exe
 *.log
 *.tmp
 *.swp
@@ -10,5 +8,5 @@
 *.wav
 *.aac
 *.ogg
-*.env
 /DesafioCSI1-Grupo 1/build/
+/Java/PrimeTechSystems/nbproject/private/
