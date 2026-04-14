@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS productos (
     precio_compra DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
     precio_venta  DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
     stock         INT            NOT NULL DEFAULT 0,
-    activo        TINYINT(1)     NOT NULL DEFAULT 1,
     PRIMARY KEY (id_producto)
 );
 
@@ -34,7 +33,6 @@ CREATE TABLE IF NOT EXISTS empleados (
     cargo        ENUM('vendedor','tecnico','admin','gerente') NOT NULL DEFAULT 'vendedor',
     email        VARCHAR(150) NOT NULL UNIQUE,
     contraseña   VARCHAR(200) NOT NULL,
-    activo       TINYINT(1)   NOT NULL DEFAULT 1,
     PRIMARY KEY (id_empleado)
 );
 
@@ -47,7 +45,6 @@ CREATE TABLE IF NOT EXISTS clientes (
     telefono    VARCHAR(20),
     email       VARCHAR(150) UNIQUE,
     direccion   VARCHAR(255),
-    activo      TINYINT(1)   NOT NULL DEFAULT 1,
     PRIMARY KEY (id_cliente)
 );
 
