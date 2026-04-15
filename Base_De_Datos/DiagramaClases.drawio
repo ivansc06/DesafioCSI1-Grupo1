@@ -1,0 +1,163 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="DiagramaClases-TiendaInformatica" id="dc-tienda-informatica">
+    <mxGraphModel dx="1310" dy="1017" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_prod_title" value="Producto" style="swimlane;fontStyle=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="50" y="290" width="220" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="c_prod_attrs" value="- idProducto: int&#xa;- nombre: String&#xa;- descripcion: String&#xa;- precioCompra: double&#xa;- precioVenta: double&#xa;- stock: int" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_prod_title" vertex="1">
+          <mxGeometry y="30" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_prod_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" parent="c_prod_title" vertex="1">
+          <mxGeometry y="140" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_prod_methods" value="+ getters / setters&#xa;+ toString(): String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_prod_title" vertex="1">
+          <mxGeometry y="150" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp_title" value="Empleado" style="swimlane;fontStyle=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="700" y="15" width="220" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp_attrs" value="- idEmpleado: int&lt;br&gt;- nombre: String&lt;br&gt;- apellidos: String&lt;br&gt;- cargo: ENUM&lt;br&gt;- email: String&lt;br&gt;- contrasena: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_emp_title" vertex="1">
+          <mxGeometry y="30" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" parent="c_emp_title" vertex="1">
+          <mxGeometry y="140" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp_methods" value="+ getters / setters&#xa;+ toString(): String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_emp_title" vertex="1">
+          <mxGeometry y="150" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cli_title" value="Abs.&#xa;Cliente" style="swimlane;fontStyle=3;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=40;" parent="1" vertex="1">
+          <mxGeometry x="380" y="280" width="220" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cli_attrs" value="# idCliente: int&lt;br&gt;# telefono: String&lt;br&gt;# email: String&lt;br&gt;# direccion: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_cli_title" vertex="1">
+          <mxGeometry y="40" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cli_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" parent="c_cli_title" vertex="1">
+          <mxGeometry y="130" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_cli_methods" value="+ getters / setters&#xa;+ toString(): String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_cli_title" vertex="1">
+          <mxGeometry y="140" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="c_part_title" value="ClienteParticular" style="swimlane;fontStyle=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="120" y="650" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_part_attrs" value="- nombre: String&#xa;- apellidos: String&#xa;- dni: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_part_title" vertex="1">
+          <mxGeometry y="30" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c_part_sep" value="" style="line;strokeColor=#b85450;fillColor=none;" parent="c_part_title" vertex="1">
+          <mxGeometry y="100" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_part_methods" value="+ getters / setters&#xa;+ toString(): String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_part_title" vertex="1">
+          <mxGeometry y="110" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp2_title" value="ClienteEmpresa" style="swimlane;fontStyle=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="370" y="650" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp2_attrs" value="- razonSocial: String&#xa;- cif: String&#xa;- contactoNombre: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_emp2_title" vertex="1">
+          <mxGeometry y="30" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp2_sep" value="" style="line;strokeColor=#b85450;fillColor=none;" parent="c_emp2_title" vertex="1">
+          <mxGeometry y="100" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_emp2_methods" value="+ getters / setters&#xa;+ toString(): String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_emp2_title" vertex="1">
+          <mxGeometry y="110" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ven_title" value="Venta" style="swimlane;fontStyle=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="700" y="360" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ven_attrs" value="- idVenta: int&lt;br&gt;- cliente: Cliente&lt;br&gt;- empleado: Empleado&lt;br&gt;- fechaVenta: LocalDateTime&lt;br&gt;- total: double&lt;br&gt;- metodoPago: ENUM&lt;br&gt;- detalles: List" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_ven_title" vertex="1">
+          <mxGeometry y="30" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ven_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" parent="c_ven_title" vertex="1">
+          <mxGeometry y="160" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_ven_methods" value="+ getters / setters&#xa;+ calcularTotal(): double" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_ven_title" vertex="1">
+          <mxGeometry y="170" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dv_title" value="DetalleVenta" style="swimlane;fontStyle=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;" parent="1" vertex="1">
+          <mxGeometry x="740" y="660" width="220" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dv_attrs" value="- idDetalle: int&#xa;- venta: Venta&#xa;- producto: Producto&#xa;- cantidad: int&#xa;- precioUnitario: double" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_dv_title" vertex="1">
+          <mxGeometry y="30" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dv_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" parent="c_dv_title" vertex="1">
+          <mxGeometry y="130" width="220" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="c_dv_methods" value="+ getters / setters&#xa;+ getSubtotal(): double" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;" parent="c_dv_title" vertex="1">
+          <mxGeometry y="140" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_inh_part" style="endArrow=block;endFill=0;endSize=12;html=1;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.3;entryY=1;entryDx=0;entryDy=0;" parent="1" source="c_part_title" target="c_cli_title" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_inh_emp2" style="endArrow=block;endFill=0;endSize=12;html=1;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.7;entryY=1;entryDx=0;entryDy=0;" parent="1" source="c_emp2_title" target="c_cli_title" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_ven_cli" value="" style="endArrow=open;endSize=8;html=1;strokeColor=#6c8ebf;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="c_ven_title" target="c_cli_title" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="660" y="427" />
+              <mxPoint x="660" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_ven_cli_src" value="0..N" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_cli" connectable="0" vertex="1">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_ven_cli_tgt" value="0..1" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_cli" connectable="0" vertex="1">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_ven_emp" value="" style="endArrow=open;endSize=8;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="c_ven_title" target="c_emp_title" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_ven_emp_src" value="0..N" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_emp" connectable="0" vertex="1">
+          <mxGeometry x="-0.7" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_ven_emp_tgt" value="1" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_emp" connectable="0" vertex="1">
+          <mxGeometry x="0.7" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_ven_dv" value="" style="endArrow=ERmany;startArrow=ERmandOne;startFill=1;endFill=0;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="c_ven_title" target="c_dv_title" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_ven_dv_src" value="1" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_dv" connectable="0" vertex="1">
+          <mxGeometry x="-0.7" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_ven_dv_tgt" value="1..N" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_ven_dv" connectable="0" vertex="1">
+          <mxGeometry x="0.7" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_dv_prod" value="" style="endArrow=open;endSize=8;html=1;strokeColor=#6c8ebf;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="c_dv_title" target="c_prod_title" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="755" />
+              <mxPoint x="660" y="520" />
+              <mxPoint x="300" y="525" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_dv_prod_src" value="N" style="resizable=0;html=1;align=left;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_dv_prod" connectable="0" vertex="1">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_dv_prod_tgt" value="1" style="resizable=0;html=1;align=right;verticalAlign=bottom;fontSize=11;fontStyle=1;" parent="rel_dv_prod" connectable="0" vertex="1">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
