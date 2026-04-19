@@ -17,6 +17,30 @@ header{
     font-size: 20px;
 }
 
+.desplegable {
+    position: relative; 
+    display: inline-block; /* Asegura que el menú se posicione correctamente respecto al elemento desplegable */
+}
+
+.ContenidoMenu {
+    display: none; /* Esto lo mantiene oculto */
+    position: absolute;
+    background-color: #000000;
+    min-width: 160px;
+    list-style-type: none;
+    padding: 15px;
+    margin: 0;
+    z-index: 1; /* Asegura que el menú se superponga al resto del texto */
+}
+
+.ContenidoMenu li {
+    margin-bottom: 10px;
+}
+
+.desplegable:hover .ContenidoMenu {
+    display: block;
+}
+
 header p{
     font-size: 30px;
     font-weight: bold;
@@ -30,12 +54,7 @@ header ul{
     align-items: center;
 }
 
-.menu{
-    opacity: 0.4;
-}
-
 header ul li:hover{
-    color: rgb(0, 221, 255);
     opacity: 1;
 }
 
