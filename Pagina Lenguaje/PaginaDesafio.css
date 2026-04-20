@@ -20,6 +20,7 @@ header{
 .desplegable {
     position: relative; 
     display: inline-block; /* Asegura que el menú se posicione correctamente respecto al elemento desplegable */
+    cursor: pointer;
 }
 
 .ContenidoMenu {
@@ -285,4 +286,45 @@ div section p{
 .J{
     opacity: 0.4;
     font-size: 17px;
+}
+
+#productos{
+    font-size: 42px;
+    font-weight: bold;
+}
+
+#tabla tr{
+    text-align: left;
+}
+
+#tabla {
+    width: 100%;
+    border-collapse: collapse; /* Esto quita los huecos entre los bordes de las celdas */
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+#tabla th, #tabla td {
+    border: 1px solid #ffffff;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+#tabla th {
+    background-color: #333333; 
+    font-weight: bold;
+}
+
+#Monitores{
+    background-color: rgb(38, 42, 80);
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 20px 10px 20px 10px;
+    border: 2px solid transparent;
+}
+
+#Monitores ul{
+    align-content: center;
+    list-style: none;
+    gap: 20px;
 }
