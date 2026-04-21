@@ -1,0 +1,2 @@
+Podemos utilizar el  plugin easyUML o ObjectAid
+De esta forma nos permite automatizar el diagrama de clases.
