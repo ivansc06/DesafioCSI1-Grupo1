@@ -8,8 +8,13 @@
 *.wav
 *.aac
 *.ogg
+*.properties
 /DesafioCSI1-Grupo 1/build/
 /Java/PrimeTechSystems/nbproject/private/
 /Java/PrimeTech/nbproject/private/
 /Java/PrimeTech/build/
 /Java/PrimeTech/dist/
+/Java/PrimeTechFinal_Pruebas/nbproject/private/
+/Java/PrimeTechFinal/build/
+/Java/PrimeTechFinal/dist/
+/Java/PrimeTechFinal/nbproject/private/
