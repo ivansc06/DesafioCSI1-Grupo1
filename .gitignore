@@ -7,7 +7,6 @@
 *.wav
 *.aac
 *.ogg
-*.properties
 /DesafioCSI1-Grupo 1/build/
 /Java/PrimeTechSystems/nbproject/private/
 /Java/PrimeTech/nbproject/private/
