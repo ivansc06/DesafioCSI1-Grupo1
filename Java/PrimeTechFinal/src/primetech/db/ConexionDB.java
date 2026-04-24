@@ -1,10 +1,11 @@
-package primetech.db;
+                                            package primetech.db;
 
 import primetech.sesion.Sesion;
 import java.sql.*;
 
 public class ConexionDB {
-
+ 
+    //pruebatest
     private static final String URL =
         "jdbc:mysql://localhost:3306/tienda_informatica" +
         "?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
