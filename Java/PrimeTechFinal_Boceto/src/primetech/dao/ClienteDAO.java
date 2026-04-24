@@ -4,17 +4,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import primetech.db.ConexionDB;
+import primetech.exception.ValidacionException;
 import primetech.model.Cliente;
+import primetech.security.ValidadorEntrada;
+import primetech.util.AppLogger;
 
 public class ClienteDAO {
 
     public List<Cliente> listarTodos() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
-        String sqlP = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +//clientes particulares
+        String sqlP = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "cp.nombre, cp.apellidos, cp.dni, NULL AS razon_social, NULL AS cif, NULL AS contacto_nombre " +
                       "FROM clientes c JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente";
-        
-        String sqlE = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +//empresas
+        String sqlE = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "NULL AS nombre, NULL AS apellidos, NULL AS dni, " +
                       "ce.razon_social, ce.cif, ce.contacto_nombre " +
                       "FROM clientes c JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente";
@@ -54,7 +56,12 @@ public class ClienteDAO {
         return lista;
     }
 
-    public void insertarParticular(Cliente c) throws SQLException {
+    public void insertarParticular(Cliente c) throws SQLException, ValidacionException {
+        ValidadorEntrada.validarNombre(c.getNombre(), "nombre");
+        ValidadorEntrada.validarNombre(c.getApellidos(), "apellidos");
+        ValidadorEntrada.validarDni(c.getDni());
+        ValidadorEntrada.validarEmail(c.getEmail());
+        ValidadorEntrada.validarTelefono(c.getTelefono());
         Connection conn = ConexionDB.getConexion();
         conn.setAutoCommit(false);
         try {
@@ -78,6 +85,7 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            AppLogger.auditoria("Cliente particular insertado: " + c.getDni());
         } catch (SQLException e) {
             conn.rollback();
             throw e;
@@ -86,7 +94,11 @@ public class ClienteDAO {
         }
     }
 
-    public void insertarEmpresa(Cliente c) throws SQLException {
+    public void insertarEmpresa(Cliente c) throws SQLException, ValidacionException {
+        ValidadorEntrada.validarNombre(c.getRazonSocial(), "razón social");
+        ValidadorEntrada.validarCif(c.getCif());
+        ValidadorEntrada.validarEmail(c.getEmail());
+        ValidadorEntrada.validarTelefono(c.getTelefono());
         Connection conn = ConexionDB.getConexion();
         conn.setAutoCommit(false);
         try {
@@ -110,6 +122,7 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            AppLogger.auditoria("Cliente empresa insertado: " + c.getCif());
         } catch (SQLException e) {
             conn.rollback();
             throw e;
@@ -124,6 +137,7 @@ public class ClienteDAO {
             ps.setInt(1, idCliente);
             ps.executeUpdate();
         }
+        AppLogger.auditoria("Cliente eliminado ID=" + idCliente);
     }
 
     private Cliente mapear(ResultSet rs) throws SQLException {

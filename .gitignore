@@ -1,7 +1,6 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Tt]arget/
-*.log
 *.tmp
 *.swp
 *.mp3
@@ -13,3 +12,10 @@
 /Java/PrimeTech/nbproject/private/
 /Java/PrimeTech/build/
 /Java/PrimeTech/dist/
+/Java/PrimeTechFinal_Pruebas/nbproject/private/
+/Java/PrimeTechFinal/build/
+/Java/PrimeTechFinal/dist/
+/Java/PrimeTechFinal/nbproject/private/
+/Java/PrimeTechFinal_Prueba/nbproject/private/
+/Java/PrimeTechFinal_Prueba/build/
+/Java/PrimeTechPrueba1/nbproject/private/
