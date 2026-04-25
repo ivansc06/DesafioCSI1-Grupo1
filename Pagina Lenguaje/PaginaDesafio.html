@@ -18,7 +18,7 @@
                 <li class="menu">SOBRE NOSOTROS</li>
                 <li class="desplegable">MENÚ
                     <ul class="ContenidoMenu">
-                        <li class="menu">PRODUCTOS</li>
+                        <li class="menu"> <button>PRODUCTOS</button></li>
                         <li> <button class="boton3">CONTACTO</button></li>
                     </ul>
                 </li>
@@ -141,7 +141,6 @@
         </div>
 
     </div> 
-    </section>
     <br>
     <p id="productos">Productos</p>
     <div>
@@ -194,65 +193,117 @@
             </tbody>
         </table>
     </div>
-    <h1>Monitores</h1>
     <br>
-    <div id="ElementosMenu">
-        <div id="Monitores">
-            <img src="imagenes/monitor.jpg" width="500px" height="300px">
-            <ul>
-                <li>Monitor AOC 24"</li>
-                <li>Panel IPS, 144Hz, 1ms, FreeSync.</li>
-                <li>Precio: 189,99 €</li>
-                <br>
-                <li><button class="boton4">Comprar</button></li>
-            </ul>
-            
-            <br>
-        </div>
-        <h1>Periféricos</h1>
-        <div id="Perifericos">
-            <ul>
-                <li>Teclado Mecánico K70</li>
-                <li>Switches Cherry MX Red, retroiluminación RGB.</li>
-                <li>Precio: 129,99 €</li>
-            </ul>
-        </div>
-        </div>
-        <h1>CPU</h1>
-        <div id="CPU">
-        
-            <ul>
-                <li>AMD Ryzen 5 5600X</li>
-                <li>6 núcleos, 12 hilos, hasta 4.6 GHz.</li>
-                <li>Precio: 199,99 €</li>
-            </ul>
-        </div>
-        <h1>RAM</h1>
-        <div id="RAM">
-        
-            <ul>
-                <li>Corsair Vengeance 32GB</li>
-                <li>Memoria de alto rendimiento para gaming y multitarea.</li>
-                <li>Precio: 159,99 €</li>
-            </ul>
-        </div>
-        <h1>Almacenamiento</h1>
-        <div id="Almacenamiento">
-        
-            <ul>
-                <li>Samsung 980 PRO 1TB</li>
-                <li>SSD NVMe M.2 PCIe 4.0, alta velocidad.</li>
-                <li>Precio: 99,99 €</li>
-            </ul>
-        </div>
-        <h1>GPU</h1>
-        <div id="GPU">
-            <ul>
-                <li>NVIDIA RTX 3080</li>
-                <li>10 GB GDDR6X, Ray Tracing, DLSS.</li>
-                <li>Precio: 1.199,99 €</li>
-            </ul>
-        </div>
+    <br>
+    <section id="SeccionProductos">
+    <h1>NUESTROS PRODUCTOS</h1>
+    <section id="DescripcionProductos">
+
+    <div id="Monitores">
+        <img src="imagenes/monitor.jpg" width="300px" height="300px">
+        <ul>
+            <h2>Características</h2>
+            <li>Monitor AOC 24"</li>
+            <li>Panel IPS, 144Hz, 1ms, FreeSync.</li>
+            <li>Precio: 189,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
     </div>
+
+    <div id="Perifericos">
+        <img src="imagenes/perifericos.jpg">
+        <ul>
+            <h2>Características</h2>
+            <li>Teclado Mecánico K70</li>
+            <li>Switches Cherry MX Red, retroiluminación RGB.</li>
+            <li>Precio: 129,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
+    </div>
+
+    <div id="CPU">
+        <img src="imagenes/CPU.png">
+        <ul>
+            <h2>Características</h2>
+            <li>AMD Ryzen 5 5600X</li>
+            <li>6 núcleos, 12 hilos, hasta 4.6 GHz.</li>
+            <li>Precio: 199,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
+    </div>
+
+    <div id="RAM">
+        <img src="imagenes/ram.jpg">
+        <ul>
+            <h2>Características</h2>
+            <li>Corsair Vengeance 32GB</li>
+            <li>Memoria de alto rendimiento para gaming y multitarea.</li>
+            <li>Precio: 159,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
+    </div>
+
+    <div id="Almacenamiento">
+        <img src="imagenes/ssd.jpg">
+        <ul>
+            <h2>Características</h2>
+            <li>Samsung 980 PRO 1TB</li>
+            <li>SSD NVMe M.2 PCIe 4.0, alta velocidad.</li>
+            <li>Precio: 99,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
+    </div>
+
+    <div id="GPU">
+        <img src="imagenes/gpu.jpg">
+        <ul>
+            <h2>Características</h2>
+            <li>NVIDIA RTX 3080</li>
+            <li>10 GB GDDR6X, Ray Tracing, DLSS.</li>
+            <li>Precio: 1.199,99 €</li>
+            <li><button class="boton4">Comprar</button></li>
+        </ul>
+    </div>
+
+</section>
+</section>
+<br>
+    <section id="Contacto">
+    <h1>Contacto</h1>
+    <br>
+    <div id="FormularioContacto">
+        <form action="" method="post">
+
+            <div class="NombreApellidos">
+                <div class="campo">
+                    <label for="Nombre">NOMBRE</label>
+                    <input type="text" id="Nombre" name="Nombre" placeholder="Tu nombre">
+                </div>
+                <div class="campo">
+                    <label for="Apellidos">APELLIDOS</label>
+                    <input type="text" id="Apellidos" name="Apellidos" placeholder="Tus apellidos">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="Email">CORREO ELECTRÓNICO</label>
+                <input type="email" id="Email" name="Email" placeholder="tu@correo.com" required>
+            </div>
+
+            <div class="campo">
+                <label for="Comentarios">COMENTARIOS</label>
+                <textarea id="Comentarios" name="Comentarios" rows="6" placeholder="Escribe aquí tu mensaje"></textarea>
+            </div>
+
+            <div class="AceptarPolitica">
+                <input type="checkbox" id="Privacidad" name="Privacidad">
+                <label for="Privacidad">HE LEÍDO Y ACEPTO LA <span class="Politica_Y_Terminos">POLÍTICA DE PRIVACIDAD</span> Y LOS <span class="Politica_Y_Terminos">TÉRMINOS DE USO</span> DE PRIMETECH SYSTEMS.</label>
+            </div>
+
+            <button type="submit" class="EnviarFormulario">Enviar mensaje</button>
+
+        </form>
+    </div>
+</section>
     </body>
 </html>
