@@ -268,42 +268,76 @@
 </section>
 </section>
 <br>
-    <section id="Contacto">
-    <h1>Contacto</h1>
-    <br>
-    <div id="FormularioContacto">
-        <form action="" method="post">
+<section class="d-flex gap-5 py-5">
 
-            <div class="NombreApellidos">
-                <div class="campo">
-                    <label for="Nombre">NOMBRE</label>
-                    <input type="text" id="Nombre" name="Nombre" placeholder="Tu nombre">
-                </div>
-                <div class="campo">
-                    <label for="Apellidos">APELLIDOS</label>
-                    <input type="text" id="Apellidos" name="Apellidos" placeholder="Tus apellidos">
-                </div>
-            </div>
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="d-flex flex-column gap-4" style="flex: 1;">
 
-            <div class="campo">
-                <label for="Email">CORREO ELECTRÓNICO</label>
-                <input type="email" id="Email" name="Email" placeholder="tu@correo.com" required>
-            </div>
+        <section id="Escribenos">
+            <h3>ESCRIBENOS</h3>
+            <br>
+            <h1>Contacto</h1>
+            <br>
+            <p>¿Tienes dudas, sugerencias o quieres asesoramiento? Rellena el formulario y te responderemos lo antes posible.</p>
+            <br>
+            <br>
+            <h2>Estamos aquí para ayudarte</h2>
+            <br>
+            <p>Ya sea para resolver una consulta técnica, gestionar un pedido o simplemente darnos tu opinión, nuestro equipo está disponible de lunes a viernes.</p>
+        </section>
 
-            <div class="campo">
-                <label for="Comentarios">COMENTARIOS</label>
-                <textarea id="Comentarios" name="Comentarios" rows="6" placeholder="Escribe aquí tu mensaje"></textarea>
-            </div>
+        <section id="NuestraInfo" class="d-flex flex-column gap-3">
+            <section id="Email" class="d-flex align-items-center gap-3 p-3 rounded-3">
+                <p class="TitulosInfo">Email</p>
+                <p class="TitulosInfo2">soporte@primetechsystems.es</p>
+            </section>
+            <section id="Telefono" class="d-flex align-items-center gap-3 p-3 rounded-3">
+                <p class="TitulosInfo">Teléfono</p>
+                <p class="TitulosInfo2">+34 900 123 456</p>
+            </section>
+            <section id="Dirección" class="d-flex align-items-center gap-3 p-3 rounded-3">
+                <p class="TitulosInfo">Dirección</p>
+                <p class="TitulosInfo2">Calle Tecnología 42, Zaragoza, España</p>
+            </section>
+            <section id="Horario" class="d-flex align-items-center gap-3 p-3 rounded-3">
+                <p class="TitulosInfo">Horario</p>
+                <p class="TitulosInfo2">Lun – Vie: 9:00 – 18:00</p>
+            </section>
+        </section>
 
-            <div class="AceptarPolitica">
-                <input type="checkbox" id="Privacidad" name="Privacidad">
-                <label for="Privacidad">HE LEÍDO Y ACEPTO LA <span class="Politica_Y_Terminos">POLÍTICA DE PRIVACIDAD</span> Y LOS <span class="Politica_Y_Terminos">TÉRMINOS DE USO</span> DE PRIMETECH SYSTEMS.</label>
-            </div>
-
-            <button type="submit" class="EnviarFormulario">Enviar mensaje</button>
-
-        </form>
     </div>
+
+    <!-- COLUMNA DERECHA -->
+    <section id="Contacto" style="flex: 1;">
+        <div id="FormularioContacto">
+            <form action="" method="post">
+                <div class="NombreApellidos">
+                    <div class="campo">
+                        <label for="Nombre">NOMBRE</label>
+                        <input type="text" id="Nombre" name="Nombre" placeholder="Tu nombre">
+                    </div>
+                    <div class="campo">
+                        <label for="Apellidos">APELLIDOS</label>
+                        <input type="text" id="Apellidos" name="Apellidos" placeholder="Tus apellidos">
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="EmailInput">CORREO ELECTRÓNICO</label>
+                    <input type="email" id="EmailInput" name="Email" placeholder="tu@correo.com" required>
+                </div>
+                <div class="campo">
+                    <label for="Comentarios">COMENTARIOS</label>
+                    <textarea id="Comentarios" name="Comentarios" rows="6" placeholder="Escribe aquí tu mensaje"></textarea>
+                </div>
+                <div class="AceptarPolitica">
+                    <input type="checkbox" id="Privacidad" name="Privacidad">
+                    <label for="Privacidad">HE LEÍDO Y ACEPTO LA <span class="Politica_Y_Terminos">POLÍTICA DE PRIVACIDAD</span> Y LOS <span class="Politica_Y_Terminos">TÉRMINOS DE USO</span> DE PRIMETECH SYSTEMS.</label>
+                </div>
+                <button type="submit" class="EnviarFormulario">Enviar mensaje</button>
+            </form>
+        </div>
+    </section>
+
 </section>
     </body>
 </html>
