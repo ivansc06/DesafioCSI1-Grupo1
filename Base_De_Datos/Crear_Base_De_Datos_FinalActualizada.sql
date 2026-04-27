@@ -131,7 +131,7 @@ INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña) VALUES
     ('José Luis', 'Pérez', 'tecnico',  'joseluisperez@tienda.local', '12345'),
     ('Javier',    'Maza',  'vendedor', 'javiermaza@tienda.local',    '12345'),
     ('Iván',  'Segura', 'gerente',  'ivan@tienda.local',  '12345'),
-    ('Markel',  'Corbaton', 'gerente',  'ivan@tienda.local', '12345');
+    ('Markel',  'Corbaton', 'gerente',  'markel@tienda.local', '12345');
     
 
 
