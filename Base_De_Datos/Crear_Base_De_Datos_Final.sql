@@ -130,7 +130,10 @@ INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña)
 INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña) VALUES
     ('José Luis', 'Pérez', 'tecnico',  'joseluisperez@tienda.local', '12345'),
     ('Javier',    'Maza',  'vendedor', 'javiermaza@tienda.local',    '12345'),
-    ('Iván',      'López', 'gerente',  'ivan@tienda.local',          '12345');
+    ('Iván',  'Segura', 'gerente',  'ivan@tienda.local',  '12345'),
+    ('Markel',  'Corbaton', 'gerente',  'ivan@tienda.local', '12345');
+    
+
 
 -- Cliente particular de ejemplo
 INSERT INTO clientes (tipo, telefono, email, direccion)
