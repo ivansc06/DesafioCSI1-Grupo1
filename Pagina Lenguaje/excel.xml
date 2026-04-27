@@ -1,0 +1,1403 @@
+<?xml version='1.0' encoding='utf-8'?>
+<InventarioHardware>
+<Producto>
+<Nombre>AMD Ryzen 9 7950X</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>Ryzen 9 7950X</Modelo>
+<Descripcion>Procesador de 16 núcleos y 32 hilos para socket AM5</Descripcion>
+<Precio>599.00</Precio>
+<Stock>15</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>40x40mm</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Intel Core i9-14900K</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>Intel</Marca>
+<Modelo>i9-14900K</Modelo>
+<Descripcion>Procesador de 24 núcleos con frecuencia de hasta 6.0GHz</Descripcion>
+<Precio>620.00</Precio>
+<Stock>10</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.12kg</Peso>
+<Dimensiones>45x37mm</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>NVIDIA RTX 4090</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>ROG Strix 4090</Modelo>
+<Descripcion>GPU de gama alta con 24GB VRAM GDDR6X</Descripcion>
+<Precio>1999.00</Precio>
+<Stock>5</Stock>
+<Garantia>3 años</Garantia>
+<Peso>2.2kg</Peso>
+<Dimensiones>357x149mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Samsung 990 Pro 2TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Samsung</Marca>
+<Modelo>990 Pro</Modelo>
+<Descripcion>SSD NVMe PCIe 4.0 con velocidades de hasta 7450MB/s</Descripcion>
+<Precio>180.00</Precio>
+<Stock>40</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.01kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Corsair Vengeance DDR5 32GB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>Vengeance DDR5</Modelo>
+<Descripcion>Kit de 2x16GB 6000MHz CL30</Descripcion>
+<Precio>125.00</Precio>
+<Stock>25</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.08kg</Peso>
+<Dimensiones>135x35mm</Dimensiones>
+<Interfaz>DDR5</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>ASUS ROG Maximus Z790 Hero</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>ROG Maximus Z790</Modelo>
+<Descripcion>Placa base premium para Intel LGA1700 con WiFi 6E</Descripcion>
+<Precio>650.00</Precio>
+<Stock>8</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.5kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Negro/Gris</Color>
+</Producto>
+<Producto>
+<Nombre>EVGA SuperNOVA 1000 G6</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>EVGA</Marca>
+<Modelo>1000 G6</Modelo>
+<Descripcion>Fuente 80 Plus Gold modular de 1000W</Descripcion>
+<Precio>190.00</Precio>
+<Stock>12</Stock>
+<Garantia>10 años</Garantia>
+<Peso>1.8kg</Peso>
+<Dimensiones>150x150mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>NZXT H9 Flow</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>NZXT</Marca>
+<Modelo>H9 Flow</Modelo>
+<Descripcion>Caja Mid Tower de doble cámara con excelente flujo de aire</Descripcion>
+<Precio>160.00</Precio>
+<Stock>10</Stock>
+<Garantia>2 años</Garantia>
+<Peso>12kg</Peso>
+<Dimensiones>466x290mm</Dimensiones>
+<Interfaz>ATX/mATX</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>Noctua NH-D15</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Noctua</Marca>
+<Modelo>NH-D15</Modelo>
+<Descripcion>Disipador de aire de doble torre premium</Descripcion>
+<Precio>110.00</Precio>
+<Stock>20</Stock>
+<Garantia>6 años</Garantia>
+<Peso>1.3kg</Peso>
+<Dimensiones>161x150mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Marrón</Color>
+</Producto>
+<Producto>
+<Nombre>Logitech G Pro X Superlight</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Logitech</Marca>
+<Modelo>G Pro X Superlight</Modelo>
+<Descripcion>Ratón inalámbrico ultra ligero para gaming</Descripcion>
+<Precio>140.00</Precio>
+<Stock>30</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.06kg</Peso>
+<Dimensiones>125x63mm</Dimensiones>
+<Interfaz>Inalámbrico/USB</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>Corsair K70 RGB MK.2</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>K70 MK.2</Modelo>
+<Descripcion>Teclado mecánico con interruptores Cherry MX</Descripcion>
+<Precio>160.00</Precio>
+<Stock>15</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>438x166mm</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>MSI Optix MPG321UR-QD</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>MSI</Marca>
+<Modelo>Optix 321UR</Modelo>
+<Descripcion>Monitor 4K 144Hz Quantum Dot de 32 pulgadas</Descripcion>
+<Precio>850.00</Precio>
+<Stock>7</Stock>
+<Garantia>3 años</Garantia>
+<Peso>10kg</Peso>
+<Dimensiones>727x482mm</Dimensiones>
+<Interfaz>HDMI/DP</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Seagate IronWolf 8TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Seagate</Marca>
+<Modelo>IronWolf</Modelo>
+<Descripcion>Disco duro para NAS optimizado para 24/7</Descripcion>
+<Precio>210.00</Precio>
+<Stock>18</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.7kg</Peso>
+<Dimensiones>3.5 pulgadas</Dimensiones>
+<Interfaz>SATA III</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>TP-Link Archer AX6000</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>TP-Link</Marca>
+<Modelo>Archer AX6000</Modelo>
+<Descripcion>Router WiFi 6 de alta velocidad</Descripcion>
+<Precio>280.00</Precio>
+<Stock>14</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.5kg</Peso>
+<Dimensiones>261x261mm</Dimensiones>
+<Interfaz>Ethernet/WiFi</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>AMD Ryzen 7 7800X3D</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>Ryzen 7 7800X3D</Modelo>
+<Descripcion>Mejor procesador para gaming con 3D V-Cache</Descripcion>
+<Precio>450.00</Precio>
+<Stock>22</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>40x40mm</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Gigabyte RTX 4070 Ti</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>Gigabyte</Marca>
+<Modelo>RTX 4070 Ti Gaming OC</Modelo>
+<Descripcion>GPU potente para 1440p y 4K</Descripcion>
+<Precio>820.00</Precio>
+<Stock>11</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.5kg</Peso>
+<Dimensiones>336x140mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>WD Black SN850X 1TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Western Digital</Marca>
+<Modelo>SN850X</Modelo>
+<Descripcion>SSD NVMe de alto rendimiento para gaming</Descripcion>
+<Precio>95.00</Precio>
+<Stock>50</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.01kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>G.Skill Trident Z5 RGB 64GB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>G.Skill</Marca>
+<Modelo>Trident Z5</Modelo>
+<Descripcion>Kit de 2x32GB DDR5 6400MHz</Descripcion>
+<Precio>240.00</Precio>
+<Stock>10</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>133x44mm</Dimensiones>
+<Interfaz>DDR5</Interfaz>
+<Color>Plateado/RGB</Color>
+</Producto>
+<Producto>
+<Nombre>MSI MAG B650 Tomahawk</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>MSI</Marca>
+<Modelo>MAG B650 Tomahawk</Modelo>
+<Descripcion>Placa base sólida para socket AM5</Descripcion>
+<Precio>220.00</Precio>
+<Stock>15</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Seasonic Prime TX-1300</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Seasonic</Marca>
+<Modelo>Prime TX-1300</Modelo>
+<Descripcion>Fuente Titanium modular de 1300W de máxima calidad</Descripcion>
+<Precio>450.00</Precio>
+<Stock>4</Stock>
+<Garantia>12 años</Garantia>
+<Peso>2.5kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Gris</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Lian Li PC-O11 Dynamic</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Lian Li</Marca>
+<Modelo>O11 Dynamic</Modelo>
+<Descripcion>Caja diseñada para refrigeración líquida personalizada</Descripcion>
+<Precio>150.00</Precio>
+<Stock>9</Stock>
+<Garantia>2 años</Garantia>
+<Peso>10kg</Peso>
+<Dimensiones>446x272mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Corsair iCUE H150i Elite</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>H150i Elite</Modelo>
+<Descripcion>RLA de 360mm con pantalla LCD personalizable</Descripcion>
+<Precio>290.00</Precio>
+<Stock>8</Stock>
+<Garantia>5 años</Garantia>
+<Peso>2.0kg</Peso>
+<Dimensiones>397x120mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Razer DeathAdder V3 Pro</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Razer</Marca>
+<Modelo>DeathAdder V3 Pro</Modelo>
+<Descripcion>Ratón ergonómico inalámbrico profesional</Descripcion>
+<Precio>150.00</Precio>
+<Stock>25</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.06kg</Peso>
+<Dimensiones>128x68mm</Dimensiones>
+<Interfaz>Inalámbrico</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>SteelSeries Apex Pro</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>SteelSeries</Marca>
+<Modelo>Apex Pro</Modelo>
+<Descripcion>Teclado mecánico con interruptores ajustables OmniPoint</Descripcion>
+<Precio>200.00</Precio>
+<Stock>12</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.0kg</Peso>
+<Dimensiones>436x139mm</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>LG UltraGear 27GP850</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>LG</Marca>
+<Modelo>27GP850-B</Modelo>
+<Descripcion>Monitor Nano IPS 1440p 165Hz (OC 180Hz)</Descripcion>
+<Precio>380.00</Precio>
+<Stock>20</Stock>
+<Garantia>2 años</Garantia>
+<Peso>6.3kg</Peso>
+<Dimensiones>614x465mm</Dimensiones>
+<Interfaz>HDMI/DP</Interfaz>
+<Color>Negro/Rojo</Color>
+</Producto>
+<Producto>
+<Nombre>Crucial MX500 1TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Crucial</Marca>
+<Modelo>MX500</Modelo>
+<Descripcion>SSD SATA fiable para almacenamiento general</Descripcion>
+<Precio>75.00</Precio>
+<Stock>60</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.06kg</Peso>
+<Dimensiones>2.5 pulgadas</Dimensiones>
+<Interfaz>SATA III</Interfaz>
+<Color>Azul/Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>ASUS RT-AX88U Pro</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>RT-AX88U Pro</Modelo>
+<Descripcion>Router Gaming Dual-Band WiFi 6</Descripcion>
+<Precio>320.00</Precio>
+<Stock>6</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.8kg</Peso>
+<Dimensiones>300x188mm</Dimensiones>
+<Interfaz>Ethernet/WiFi</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Intel Core i5-13600K</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>Intel</Marca>
+<Modelo>i5-13600K</Modelo>
+<Descripcion>Procesador de 14 núcleos equilibrado para gaming y trabajo</Descripcion>
+<Precio>320.00</Precio>
+<Stock>30</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>45x37mm</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>ZOTAC RTX 4080 Trinity</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>Zotac</Marca>
+<Modelo>RTX 4080 Trinity</Modelo>
+<Descripcion>GPU de alto rendimiento con diseño IceStorm 2.0</Descripcion>
+<Precio>1150.00</Precio>
+<Stock>8</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.8kg</Peso>
+<Dimensiones>356x150mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Sabrent Rocket 4 Plus 4TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Sabrent</Marca>
+<Modelo>Rocket 4 Plus</Modelo>
+<Descripcion>SSD NVMe de gran capacidad y velocidad</Descripcion>
+<Precio>480.00</Precio>
+<Stock>5</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.02kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Cobre</Color>
+</Producto>
+<Producto>
+<Nombre>Kingston FURY Beast 16GB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>Kingston</Marca>
+<Modelo>FURY Beast</Modelo>
+<Descripcion>Memoria DDR4 3200MHz económica y fiable</Descripcion>
+<Precio>45.00</Precio>
+<Stock>100</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.05kg</Peso>
+<Dimensiones>133x34mm</Dimensiones>
+<Interfaz>DDR4</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Gigabyte Z790 AORUS Elite</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>Gigabyte</Marca>
+<Modelo>Z790 AORUS Elite</Modelo>
+<Descripcion>Placa base con excelente VRM para Intel</Descripcion>
+<Precio>260.00</Precio>
+<Stock>14</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.3kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Corsair RM850x</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>RM850x</Modelo>
+<Descripcion>Fuente 850W Gold modular silenciosa</Descripcion>
+<Precio>140.00</Precio>
+<Stock>25</Stock>
+<Garantia>10 años</Garantia>
+<Peso>1.7kg</Peso>
+<Dimensiones>160x150mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Fractal Design North</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Fractal Design</Marca>
+<Modelo>North</Modelo>
+<Descripcion>Caja con detalles de madera real (Nogal/Roble)</Descripcion>
+<Precio>150.00</Precio>
+<Stock>15</Stock>
+<Garantia>2 años</Garantia>
+<Peso>9.5kg</Peso>
+<Dimensiones>447x215mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Negro/Madera</Color>
+</Producto>
+<Producto>
+<Nombre>Arctic Liquid Freezer II 240</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Arctic</Marca>
+<Modelo>Liquid Freezer II</Modelo>
+<Descripcion>Refrigeración líquida con ventilador para VRM</Descripcion>
+<Precio>100.00</Precio>
+<Stock>30</Stock>
+<Garantia>6 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>277x120mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>HyperX Cloud II</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>HyperX</Marca>
+<Modelo>Cloud II</Modelo>
+<Descripcion>Auriculares gaming legendarios con sonido 7.1</Descripcion>
+<Precio>90.00</Precio>
+<Stock>45</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.3kg</Peso>
+<Dimensiones>Over-ear</Dimensiones>
+<Interfaz>Jack 3.5mm/USB</Interfaz>
+<Color>Rojo/Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Glorious Model O</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Glorious</Marca>
+<Modelo>Model O</Modelo>
+<Descripcion>Ratón ligero con diseño de panal</Descripcion>
+<Precio>60.00</Precio>
+<Stock>40</Stock>
+<Garantia>1 año</Garantia>
+<Peso>0.06kg</Peso>
+<Dimensiones>128x66mm</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Blanco mate</Color>
+</Producto>
+<Producto>
+<Nombre>Dell UltraSharp U2723QE</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>Dell</Marca>
+<Modelo>U2723QE</Modelo>
+<Descripcion>Monitor 4K con tecnología IPS Black para diseño</Descripcion>
+<Precio>600.00</Precio>
+<Stock>12</Stock>
+<Garantia>3 años</Garantia>
+<Peso>6.5kg</Peso>
+<Dimensiones>612x352mm</Dimensiones>
+<Interfaz>USB-C/DP</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>Synology DS224+</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>Synology</Marca>
+<Modelo>DS224+</Modelo>
+<Descripcion>NAS de 2 bahías para hogar y pequeña oficina</Descripcion>
+<Precio>330.00</Precio>
+<Stock>10</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.3kg</Peso>
+<Dimensiones>165x108mm</Dimensiones>
+<Interfaz>Ethernet</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>AMD Ryzen 5 7600</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>Ryzen 5 7600</Modelo>
+<Descripcion>Procesador AM5 de 6 núcleos eficiente</Descripcion>
+<Precio>220.00</Precio>
+<Stock>40</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>40x40mm</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>ASUS TUF Gaming RTX 3060</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>RTX 3060 TUF</Modelo>
+<Descripcion>GPU sólida para 1080p y 1440p</Descripcion>
+<Precio>310.00</Precio>
+<Stock>20</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.1kg</Peso>
+<Dimensiones>300x139mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Crucial P5 Plus 500GB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Crucial</Marca>
+<Modelo>P5 Plus</Modelo>
+<Descripcion>SSD NVMe PCIe 4.0 asequible</Descripcion>
+<Precio>65.00</Precio>
+<Stock>55</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.01kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>TeamGroup T-Force Delta RGB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>TeamGroup</Marca>
+<Modelo>Delta RGB</Modelo>
+<Descripcion>Kit 16GB DDR4 3600MHz con iluminación</Descripcion>
+<Precio>60.00</Precio>
+<Stock>35</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.07kg</Peso>
+<Dimensiones>144x46mm</Dimensiones>
+<Interfaz>DDR4</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>ASRock B650M Pro RS</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>ASRock</Marca>
+<Modelo>B650M Pro RS</Modelo>
+<Descripcion>Placa base micro-ATX para AM5 con buen valor</Descripcion>
+<Precio>140.00</Precio>
+<Stock>18</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.9kg</Peso>
+<Dimensiones>mATX</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>Be Quiet! Straight Power 11</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Be Quiet!</Marca>
+<Modelo>Straight Power 11</Modelo>
+<Descripcion>Fuente 750W Platinum muy silenciosa</Descripcion>
+<Precio>155.00</Precio>
+<Stock>10</Stock>
+<Garantia>5 años</Garantia>
+<Peso>1.6kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Cooler Master Q300L</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Cooler Master</Marca>
+<Modelo>Q300L</Modelo>
+<Descripcion>Caja micro-ATX compacta y versátil</Descripcion>
+<Precio>55.00</Precio>
+<Stock>25</Stock>
+<Garantia>2 años</Garantia>
+<Peso>3.7kg</Peso>
+<Dimensiones>387x230mm</Dimensiones>
+<Interfaz>mATX</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>DeepCool AK620</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>DeepCool</Marca>
+<Modelo>AK620</Modelo>
+<Descripcion>Disipador de doble torre de alto rendimiento</Descripcion>
+<Precio>70.00</Precio>
+<Stock>25</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.4kg</Peso>
+<Dimensiones>160x129mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Sony WH-1000XM5</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Sony</Marca>
+<Modelo>WH-1000XM5</Modelo>
+<Descripcion>Auriculares inalámbricos con cancelación de ruido</Descripcion>
+<Precio>350.00</Precio>
+<Stock>15</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.25kg</Peso>
+<Dimensiones>Over-ear</Dimensiones>
+<Interfaz>Bluetooth/Jack</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Ducky One 3</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Ducky</Marca>
+<Modelo>One 3</Modelo>
+<Descripcion>Teclado mecánico premium intercambiable en caliente</Descripcion>
+<Precio>150.00</Precio>
+<Stock>10</Stock>
+<Garantia>1 año</Garantia>
+<Peso>1.1kg</Peso>
+<Dimensiones>Full-size</Dimensiones>
+<Interfaz>USB-C</Interfaz>
+<Color>Amarillo</Color>
+</Producto>
+<Producto>
+<Nombre>Alienware AW3423DW</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>Alienware</Marca>
+<Modelo>AW3423DW</Modelo>
+<Descripcion>Monitor QD-OLED ultrawide curvo de 34 pulgadas</Descripcion>
+<Precio>1200.00</Precio>
+<Stock>5</Stock>
+<Garantia>3 años</Garantia>
+<Peso>10kg</Peso>
+<Dimensiones>815x364mm</Dimensiones>
+<Interfaz>DP/HDMI</Interfaz>
+<Color>Blanco/Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Ubiquiti UniFi Dream Machine</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>Ubiquiti</Marca>
+<Modelo>UDM</Modelo>
+<Descripcion>Router y controlador de red profesional</Descripcion>
+<Precio>350.00</Precio>
+<Stock>7</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.0kg</Peso>
+<Dimensiones>110x184mm</Dimensiones>
+<Interfaz>Ethernet/WiFi</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>Intel Core i7-14700K</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>Intel</Marca>
+<Modelo>i7-14700K</Modelo>
+<Descripcion>Procesador de 20 núcleos potente para todo</Descripcion>
+<Precio>410.00</Precio>
+<Stock>25</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>45x37mm</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>Sapphire Pulse RX 7900 XT</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>Sapphire</Marca>
+<Modelo>Pulse RX 7900 XT</Modelo>
+<Descripcion>GPU AMD con 20GB de memoria</Descripcion>
+<Precio>850.00</Precio>
+<Stock>9</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.4kg</Peso>
+<Dimensiones>313x133mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Lexar NM790 2TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Lexar</Marca>
+<Modelo>NM790</Modelo>
+<Descripcion>SSD NVMe 2TB rápido y eficiente</Descripcion>
+<Precio>145.00</Precio>
+<Stock>30</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.01kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Corsair Dominator Platinum</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>Dominator Platinum</Modelo>
+<Descripcion>Memoria DDR5 de alta gama con LEDs Capellix</Descripcion>
+<Precio>200.00</Precio>
+<Stock>12</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.12kg</Peso>
+<Dimensiones>135x56mm</Dimensiones>
+<Interfaz>DDR5</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>ROG Strix B760-I Gaming</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>Strix B760-I</Modelo>
+<Descripcion>Placa base Mini-ITX para Intel</Descripcion>
+<Precio>215.00</Precio>
+<Stock>8</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.7kg</Peso>
+<Dimensiones>Mini-ITX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Phanteks Revolt 1200W</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Phanteks</Marca>
+<Modelo>Revolt 1200W</Modelo>
+<Descripcion>Fuente Platinum de alta potencia</Descripcion>
+<Precio>260.00</Precio>
+<Stock>6</Stock>
+<Garantia>10 años</Garantia>
+<Peso>2.2kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Phanteks NV7</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Phanteks</Marca>
+<Modelo>NV7</Modelo>
+<Descripcion>Caja con marco de visualización panorámica</Descripcion>
+<Precio>220.00</Precio>
+<Stock>6</Stock>
+<Garantia>2 años</Garantia>
+<Peso>15kg</Peso>
+<Dimensiones>Full Tower</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>Lian Li Uni Fan SL120</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Lian Li</Marca>
+<Modelo>Uni Fan SL120</Modelo>
+<Descripcion>Ventiladores modulares con conexión en cadena</Descripcion>
+<Precio>90.00</Precio>
+<Stock>40</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.2kg</Peso>
+<Dimensiones>120mm</Dimensiones>
+<Interfaz>PWM</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Elgato Stream Deck MK.2</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Elgato</Marca>
+<Modelo>Stream Deck MK.2</Modelo>
+<Descripcion>Consola de control con 15 teclas LCD</Descripcion>
+<Precio>150.00</Precio>
+<Stock>20</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.15kg</Peso>
+<Dimensiones>118x84mm</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Keychron Q1</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Keychron</Marca>
+<Modelo>Q1</Modelo>
+<Descripcion>Teclado mecánico con cuerpo de aluminio</Descripcion>
+<Precio>170.00</Precio>
+<Stock>8</Stock>
+<Garantia>1 año</Garantia>
+<Peso>1.6kg</Peso>
+<Dimensiones>75% Layout</Dimensiones>
+<Interfaz>USB-C</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Samsung Odyssey G7</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>Samsung</Marca>
+<Modelo>Odyssey G7</Modelo>
+<Descripcion>Monitor gaming curvo 240Hz QLED</Descripcion>
+<Precio>550.00</Precio>
+<Stock>15</Stock>
+<Garantia>2 años</Garantia>
+<Peso>8kg</Peso>
+<Dimensiones>27 pulgadas</Dimensiones>
+<Interfaz>HDMI/DP</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Netgear Orbi RBK752</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>Netgear</Marca>
+<Modelo>Orbi WiFi 6</Modelo>
+<Descripcion>Sistema Mesh WiFi 6 de alto rendimiento</Descripcion>
+<Precio>450.00</Precio>
+<Stock>5</Stock>
+<Garantia>2 años</Garantia>
+<Peso>2.5kg</Peso>
+<Dimensiones>Pack 2</Dimensiones>
+<Interfaz>WiFi/Ethernet</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>AMD Ryzen 9 7900X</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>Ryzen 9 7900X</Modelo>
+<Descripcion>Procesador de 12 núcleos para productividad</Descripcion>
+<Precio>440.00</Precio>
+<Stock>18</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>40x40mm</Dimensiones>
+<Interfaz>AM5</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>MSI Ventus 3X RTX 4070</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>MSI</Marca>
+<Modelo>RTX 4070 Ventus</Modelo>
+<Descripcion>GPU eficiente para 1440p</Descripcion>
+<Precio>620.00</Precio>
+<Stock>16</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>308x120mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Kingston NV2 1TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Kingston</Marca>
+<Modelo>NV2</Modelo>
+<Descripcion>SSD NVMe PCIe 4.0 económico</Descripcion>
+<Precio>60.00</Precio>
+<Stock>80</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.01kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Azul</Color>
+</Producto>
+<Producto>
+<Nombre>Patriot Viper Steel 16GB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>Patriot</Marca>
+<Modelo>Viper Steel</Modelo>
+<Descripcion>Memoria DDR4 3600MHz de alto rendimiento</Descripcion>
+<Precio>55.00</Precio>
+<Stock>40</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.06kg</Peso>
+<Dimensiones>135x44mm</Dimensiones>
+<Interfaz>DDR4</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>ASUS Prime Z790-P</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>Prime Z790-P</Modelo>
+<Descripcion>Placa base Intel Z790 básica pero completa</Descripcion>
+<Precio>200.00</Precio>
+<Stock>20</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.1kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>Thermaltake Toughpower 750W</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Thermaltake</Marca>
+<Modelo>Toughpower GF1</Modelo>
+<Descripcion>Fuente 80 Plus Gold fiable</Descripcion>
+<Precio>110.00</Precio>
+<Stock>22</Stock>
+<Garantia>10 años</Garantia>
+<Peso>1.6kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Corsair 4000D Airflow</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Corsair</Marca>
+<Modelo>4000D Airflow</Modelo>
+<Descripcion>Caja con panel frontal perforado muy popular</Descripcion>
+<Precio>105.00</Precio>
+<Stock>35</Stock>
+<Garantia>2 años</Garantia>
+<Peso>7.8kg</Peso>
+<Dimensiones>453x230mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>EKWB EK-AIO 360</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>EKWB</Marca>
+<Modelo>EK-AIO 360 D-RGB</Modelo>
+<Descripcion>Refrigeración líquida premium de expertos en custom</Descripcion>
+<Precio>160.00</Precio>
+<Stock>10</Stock>
+<Garantia>5 años</Garantia>
+<Peso>1.8kg</Peso>
+<Dimensiones>360mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Blue Yeti USB</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Blue</Marca>
+<Modelo>Yeti</Modelo>
+<Descripcion>Micrófono USB profesional para streaming</Descripcion>
+<Precio>130.00</Precio>
+<Stock>25</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.5kg</Peso>
+<Dimensiones>Condensador</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>Razer Naga V2 Pro</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Razer</Marca>
+<Modelo>Naga V2 Pro</Modelo>
+<Descripcion>Ratón para MMO con paneles laterales intercambiables</Descripcion>
+<Precio>180.00</Precio>
+<Stock>12</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.13kg</Peso>
+<Dimensiones>Inalámbrico</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Gigabyte M27Q</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>Gigabyte</Marca>
+<Modelo>M27Q</Modelo>
+<Descripcion>Monitor 1440p 170Hz con KVM integrado</Descripcion>
+<Precio>300.00</Precio>
+<Stock>18</Stock>
+<Garantia>2 años</Garantia>
+<Peso>5.5kg</Peso>
+<Dimensiones>27 pulgadas</Dimensiones>
+<Interfaz>HDMI/DP</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Google Nest WiFi</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>Google</Marca>
+<Modelo>Nest WiFi</Modelo>
+<Descripcion>Router y punto de acceso WiFi inteligente</Descripcion>
+<Precio>200.00</Precio>
+<Stock>10</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.5kg</Peso>
+<Dimensiones>Pack 1</Dimensiones>
+<Interfaz>WiFi/Ethernet</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>Intel Core i3-13100</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>Intel</Marca>
+<Modelo>i3-13100</Modelo>
+<Descripcion>Procesador básico de 4 núcleos eficiente</Descripcion>
+<Precio>140.00</Precio>
+<Stock>50</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.08kg</Peso>
+<Dimensiones>45x37mm</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Plateado</Color>
+</Producto>
+<Producto>
+<Nombre>PowerColor Hellhound RX 7800 XT</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>PowerColor</Marca>
+<Modelo>RX 7800 XT</Modelo>
+<Descripcion>GPU AMD equilibrada para gaming</Descripcion>
+<Precio>540.00</Precio>
+<Stock>14</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.3kg</Peso>
+<Dimensiones>322x134mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>SanDisk Ultra 1TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>SanDisk</Marca>
+<Modelo>Ultra 3D SSD</Modelo>
+<Descripcion>SSD SATA 2.5 pulgadas de confianza</Descripcion>
+<Precio>85.00</Precio>
+<Stock>45</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.05kg</Peso>
+<Dimensiones>2.5 pulgadas</Dimensiones>
+<Interfaz>SATA III</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>PNY XLR8 RGB 32GB</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>PNY</Marca>
+<Modelo>XLR8 Gaming</Modelo>
+<Descripcion>Kit DDR5 6000MHz con diseño agresivo</Descripcion>
+<Precio>120.00</Precio>
+<Stock>15</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.09kg</Peso>
+<Dimensiones>133x46mm</Dimensiones>
+<Interfaz>DDR5</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>MSI PRO Z790-A WiFi</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>MSI</Marca>
+<Modelo>PRO Z790-A</Modelo>
+<Descripcion>Placa base profesional para Intel LGA1700</Descripcion>
+<Precio>240.00</Precio>
+<Stock>15</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Cooler Master MWE Gold 850</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>Cooler Master</Marca>
+<Modelo>MWE Gold V2</Modelo>
+<Descripcion>Fuente modular 850W Gold a buen precio</Descripcion>
+<Precio>120.00</Precio>
+<Stock>20</Stock>
+<Garantia>5 años</Garantia>
+<Peso>1.6kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Hyte Y60</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Hyte</Marca>
+<Modelo>Y60</Modelo>
+<Descripcion>Caja con cristal panorámico de 3 piezas</Descripcion>
+<Precio>200.00</Precio>
+<Stock>8</Stock>
+<Garantia>2 años</Garantia>
+<Peso>9.6kg</Peso>
+<Dimensiones>456x285mm</Dimensiones>
+<Interfaz>ATX</Interfaz>
+<Color>Rojo</Color>
+</Producto>
+<Producto>
+<Nombre>Thermalright Peerless Assassin</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Thermalright</Marca>
+<Modelo>PA120</Modelo>
+<Descripcion>El mejor disipador aire calidad/precio</Descripcion>
+<Precio>40.00</Precio>
+<Stock>60</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.0kg</Peso>
+<Dimensiones>155x125mm</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Logitech C920 HD Pro</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Logitech</Marca>
+<Modelo>C920</Modelo>
+<Descripcion>Webcam Full HD 1080p estándar de la industria</Descripcion>
+<Precio>80.00</Precio>
+<Stock>40</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.16kg</Peso>
+<Dimensiones>Webcam</Dimensiones>
+<Interfaz>USB</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Glorious GMMK Pro</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Glorious</Marca>
+<Modelo>GMMK Pro</Modelo>
+<Descripcion>Base de teclado mecánico 75% personalizada</Descripcion>
+<Precio>170.00</Precio>
+<Stock>10</Stock>
+<Garantia>1 año</Garantia>
+<Peso>1.5kg</Peso>
+<Dimensiones>Barebone</Dimensiones>
+<Interfaz>USB-C</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>ASUS ProArt PA278CV</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>ASUS</Marca>
+<Modelo>ProArt 27</Modelo>
+<Descripcion>Monitor calibrado para diseñadores gráficos</Descripcion>
+<Precio>450.00</Precio>
+<Stock>10</Stock>
+<Garantia>3 años</Garantia>
+<Peso>8.7kg</Peso>
+<Dimensiones>27 pulgadas</Dimensiones>
+<Interfaz>DP/HDMI/USB-C</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>Linksys Hydra Pro 6E</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>Linksys</Marca>
+<Modelo>Hydra Pro</Modelo>
+<Descripcion>Router WiFi 6E tribanda</Descripcion>
+<Precio>300.00</Precio>
+<Stock>6</Stock>
+<Garantia>2 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>WiFi 6E</Dimensiones>
+<Interfaz>Ethernet</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>AMD Ryzen 5 5600X</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>Ryzen 5 5600X</Modelo>
+<Descripcion>Clásico de 6 núcleos para socket AM4</Descripcion>
+<Precio>160.00</Precio>
+<Stock>60</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.1kg</Peso>
+<Dimensiones>40x40mm</Dimensiones>
+<Interfaz>AM4</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>XFX Speedster SWFT RTX 3060</Nombre>
+<Categoria>Tarjeta Gráfica</Categoria>
+<Marca>XFX</Marca>
+<Modelo>SWFT 210</Modelo>
+<Descripcion>GPU compacta para gaming 1080p</Descripcion>
+<Precio>290.00</Precio>
+<Stock>18</Stock>
+<Garantia>3 años</Garantia>
+<Peso>1.0kg</Peso>
+<Dimensiones>241x131mm</Dimensiones>
+<Interfaz>PCIe 4.0</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Crucial T700 1TB</Nombre>
+<Categoria>Almacenamiento</Categoria>
+<Marca>Crucial</Marca>
+<Modelo>T700</Modelo>
+<Descripcion>SSD NVMe PCIe 5.0 ultrarrápido (11700MB/s)</Descripcion>
+<Precio>180.00</Precio>
+<Stock>15</Stock>
+<Garantia>5 años</Garantia>
+<Peso>0.02kg</Peso>
+<Dimensiones>80x22mm</Dimensiones>
+<Interfaz>M.2 NVMe</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>Crucial RAM 8GB DDR4</Nombre>
+<Categoria>Memoria RAM</Categoria>
+<Marca>Crucial</Marca>
+<Modelo>Basics</Modelo>
+<Descripcion>Memoria DDR4 3200MHz básica para oficina</Descripcion>
+<Precio>25.00</Precio>
+<Stock>150</Stock>
+<Garantia>Vida limitada</Garantia>
+<Peso>0.03kg</Peso>
+<Dimensiones>133x30mm</Dimensiones>
+<Interfaz>DDR4</Interfaz>
+<Color>Verde</Color>
+</Producto>
+<Producto>
+<Nombre>Gigabyte B760M DS3H</Nombre>
+<Categoria>Placa Base</Categoria>
+<Marca>Gigabyte</Marca>
+<Modelo>B760M DS3H</Modelo>
+<Descripcion>Placa base Intel compacta y económica</Descripcion>
+<Precio>120.00</Precio>
+<Stock>30</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.8kg</Peso>
+<Dimensiones>mATX</Dimensiones>
+<Interfaz>LGA1700</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>SilverStone SX700-G</Nombre>
+<Categoria>Fuente de Alimentación</Categoria>
+<Marca>SilverStone</Marca>
+<Modelo>SX700-G</Modelo>
+<Descripcion>Fuente SFX compacta de 700W Gold</Descripcion>
+<Precio>160.00</Precio>
+<Stock>10</Stock>
+<Garantia>5 años</Garantia>
+<Peso>1.2kg</Peso>
+<Dimensiones>SFX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Be Quiet! Pure Base 500DX</Nombre>
+<Categoria>Caja/Gabinete</Categoria>
+<Marca>Be Quiet!</Marca>
+<Modelo>Pure Base 500DX</Modelo>
+<Descripcion>Caja con gran flujo de aire e iluminación discreta</Descripcion>
+<Precio>110.00</Precio>
+<Stock>15</Stock>
+<Garantia>3 años</Garantia>
+<Peso>7.8kg</Peso>
+<Dimensiones>ATX</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Scythe Fuma 3</Nombre>
+<Categoria>Refrigeración</Categoria>
+<Marca>Scythe</Marca>
+<Modelo>Fuma 3</Modelo>
+<Descripcion>Disipador de aire compacto de doble torre</Descripcion>
+<Precio>60.00</Precio>
+<Stock>20</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.9kg</Peso>
+<Dimensiones>154mm alto</Dimensiones>
+<Interfaz>Multi-socket</Interfaz>
+<Color>Gris</Color>
+</Producto>
+<Producto>
+<Nombre>SteelSeries Arctis Nova 7</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>SteelSeries</Marca>
+<Modelo>Arctis Nova 7</Modelo>
+<Descripcion>Auriculares inalámbricos versátiles</Descripcion>
+<Precio>170.00</Precio>
+<Stock>15</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.32kg</Peso>
+<Dimensiones>Wireless</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>Razer Huntsman Mini</Nombre>
+<Categoria>Periférico</Categoria>
+<Marca>Razer</Marca>
+<Modelo>Huntsman Mini</Modelo>
+<Descripcion>Teclado gaming 60% con interruptores ópticos</Descripcion>
+<Precio>120.00</Precio>
+<Stock>20</Stock>
+<Garantia>2 años</Garantia>
+<Peso>0.5kg</Peso>
+<Dimensiones>60% Layout</Dimensiones>
+<Interfaz>USB-C</Interfaz>
+<Color>Blanco</Color>
+</Producto>
+<Producto>
+<Nombre>BenQ Zowie XL2546K</Nombre>
+<Categoria>Monitor</Categoria>
+<Marca>BenQ</Marca>
+<Modelo>Zowie XL2546K</Modelo>
+<Descripcion>Monitor 240Hz preferido por profesionales de eSports</Descripcion>
+<Precio>480.00</Precio>
+<Stock>12</Stock>
+<Garantia>3 años</Garantia>
+<Peso>6.2kg</Peso>
+<Dimensiones>24.5 pulgadas</Dimensiones>
+<Interfaz>DP/HDMI</Interfaz>
+<Color>Negro</Color>
+</Producto>
+<Producto>
+<Nombre>MikroTik hAP ax3</Nombre>
+<Categoria>Redes</Categoria>
+<Marca>MikroTik</Marca>
+<Modelo>hAP ax3</Modelo>
+<Descripcion>Router WiFi 6 avanzado con RouterOS</Descripcion>
+<Precio>140.00</Precio>
+<Stock>10</Stock>
+<Garantia>1 año</Garantia>
+<Peso>0.8kg</Peso>
+<Dimensiones>WiFi/Ethernet</Dimensiones>
+<Interfaz>Negro</Interfaz>
+<Color/>
+</Producto>
+<Producto>
+<Nombre>AMD Threadripper 7980X</Nombre>
+<Categoria>Procesador</Categoria>
+<Marca>AMD</Marca>
+<Modelo>TR 7980X</Modelo>
+<Descripcion>Procesador de 64 núcleos para estaciones de trabajo</Descripcion>
+<Precio>4999.00</Precio>
+<Stock>2</Stock>
+<Garantia>3 años</Garantia>
+<Peso>0.5kg</Peso>
+<Dimensiones>sTR5</Dimensiones>
+<Interfaz>Gris</Interfaz>
+<Color/>
+</Producto>
+</InventarioHardware>
