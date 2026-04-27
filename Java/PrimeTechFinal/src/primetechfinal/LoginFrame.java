@@ -60,6 +60,7 @@ public class LoginFrame extends javax.swing.JFrame {
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("INICIAR SESIÓN");
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
