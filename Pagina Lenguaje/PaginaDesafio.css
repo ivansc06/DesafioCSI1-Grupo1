@@ -564,3 +564,33 @@ div section p{
 .EnviarFormulario:hover {
     box-shadow: 0px 0px 10px rgb(0, 221, 255);
 }
+
+/*lo de escribenos*/
+
+#Escribenos h1{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#Escribenos h3{
+    color: rgb(0, 221, 255);
+    font-size: 15px;
+}
+
+#Escribenos h2{
+    font-size: 20px;
+}
+
+#Escribenos p{
+    opacity: 0.2;
+    font-size: 14px;
+}
+
+#NuestraInfo div section p{
+    font-size: 15px;
+}
+
+.TitulosInfo2{
+    font-size: 13px;
+    opacity: 0.4;
+}
