@@ -8,6 +8,9 @@ public class Empleado {
     private String cargo;
     private String email;
     private String contraseña;
+    // campos para controlar los intentos fallidos y el bloqueo de la cuenta
+    private int     intentosFallidos;
+    private boolean bloqueado;
 
     public Empleado() {}
 
@@ -21,19 +24,23 @@ public class Empleado {
         this.contraseña = contraseña;
     }
 
-    public int    getIdEmpleado() { return idEmpleado; }
-    public String getNombre()     { return nombre; }
-    public String getApellidos()  { return apellidos; }
-    public String getCargo()      { return cargo; }
-    public String getEmail()      { return email; }
-    public String getContraseña() { return contraseña; }
+    public int     getIdEmpleado()       { return idEmpleado; }
+    public String  getNombre()           { return nombre; }
+    public String  getApellidos()        { return apellidos; }
+    public String  getCargo()            { return cargo; }
+    public String  getEmail()            { return email; }
+    public String  getContraseña()       { return contraseña; }
+    public int     getIntentosFallidos() { return intentosFallidos; }
+    public boolean isBloqueado()         { return bloqueado; }
 
-    public void setIdEmpleado(int idEmpleado)    { this.idEmpleado = idEmpleado; }
-    public void setNombre(String nombre)          { this.nombre = nombre; }
-    public void setApellidos(String apellidos)    { this.apellidos = apellidos; }
-    public void setCargo(String cargo)            { this.cargo = cargo; }
-    public void setEmail(String email)            { this.email = email; }
-    public void setContraseña(String contraseña)  { this.contraseña = contraseña; }
+    public void setIdEmpleado(int idEmpleado)         { this.idEmpleado = idEmpleado; }
+    public void setNombre(String nombre)               { this.nombre = nombre; }
+    public void setApellidos(String apellidos)         { this.apellidos = apellidos; }
+    public void setCargo(String cargo)                 { this.cargo = cargo; }
+    public void setEmail(String email)                 { this.email = email; }
+    public void setContraseña(String contraseña)       { this.contraseña = contraseña; }
+    public void setIntentosFallidos(int intentos)      { this.intentosFallidos = intentos; }
+    public void setBloqueado(boolean bloqueado)        { this.bloqueado = bloqueado; }
 
     public String getNombreCompleto() {
         return nombre + " " + (apellidos != null ? apellidos : "");

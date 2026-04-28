@@ -10,8 +10,9 @@ import primetechfinal.util.BCrypt;
 public class EmpleadoDAO {
 
     public Empleado buscarPorEmail(String email) throws SQLException {
-        String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña " +
-                     "FROM empleados WHERE email = ?";
+        // traigo tambien los campos de bloqueo para poder comprobarlos en el login
+        String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña, " +
+                     "intentos_fallidos, bloqueado FROM empleados WHERE email = ?";
         try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
@@ -23,7 +24,12 @@ public class EmpleadoDAO {
 
     public Empleado login(String email, String plainPassword) throws SQLException {
         Empleado emp = buscarPorEmail(email);
+
+        // si el email no existe directamente devuelvo null
         if (emp == null) return null;
+
+        // si la cuenta esta bloqueada no dejo ni intentar la contraseña
+        if (emp.isBloqueado()) return null;
 
         String stored = emp.getContraseña();
         boolean ok;
@@ -38,12 +44,31 @@ public class EmpleadoDAO {
                 emp.setContraseña(hash);
             }
         }
+
+        if (ok) {
+            // contraseña correcta, reseteo el contador para que pueda volver a fallar desde 0
+            try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(
+                    "UPDATE empleados SET intentos_fallidos = 0, bloqueado = 0 WHERE id_empleado = ?")) {
+                ps.setInt(1, emp.getIdEmpleado());
+                ps.executeUpdate();
+            }
+        } else {
+            // contraseña incorrecta, sumo 1 al contador
+            // el trigger trg_bloquear_cuenta en la BD se encarga de poner bloqueado = 1 si llega a 5
+            try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(
+                    "UPDATE empleados SET intentos_fallidos = intentos_fallidos + 1 WHERE id_empleado = ?")) {
+                ps.setInt(1, emp.getIdEmpleado());
+                ps.executeUpdate();
+            }
+        }
+
         return ok ? emp : null;
     }
 
     public List<Empleado> listarTodos() throws SQLException {
         List<Empleado> lista = new ArrayList<>();
-        String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña FROM empleados ORDER BY nombre";
+        String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña, " +
+                     "intentos_fallidos, bloqueado FROM empleados ORDER BY nombre";
         try (Statement st = ConexionDB.getConexion().createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(mapear(rs));
@@ -104,6 +129,9 @@ public class EmpleadoDAO {
         e.setCargo(rs.getString("cargo"));
         e.setEmail(rs.getString("email"));
         e.setContraseña(rs.getString("contraseña"));
+        // mapeo los campos nuevos de bloqueo
+        e.setIntentosFallidos(rs.getInt("intentos_fallidos"));
+        e.setBloqueado(rs.getBoolean("bloqueado"));
         return e;
     }
 }

@@ -53,6 +53,11 @@ public class LoginFrame extends javax.swing.JFrame {
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 200, 40));
 
         txtPassword.setText("jPasswordField1");
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 200, 40));
         getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 680, 90));
 
@@ -76,18 +81,30 @@ public class LoginFrame extends javax.swing.JFrame {
         String pass  = new String(txtPassword.getPassword());
 
         try {
-            primetechfinal.model.Empleado emp = new primetechfinal.dao.EmpleadoDAO().login(email, pass);
+            primetechfinal.dao.EmpleadoDAO dao = new primetechfinal.dao.EmpleadoDAO();
+            primetechfinal.model.Empleado emp = dao.login(email, pass);
+
             if (emp != null) {
                 primetechfinal.sesion.Sesion.iniciar(emp);
                 new Pantalla().setVisible(true);
                 this.dispose();//necesario, ya que si hacemos un setvisiblefalse seguiria en memoria
             } else {
-                lblError.setText("Email o contraseña incorrectos.");
+                // busco el empleado para saber si el null viene de cuenta bloqueada o de contraseña incorrecta
+                primetechfinal.model.Empleado empConsulta = dao.buscarPorEmail(email);
+                if (empConsulta != null && empConsulta.isBloqueado()) {
+                    lblError.setText("<html>Cuenta bloqueada por demasiados intentos.<br>Contacte con un administrador.</html>");
+                } else {
+                    lblError.setText("Email o contraseña incorrectos.");
+                }
             }
         } catch (Exception ex) {
             lblError.setText("Error de conexión: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
+        txtPassword.setText("");
+    }//GEN-LAST:event_txtPasswordMouseClicked
 
     /**
      * @param args the command line arguments
