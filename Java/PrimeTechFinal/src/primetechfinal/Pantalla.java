@@ -594,7 +594,7 @@ public class Pantalla extends javax.swing.JFrame {
                 lblCerrarSesionMouseClicked(evt);
             }
         });
-        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 50, -1, -1));
+        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -894,7 +894,7 @@ public class Pantalla extends javax.swing.JFrame {
             return;
         }
         int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar la venta seleccionada?");
-        if (confirm != JOptionPane.YES_OPTION) return;
+        if (confirm != JOptionPane.YES_OPTION) return;//panel de confirmacion
         try {
             ventaDAO.eliminar((int) tblVentas.getValueAt(fila, 0));
             cargarTablaVentas();
