@@ -130,10 +130,8 @@ INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña)
 INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña) VALUES
     ('José Luis', 'Pérez', 'tecnico',  'joseluisperez@tienda.local', '12345'),
     ('Javier',    'Maza',  'vendedor', 'javiermaza@tienda.local',    '12345'),
-    ('Iván',  'Segura', 'gerente',  'ivan@tienda.local',  '12345'),
-    ('Markel',  'Corbaton', 'gerente',  'ivan@tienda.local', '12345');
-    
-
+    ('Iván',      'López', 'gerente',  'ivan@tienda.local',          '12345'),
+    ('Markel',      'Corbaton', 'gerente',  'markel@tienda.local',          '12345');
 
 -- Cliente particular de ejemplo
 INSERT INTO clientes (tipo, telefono, email, direccion)
@@ -146,6 +144,25 @@ INSERT INTO clientes (tipo, telefono, email, direccion)
     VALUES ('empresa', '976111222', 'compras@techcorp.es', 'Polígono Industrial 5, Zaragoza');
 INSERT INTO clientes_empresa (id_cliente, razon_social, cif, contacto_nombre)
     VALUES (LAST_INSERT_ID(), 'TechCorp SL', 'B12345678', 'Pedro Martínez');
+    
+    
+-- Vamos a crear dos campos en la tabla empleados para implementar un trigger que contabilice los inicios de sesion fallidos, y si 
+-- llega a 5 bloquee al empleado
+ALTER TABLE empleados
+    ADD COLUMN intentos_fallidos INT NOT NULL DEFAULT 0,
+    ADD COLUMN bloqueado         TINYINT(1) NOT NULL DEFAULT 0;
+-- TRIGER DE CONTEO DE INTENTOS FALLIDOS :
+-- Crear el trigger
+DELIMITER //
+CREATE TRIGGER trg_bloquear_cuenta
+BEFORE UPDATE ON empleados
+FOR EACH ROW
+BEGIN
+    IF NEW.intentos_fallidos >= 5 THEN
+        SET NEW.bloqueado = 1;
+    END IF;
+END //
+DELIMITER ;
 
 -- ============================================================
 -- TRIGGERS
