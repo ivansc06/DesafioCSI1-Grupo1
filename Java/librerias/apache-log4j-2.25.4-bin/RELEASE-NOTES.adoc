@@ -1,0 +1,45 @@
+////
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+////
+
+[#release-notes-2-25-4]
+== 2.25.4
+
+Release date:: 2026-03-25
+
+This patch release delivers fixes for configuration inconsistencies and formatting issues across several layouts.
+
+* Restores alignment between documented and actual configuration attributes.
+* Fixes formatting and sanitization issues in XML and RFC5424 layouts.
+* Improves handling of invalid characters and non-standard values.
+
+The authoritative list of recognized configuration attributes is available in the
+{logging-services-url}/log4j/2.x/plugin-reference.html[Plugin Reference].
+
+
+[#release-notes-2-25-4-fixed]
+=== Fixed
+
+* Prevent ParameterFormatter issuing a warning in case there is an extra null argument. Needed to support cases with Throwable parameter that may be null. (https://github.com/apache/logging-log4j2/issues/3975[3975], https://github.com/apache/logging-log4j2/pull/4014[4014])
+* Restore support for documented `Rfc5424Layout` parameter names. (https://github.com/apache/logging-log4j2/issues/4022[4022], https://github.com/apache/logging-log4j2/pull/4074[4074])
+* Take `Throwable#toString()` into account while rendering stack traces in Pattern Layout. (https://github.com/apache/logging-log4j2/issues/3623[3623], https://github.com/apache/logging-log4j2/pull/4033[4033])
+* Added debug level logs for successful resource loading in `Loader` class. (https://github.com/apache/logging-log4j2/issues/4058[4058], https://github.com/apache/logging-log4j2/pull/4060[4060])
+* Align `SslConfiguration` factory method usage with Log4j 2.12+ API. The `verifyHostname` attribute is not correctly recognized. (https://github.com/apache/logging-log4j2/issues/4061[4061], https://github.com/apache/logging-log4j2/pull/4075[4075])
+* Fix sanitization of structured data parameter names in RFC5424 layout. (https://github.com/apache/logging-log4j2/pull/4073[4073])
+* Replace invalid characters in XmlLayout output with the Unicode replacement character (U+FFFD). (https://github.com/apache/logging-log4j2/pull/4077[4077])
+* Replace invalid characters in Log4j1XmlLayout output with the Unicode replacement character (U+FFFD). (https://github.com/apache/logging-log4j2/pull/4078[4078])
+* Replace invalid characters in MapMessage.asXml() output with the Unicode replacement character (U+FFFD). (https://github.com/apache/logging-log4j2/pull/4079[4079])
+* Write non-finite floating-point numbers as strings in `JsonWriter`. (https://github.com/apache/logging-log4j2/pull/4080[4080])
