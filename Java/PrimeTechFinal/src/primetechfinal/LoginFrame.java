@@ -140,8 +140,8 @@ public class LoginFrame extends javax.swing.JFrame {
         }
 
         // la contraseña debe tener al menos 6 caracteres
-        if (pass.length() < 6) {
-            lblError.setText("La contraseña debe tener al menos 6 caracteres.");
+        if (pass.length() < 5) {
+            lblError.setText("La contraseña debe tener al menos 5 caracteres.");
             return false;
         }
 
