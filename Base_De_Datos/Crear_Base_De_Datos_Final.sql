@@ -183,12 +183,22 @@ BEGIN
 END$$
 
 -- ------------------------------------------------------------
--- TRIGGER 2: Actualizar total de la venta al ELIMINAR una línea
+-- TRIGGER 2: Al ELIMINAR una línea de venta:
+--            - Restaurar el stock del producto
+--            - Recalcular el total de la venta
+-- (fusionado en un único trigger porque MySQL solo permite
+--  un trigger por evento/tabla)
 -- ------------------------------------------------------------
-CREATE TRIGGER trg_actualizar_total_delete
+CREATE TRIGGER trg_delete_detalle
 AFTER DELETE ON detalle_ventas
 FOR EACH ROW
 BEGIN
+    -- Devolvemos las unidades al stock del producto
+    UPDATE productos
+    SET stock = stock + OLD.cantidad
+    WHERE id_producto = OLD.id_producto;
+
+    -- Recalculamos el total de la venta (0 si ya no quedan líneas)
     UPDATE ventas
     SET total = IFNULL(
         (SELECT SUM(subtotal) FROM detalle_ventas WHERE id_venta = OLD.id_venta),
@@ -218,18 +228,6 @@ BEGIN
     UPDATE productos
     SET stock = stock - NEW.cantidad
     WHERE id_producto = NEW.id_producto;
-END$$
-
--- ------------------------------------------------------------
--- TRIGGER 4: Restaurar stock al eliminar una línea de venta
--- ------------------------------------------------------------
-CREATE TRIGGER trg_restaurar_stock_delete
-AFTER DELETE ON detalle_ventas
-FOR EACH ROW
-BEGIN
-    UPDATE productos
-    SET stock = stock + OLD.cantidad
-    WHERE id_producto = OLD.id_producto;
 END$$
 
 DELIMITER ;
