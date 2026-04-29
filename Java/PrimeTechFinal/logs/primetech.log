@@ -1,0 +1,2 @@
+2026-04-29 12:35:06 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-29 12:35:33 [WARN ] VentaDAO - Venta eliminada - id_venta: 5
