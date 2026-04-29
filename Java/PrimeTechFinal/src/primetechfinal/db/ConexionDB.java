@@ -1,19 +1,39 @@
 package primetechfinal.db;
 
 import primetechfinal.sesion.Sesion;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class ConexionDB {
 
-    private static final String URL =
-        "jdbc:mysql://localhost:3306/tienda_informatica" +
-        "?useSSL=false&serverTimezone=Europe/Madrid&allowPublicKeyRetrieval=true&characterEncoding=UTF-8";
+    // cargo la configuracion desde el archivo config.properties en lugar de tenerla hardcodeada aqui
+    private static final String URL;
+    private static final String USUARIO_APP;
+    private static final String CLAVE_APP;
+    private static final String USUARIO_ADMIN;
+    private static final String CLAVE_ADMIN;
 
-    private static final String USUARIO_APP   = "tienda_app";
-    private static final String CLAVE_APP     = "app_pass";
+    // bloque estatico que se ejecuta una sola vez cuando se carga la clase
+    // si el archivo no existe o falta alguna clave, lanza un error al arrancar la app
+    static {
+        Properties props = new Properties();
+        try (InputStream is = ConexionDB.class.getResourceAsStream("/primetechfinal/config.properties")) {
+            if (is == null) {
+                throw new RuntimeException("No se encontro el archivo config.properties en el classpath.");
+            }
+            props.load(is);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al leer config.properties: " + e.getMessage());
+        }
 
-    private static final String USUARIO_ADMIN = "tienda_admin";
-    private static final String CLAVE_ADMIN   = "admin_pass";
+        URL           = props.getProperty("db.url");
+        USUARIO_APP   = props.getProperty("db.usuario.app");
+        CLAVE_APP     = props.getProperty("db.clave.app");
+        USUARIO_ADMIN = props.getProperty("db.usuario.admin");
+        CLAVE_ADMIN   = props.getProperty("db.clave.admin");
+    }
 
     private static Connection conexionApp   = null;
     private static Connection conexionAdmin = null;

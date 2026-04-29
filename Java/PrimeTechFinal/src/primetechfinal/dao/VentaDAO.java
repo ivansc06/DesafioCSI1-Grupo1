@@ -4,11 +4,16 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import primetechfinal.db.ConexionDB;
 import primetechfinal.model.DetalleVenta;
 import primetechfinal.model.Venta;
 
 public class VentaDAO {
+
+    // logger para registrar todas las operaciones sobre ventas
+    private static final Logger logger = LogManager.getLogger(VentaDAO.class);
 
     public int registrarVenta(Venta venta) throws SQLException {
         Connection conn = ConexionDB.getConexion();
@@ -39,8 +44,12 @@ public class VentaDAO {
                 ps.executeBatch();
             }
             conn.commit();
+            // guardo la venta en el log con el id generado y el total
+            logger.info("Venta registrada - id_venta: {}, id_empleado: {}, total: {}", idVenta, venta.getIdEmpleado(), venta.getTotal());
             return idVenta;
         } catch (SQLException e) {
+            // si falla la transaccion lo registro como error grave
+            logger.error("Error al registrar venta - id_empleado: {}: {}", venta.getIdEmpleado(), e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {
@@ -161,11 +170,37 @@ public class VentaDAO {
     }
 
     public void eliminar(int idVenta) throws SQLException {
-        // al eliminar la venta los detalles se eliminan solos por la clave foranea en cascada
-        String sql = "DELETE FROM ventas WHERE id_venta=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
-            ps.setInt(1, idVenta);
-            ps.executeUpdate();
+        //  antes solo hacia DELETE FROM ventas y dejaba que MySQL borrase
+        // los detalles automaticamente por el ON DELETE CASCADE de la clave foranea.
+        // El problema es que cuando MySQL borra filas por CASCADE no dispara los triggers,
+        // entonces el trigger que tenia en detalle_ventas para restaurar el stock
+        // nunca se ejecutaba y el stock se quedaba mal despues de eliminar una venta.
+        // Para solucionarlo hay que borrar los detalles a mano primero, asi el trigger
+        // si se dispara y devuelve el stock correctamente, y luego ya se borra la venta.
+        Connection conn = ConexionDB.getConexion();
+        conn.setAutoCommit(false);
+        try {
+            // borramos primero los detalles para que el trigger de stock se active
+            String sqlD = "DELETE FROM detalle_ventas WHERE id_venta=?";
+            try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
+                ps.setInt(1, idVenta);
+                ps.executeUpdate();
+            }
+            // una vez restaurado el stock ya podemos borrar la venta
+            String sqlV = "DELETE FROM ventas WHERE id_venta=?";
+            try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
+                ps.setInt(1, idVenta);
+                ps.executeUpdate();
+            }
+            conn.commit();
+            // uso warn porque eliminar una venta es algo que hay que dejar registrado siempre
+            logger.warn("Venta eliminada - id_venta: {}", idVenta);
+        } catch (SQLException e) {
+            logger.error("Error al eliminar venta id={}: {}", idVenta, e.getMessage(), e);
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.setAutoCommit(true);
         }
     }
 
@@ -201,7 +236,11 @@ public class VentaDAO {
                 ps.executeBatch();
             }
             conn.commit();
+            // registro que se ha modificado la venta correctamente
+            logger.info("Venta actualizada - id_venta: {}", venta.getIdVenta());
         } catch (SQLException e) {
+            // si falla durante la actualizacion lo registro y hago rollback
+            logger.error("Error al actualizar venta id={}: {}", venta.getIdVenta(), e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {

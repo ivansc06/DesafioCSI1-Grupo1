@@ -3,10 +3,15 @@ package primetechfinal.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import primetechfinal.db.ConexionDB;
 import primetechfinal.model.Cliente;
 
 public class ClienteDAO {
+
+    // logger para dejar registro de lo que se hace con los clientes
+    private static final Logger logger = LogManager.getLogger(ClienteDAO.class);
 
     public List<Cliente> listarTodos() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
@@ -78,7 +83,11 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            // si llega aqui el commit fue bien, dejo constancia del nuevo cliente
+            logger.info("Cliente particular creado: {} {}", c.getNombre(), c.getApellidos());
         } catch (SQLException e) {
+            // si falla hago rollback y lo registro como error
+            logger.error("Error al crear cliente particular: {}", e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {
@@ -110,7 +119,11 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            // si llega aqui el commit fue bien, dejo constancia de la nueva empresa
+            logger.info("Cliente empresa creado: {}", c.getRazonSocial());
         } catch (SQLException e) {
+            // si falla hago rollback y lo registro como error
+            logger.error("Error al crear cliente empresa: {}", e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {
@@ -124,6 +137,8 @@ public class ClienteDAO {
             ps.setInt(1, idCliente);
             ps.executeUpdate();
         }
+        // uso warn porque eliminar un cliente es una accion que no se puede deshacer
+        logger.warn("Cliente eliminado - id_cliente: {}", idCliente);
     }
 
     public List<Cliente> buscarPorNombre(String nombre) throws SQLException {
@@ -179,7 +194,11 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            // registro la modificacion del cliente particular
+            logger.info("Cliente particular actualizado: id={}", c.getIdCliente());
         } catch (SQLException e) {
+            // si algo falla durante el update lo registro y hago rollback
+            logger.error("Error al actualizar cliente particular id={}: {}", c.getIdCliente(), e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {
@@ -210,7 +229,11 @@ public class ClienteDAO {
                 ps.executeUpdate();
             }
             conn.commit();
+            // registro la modificacion de la empresa
+            logger.info("Cliente empresa actualizado: id={}", c.getIdCliente());
         } catch (SQLException e) {
+            // si algo falla durante el update lo registro y hago rollback
+            logger.error("Error al actualizar cliente empresa id={}: {}", c.getIdCliente(), e.getMessage(), e);
             conn.rollback();
             throw e;
         } finally {

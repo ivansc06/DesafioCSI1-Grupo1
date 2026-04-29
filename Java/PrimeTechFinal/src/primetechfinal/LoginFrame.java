@@ -4,13 +4,20 @@
  */
 package primetechfinal;
 
+import primetechfinal.dao.EmpleadoDAO;
+import primetechfinal.model.Empleado;
+import primetechfinal.sesion.Sesion;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  *
  * @author dpjos
  */
 public class LoginFrame extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginFrame.class.getName());
+
+    // logger para guardar en el archivo de log todo lo que pasa en el login
+    private static final Logger logger = LogManager.getLogger(LoginFrame.class);
 
     /**
      * Creates new form LoginFrame
@@ -78,29 +85,70 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         String email = txtEmail.getText().trim();
-        String pass  = new String(txtPassword.getPassword());
+        String pass  = new String(txtPassword.getPassword());//lo hacemos por seguridad, para que no se quede guardada la contraseña en el string
+
+        // valido los campos antes de ir a la base de datos
+        if (!validarCampos(email, pass)) return;
 
         try {
-            primetechfinal.dao.EmpleadoDAO dao = new primetechfinal.dao.EmpleadoDAO();
-            primetechfinal.model.Empleado emp = dao.login(email, pass);
+            EmpleadoDAO dao = new EmpleadoDAO();
+            Empleado emp = dao.login(email, pass);
 
             if (emp != null) {
-                primetechfinal.sesion.Sesion.iniciar(emp);
+                // guardo en el log quien ha entrado y cuando
+                logger.info("Login correcto - empleado: {} ({})", emp.getNombreCompleto(), email);
+                Sesion.iniciar(emp);
                 new Pantalla().setVisible(true);
                 this.dispose();//necesario, ya que si hacemos un setvisiblefalse seguiria en memoria
             } else {
                 // busco el empleado para saber si el null viene de cuenta bloqueada o de contraseña incorrecta
-                primetechfinal.model.Empleado empConsulta = dao.buscarPorEmail(email);
+                Empleado empConsulta = dao.buscarPorEmail(email);
                 if (empConsulta != null && empConsulta.isBloqueado()) {
+                    // aviso con warn porque es un intento de entrar a una cuenta bloqueada
+                    logger.warn("Intento de acceso a cuenta bloqueada - email: {}", email);
                     lblError.setText("<html>Cuenta bloqueada por demasiados intentos.<br>Contacte con un administrador.</html>");
                 } else {
+                    // contraseña incorrecta, lo guardo como advertencia
+                    logger.warn("Intento de login fallido - email: {}", email);
                     lblError.setText("Email o contraseña incorrectos.");
                 }
             }
         } catch (Exception ex) {
+            // si hay un error de conexion o similar lo guardo como error grave
+            logger.error("Error al intentar iniciar sesion - email: {}", email, ex);
             lblError.setText("Error de conexión: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    // compruebo que los campos sean correctos antes de enviar nada a la BD
+    private boolean validarCampos(String email, String pass) {
+
+        // compruebo que no esten vacios
+        if (email.isEmpty()) {
+            lblError.setText("El email no puede estar vacío.");
+            return false;
+        }
+        if (pass.isEmpty()) {
+            lblError.setText("La contraseña no puede estar vacía.");
+            return false;
+        }
+
+        // compruebo que el email tenga un formato valido (que tenga @ y un punto despues)
+        if (!email.matches("^[^@]+@[^@]+\\.[^@]+$")) {
+            lblError.setText("El formato del email no es válido.");
+            return false;
+        }
+
+        // la contraseña debe tener al menos 6 caracteres
+        if (pass.length() < 6) {
+            lblError.setText("La contraseña debe tener al menos 6 caracteres.");
+            return false;
+        }
+
+        // si llega aqui todo esta bien, limpio el error por si habia alguno antes
+        lblError.setText("");
+        return true;
+    }
 
     private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         txtPassword.setText("");
@@ -123,7 +171,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            logger.error("Error al cargar el look and feel", ex);
         }
         //</editor-fold>
 
