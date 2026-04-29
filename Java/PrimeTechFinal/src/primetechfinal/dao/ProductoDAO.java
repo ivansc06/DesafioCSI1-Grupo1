@@ -3,10 +3,15 @@ package primetechfinal.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import primetechfinal.db.ConexionDB;
 import primetechfinal.model.Producto;
 
 public class ProductoDAO {
+
+    // logger para registrar los cambios que se hacen en los productos
+    private static final Logger logger = LogManager.getLogger(ProductoDAO.class);
 
     public List<Producto> listarTodos() throws SQLException {
         List<Producto> lista = new ArrayList<>();
@@ -54,6 +59,8 @@ public class ProductoDAO {
             ps.setInt(5, p.getStock());
             ps.executeUpdate();
         }
+        // guardo en el log que se ha añadido un producto nuevo con su precio
+        logger.info("Producto creado: {} - precio venta: {}", p.getNombre(), p.getPrecioVenta());
     }
 
     public void actualizar(Producto p) throws SQLException {
@@ -67,6 +74,8 @@ public class ProductoDAO {
             ps.setInt(6, p.getIdProducto());
             ps.executeUpdate();
         }
+        // registro que se ha modificado un producto
+        logger.info("Producto actualizado: id={}, nombre={}", p.getIdProducto(), p.getNombre());
     }
 
     public void eliminar(int idProducto) throws SQLException {
@@ -75,6 +84,8 @@ public class ProductoDAO {
             ps.setInt(1, idProducto);
             ps.executeUpdate();
         }
+        // warn porque si se elimina un producto con ventas asociadas podria ser un problema
+        logger.warn("Producto eliminado - id_producto: {}", idProducto);
     }
 
     private Producto mapear(ResultSet rs) throws SQLException {

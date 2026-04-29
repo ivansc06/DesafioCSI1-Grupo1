@@ -849,6 +849,7 @@ public class Pantalla extends javax.swing.JFrame {
             else                     ventaDAO.registrarVenta(v);
             DialogVenta.setVisible(false);
             cargarTablaVentas();
+            cargarTablaProductos(); // el stock cambia al registrar o editar una venta
             cargarEstadisticas();
             JOptionPane.showMessageDialog(this, ventaActual != null ? "Venta actualizada correctamente." : "Venta registrada correctamente.");//operacion ternaria ahorramos espacio, mejor que hacer if else
         } catch (SQLException ex) {
@@ -898,6 +899,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             ventaDAO.eliminar((int) tblVentas.getValueAt(fila, 0));
             cargarTablaVentas();
+            cargarTablaProductos(); // el stock se restaura al eliminar una venta
             cargarEstadisticas();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());

@@ -3,11 +3,16 @@ package primetechfinal.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import primetechfinal.db.ConexionDB;
 import primetechfinal.model.Empleado;
 import primetechfinal.util.BCrypt;
 
 public class EmpleadoDAO {
+
+    // logger para registrar todo lo que pasa con los empleados en el archivo de log
+    private static final Logger logger = LogManager.getLogger(EmpleadoDAO.class);
 
     public Empleado buscarPorEmail(String email) throws SQLException {
         // traigo tambien los campos de bloqueo para poder comprobarlos en el login
@@ -87,6 +92,8 @@ public class EmpleadoDAO {
             ps.setString(5, hash);
             ps.executeUpdate();
         }
+        // dejo constancia de que se ha creado un empleado nuevo
+        logger.info("Empleado creado: {} - {}", emp.getNombreCompleto(), emp.getEmail());
     }
 
     public void actualizar(Empleado emp) throws SQLException {
@@ -99,6 +106,8 @@ public class EmpleadoDAO {
             ps.setInt(5, emp.getIdEmpleado());
             ps.executeUpdate();
         }
+        // registro que se han modificado los datos de un empleado
+        logger.info("Empleado actualizado: id={}, email={}", emp.getIdEmpleado(), emp.getEmail());
     }
 
     public void actualizarContraseña(int idEmpleado, String nuevaContraseñaPlain) throws SQLException {
@@ -111,6 +120,8 @@ public class EmpleadoDAO {
             ps.setInt(2, idEmpleado);
             ps.executeUpdate();
         }
+        // registro el cambio de contraseña sin guardar la contraseña en el log por seguridad
+        logger.info("Contraseña actualizada - id_empleado: {}", idEmpleado);
     }
 
     public void eliminar(int idEmpleado) throws SQLException {
@@ -119,6 +130,8 @@ public class EmpleadoDAO {
             ps.setInt(1, idEmpleado);
             ps.executeUpdate();
         }
+        // uso warn porque eliminar es una accion importante que hay que tener controlada
+        logger.warn("Empleado eliminado - id_empleado: {}", idEmpleado);
     }
 
     private Empleado mapear(ResultSet rs) throws SQLException {
