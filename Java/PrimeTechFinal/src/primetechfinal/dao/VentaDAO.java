@@ -170,7 +170,7 @@ public class VentaDAO {
     }
 
     public void eliminar(int idVenta) throws SQLException {
-        //  antes solo hacia DELETE FROM ventas y dejaba que MySQL borrase
+        // NOTA: antes solo hacia DELETE FROM ventas y dejaba que MySQL borrase
         // los detalles automaticamente por el ON DELETE CASCADE de la clave foranea.
         // El problema es que cuando MySQL borra filas por CASCADE no dispara los triggers,
         // entonces el trigger que tenia en detalle_ventas para restaurar el stock

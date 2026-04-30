@@ -15,11 +15,10 @@ public class ClienteDAO {
 
     public List<Cliente> listarTodos() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
-        String sqlP = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +//clientes particulares
+        String sqlP = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "cp.nombre, cp.apellidos, cp.dni, NULL AS razon_social, NULL AS cif, NULL AS contacto_nombre " +
                       "FROM clientes c JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente";
-        
-        String sqlE = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +//empresas
+        String sqlE = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "NULL AS nombre, NULL AS apellidos, NULL AS dni, " +
                       "ce.razon_social, ce.cif, ce.contacto_nombre " +
                       "FROM clientes c JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente";
@@ -143,12 +142,10 @@ public class ClienteDAO {
 
     public List<Cliente> buscarPorNombre(String nombre) throws SQLException {
         List<Cliente> lista = new ArrayList<>();
-        // busca en particulares por nombre o apellidos
         String sqlP = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "cp.nombre, cp.apellidos, cp.dni, NULL AS razon_social, NULL AS cif, NULL AS contacto_nombre " +
                       "FROM clientes c JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente " +
                       "WHERE cp.nombre LIKE ? OR cp.apellidos LIKE ?";
-        // busca en empresas por razon social
         String sqlE = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                       "NULL AS nombre, NULL AS apellidos, NULL AS dni, " +
                       "ce.razon_social, ce.cif, ce.contacto_nombre " +

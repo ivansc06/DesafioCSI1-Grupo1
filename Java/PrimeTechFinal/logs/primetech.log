@@ -1,2 +1,17 @@
-2026-04-29 12:35:06 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
-2026-04-29 12:35:33 [WARN ] VentaDAO - Venta eliminada - id_venta: 5
+2026-04-30 21:41:20 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-30 21:47:43 [INFO ] HikariDataSource - HikariPool-1 - Starting...
+2026-04-30 21:47:44 [INFO ] HikariDataSource - HikariPool-1 - Start completed.
+2026-04-30 21:47:44 [INFO ] HikariDataSource - HikariPool-2 - Starting...
+2026-04-30 21:47:44 [INFO ] HikariDataSource - HikariPool-2 - Start completed.
+2026-04-30 21:47:44 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-30 21:48:42 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-30 21:50:33 [INFO ] HikariDataSource - HikariPool-1 - Starting...
+2026-04-30 21:50:33 [INFO ] HikariDataSource - HikariPool-1 - Start completed.
+2026-04-30 21:50:33 [INFO ] HikariDataSource - HikariPool-2 - Starting...
+2026-04-30 21:50:33 [INFO ] HikariDataSource - HikariPool-2 - Start completed.
+2026-04-30 21:50:33 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-30 21:56:32 [INFO ] HikariDataSource - HikariPool-1 - Starting...
+2026-04-30 21:56:32 [INFO ] HikariDataSource - HikariPool-1 - Start completed.
+2026-04-30 21:56:32 [INFO ] HikariDataSource - HikariPool-2 - Starting...
+2026-04-30 21:56:32 [INFO ] HikariDataSource - HikariPool-2 - Start completed.
+2026-04-30 21:56:32 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
