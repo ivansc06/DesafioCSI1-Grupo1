@@ -1,0 +1,7 @@
+2026-04-29 12:35:06 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-29 12:35:33 [WARN ] VentaDAO - Venta eliminada - id_venta: 5
+2026-04-29 13:48:03 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-29 13:48:28 [INFO ] VentaDAO - Venta registrada - id_venta: 6, id_empleado: 1, total: 0.0
+2026-04-29 13:48:39 [WARN ] VentaDAO - Venta eliminada - id_venta: 6
+2026-04-29 13:49:17 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-04-29 13:49:26 [INFO ] VentaDAO - Venta registrada - id_venta: 7, id_empleado: 1, total: 0.0
