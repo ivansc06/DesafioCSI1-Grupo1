@@ -22,7 +22,9 @@ public class ClienteDAO {
                       "NULL AS nombre, NULL AS apellidos, NULL AS dni, " +
                       "ce.razon_social, ce.cif, ce.contacto_nombre " +
                       "FROM clientes c JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente";
-        try (Statement st = ConexionDB.getConexion().createStatement()) {
+        // uso una sola conexion para las dos consultas y la cierro al terminar
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement()) {
             try (ResultSet rs = st.executeQuery(sqlP)) {
                 while (rs.next()) lista.add(mapear(rs));
             }
@@ -38,7 +40,8 @@ public class ClienteDAO {
         String sql = "SELECT c.id_cliente, c.tipo, c.telefono, c.email, c.direccion, " +
                      "cp.nombre, cp.apellidos, cp.dni, NULL AS razon_social, NULL AS cif, NULL AS contacto_nombre " +
                      "FROM clientes c JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente ORDER BY cp.nombre";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(mapear(rs));
         }
@@ -51,7 +54,8 @@ public class ClienteDAO {
                      "NULL AS nombre, NULL AS apellidos, NULL AS dni, " +
                      "ce.razon_social, ce.cif, ce.contacto_nombre " +
                      "FROM clientes c JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente ORDER BY ce.razon_social";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(mapear(rs));
         }
@@ -59,80 +63,85 @@ public class ClienteDAO {
     }
 
     public void insertarParticular(Cliente c) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            int idCliente;
-            String sqlC = "INSERT INTO clientes (tipo, telefono, email, direccion) VALUES ('particular',?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlC, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setString(1, c.getTelefono());
-                ps.setString(2, c.getEmail());
-                ps.setString(3, c.getDireccion());
-                ps.executeUpdate();
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    rs.next(); idCliente = rs.getInt(1);
+        // con el pool la conexion hay que cerrarla al terminar, por eso la meto en el try-with-resources
+        // antes solo habia que poner el autoCommit a true en el finally, ahora ademas se cierra sola
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                int idCliente;
+                String sqlC = "INSERT INTO clientes (tipo, telefono, email, direccion) VALUES ('particular',?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlC, Statement.RETURN_GENERATED_KEYS)) {
+                    ps.setString(1, c.getTelefono());
+                    ps.setString(2, c.getEmail());
+                    ps.setString(3, c.getDireccion());
+                    ps.executeUpdate();
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        rs.next(); idCliente = rs.getInt(1);
+                    }
                 }
+                String sqlP = "INSERT INTO clientes_particular (id_cliente, nombre, apellidos, dni) VALUES (?,?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlP)) {
+                    ps.setInt(1, idCliente);
+                    ps.setString(2, c.getNombre());
+                    ps.setString(3, c.getApellidos());
+                    ps.setString(4, c.getDni());
+                    ps.executeUpdate();
+                }
+                conn.commit();
+                // si llega aqui el commit fue bien, dejo constancia del nuevo cliente
+                logger.info("Cliente particular creado: {} {}", c.getNombre(), c.getApellidos());
+            } catch (SQLException e) {
+                // si falla hago rollback y lo registro como error
+                logger.error("Error al crear cliente particular: {}", e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            String sqlP = "INSERT INTO clientes_particular (id_cliente, nombre, apellidos, dni) VALUES (?,?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlP)) {
-                ps.setInt(1, idCliente);
-                ps.setString(2, c.getNombre());
-                ps.setString(3, c.getApellidos());
-                ps.setString(4, c.getDni());
-                ps.executeUpdate();
-            }
-            conn.commit();
-            // si llega aqui el commit fue bien, dejo constancia del nuevo cliente
-            logger.info("Cliente particular creado: {} {}", c.getNombre(), c.getApellidos());
-        } catch (SQLException e) {
-            // si falla hago rollback y lo registro como error
-            logger.error("Error al crear cliente particular: {}", e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
     public void insertarEmpresa(Cliente c) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            int idCliente;
-            String sqlC = "INSERT INTO clientes (tipo, telefono, email, direccion) VALUES ('empresa',?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlC, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setString(1, c.getTelefono());
-                ps.setString(2, c.getEmail());
-                ps.setString(3, c.getDireccion());
-                ps.executeUpdate();
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    rs.next(); idCliente = rs.getInt(1);
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                int idCliente;
+                String sqlC = "INSERT INTO clientes (tipo, telefono, email, direccion) VALUES ('empresa',?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlC, Statement.RETURN_GENERATED_KEYS)) {
+                    ps.setString(1, c.getTelefono());
+                    ps.setString(2, c.getEmail());
+                    ps.setString(3, c.getDireccion());
+                    ps.executeUpdate();
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        rs.next(); idCliente = rs.getInt(1);
+                    }
                 }
+                String sqlE = "INSERT INTO clientes_empresa (id_cliente, razon_social, cif, contacto_nombre) VALUES (?,?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlE)) {
+                    ps.setInt(1, idCliente);
+                    ps.setString(2, c.getRazonSocial());
+                    ps.setString(3, c.getCif());
+                    ps.setString(4, c.getContactoNombre());
+                    ps.executeUpdate();
+                }
+                conn.commit();
+                // si llega aqui el commit fue bien, dejo constancia de la nueva empresa
+                logger.info("Cliente empresa creado: {}", c.getRazonSocial());
+            } catch (SQLException e) {
+                // si falla hago rollback y lo registro como error
+                logger.error("Error al crear cliente empresa: {}", e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            String sqlE = "INSERT INTO clientes_empresa (id_cliente, razon_social, cif, contacto_nombre) VALUES (?,?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlE)) {
-                ps.setInt(1, idCliente);
-                ps.setString(2, c.getRazonSocial());
-                ps.setString(3, c.getCif());
-                ps.setString(4, c.getContactoNombre());
-                ps.executeUpdate();
-            }
-            conn.commit();
-            // si llega aqui el commit fue bien, dejo constancia de la nueva empresa
-            logger.info("Cliente empresa creado: {}", c.getRazonSocial());
-        } catch (SQLException e) {
-            // si falla hago rollback y lo registro como error
-            logger.error("Error al crear cliente empresa: {}", e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
     public void eliminar(int idCliente) throws SQLException {
         String sql = "DELETE FROM clientes WHERE id_cliente=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idCliente);
             ps.executeUpdate();
         }
@@ -152,14 +161,17 @@ public class ClienteDAO {
                       "FROM clientes c JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente " +
                       "WHERE ce.razon_social LIKE ?";
         String filtro = "%" + nombre + "%";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sqlP)) {
+        // cierro cada conexion al terminar cada consulta para devolverla al pool
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sqlP)) {
             ps.setString(1, filtro);
             ps.setString(2, filtro);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) lista.add(mapear(rs));
             }
         }
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sqlE)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sqlE)) {
             ps.setString(1, filtro);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) lista.add(mapear(rs));
@@ -169,72 +181,74 @@ public class ClienteDAO {
     }
 
     public void actualizarParticular(Cliente c) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            // actualizamos la tabla base clientes
-            String sqlC = "UPDATE clientes SET telefono=?, email=?, direccion=? WHERE id_cliente=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlC)) {
-                ps.setString(1, c.getTelefono());
-                ps.setString(2, c.getEmail());
-                ps.setString(3, c.getDireccion());
-                ps.setInt(4, c.getIdCliente());
-                ps.executeUpdate();
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                // actualizamos la tabla base clientes
+                String sqlC = "UPDATE clientes SET telefono=?, email=?, direccion=? WHERE id_cliente=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlC)) {
+                    ps.setString(1, c.getTelefono());
+                    ps.setString(2, c.getEmail());
+                    ps.setString(3, c.getDireccion());
+                    ps.setInt(4, c.getIdCliente());
+                    ps.executeUpdate();
+                }
+                // actualizamos los datos especificos del particular
+                String sqlP = "UPDATE clientes_particular SET nombre=?, apellidos=?, dni=? WHERE id_cliente=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlP)) {
+                    ps.setString(1, c.getNombre());
+                    ps.setString(2, c.getApellidos());
+                    ps.setString(3, c.getDni());
+                    ps.setInt(4, c.getIdCliente());
+                    ps.executeUpdate();
+                }
+                conn.commit();
+                // registro la modificacion del cliente particular
+                logger.info("Cliente particular actualizado: id={}", c.getIdCliente());
+            } catch (SQLException e) {
+                // si algo falla durante el update lo registro y hago rollback
+                logger.error("Error al actualizar cliente particular id={}: {}", c.getIdCliente(), e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            // actualizamos los datos específicos del particular
-            String sqlP = "UPDATE clientes_particular SET nombre=?, apellidos=?, dni=? WHERE id_cliente=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlP)) {
-                ps.setString(1, c.getNombre());
-                ps.setString(2, c.getApellidos());
-                ps.setString(3, c.getDni());
-                ps.setInt(4, c.getIdCliente());
-                ps.executeUpdate();
-            }
-            conn.commit();
-            // registro la modificacion del cliente particular
-            logger.info("Cliente particular actualizado: id={}", c.getIdCliente());
-        } catch (SQLException e) {
-            // si algo falla durante el update lo registro y hago rollback
-            logger.error("Error al actualizar cliente particular id={}: {}", c.getIdCliente(), e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
     public void actualizarEmpresa(Cliente c) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            // actualizamos la tabla base clientes
-            String sqlC = "UPDATE clientes SET telefono=?, email=?, direccion=? WHERE id_cliente=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlC)) {
-                ps.setString(1, c.getTelefono());
-                ps.setString(2, c.getEmail());
-                ps.setString(3, c.getDireccion());
-                ps.setInt(4, c.getIdCliente());
-                ps.executeUpdate();
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                // actualizamos la tabla base clientes
+                String sqlC = "UPDATE clientes SET telefono=?, email=?, direccion=? WHERE id_cliente=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlC)) {
+                    ps.setString(1, c.getTelefono());
+                    ps.setString(2, c.getEmail());
+                    ps.setString(3, c.getDireccion());
+                    ps.setInt(4, c.getIdCliente());
+                    ps.executeUpdate();
+                }
+                // actualizamos los datos especificos de la empresa
+                String sqlE = "UPDATE clientes_empresa SET razon_social=?, cif=?, contacto_nombre=? WHERE id_cliente=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlE)) {
+                    ps.setString(1, c.getRazonSocial());
+                    ps.setString(2, c.getCif());
+                    ps.setString(3, c.getContactoNombre());
+                    ps.setInt(4, c.getIdCliente());
+                    ps.executeUpdate();
+                }
+                conn.commit();
+                // registro la modificacion de la empresa
+                logger.info("Cliente empresa actualizado: id={}", c.getIdCliente());
+            } catch (SQLException e) {
+                // si algo falla durante el update lo registro y hago rollback
+                logger.error("Error al actualizar cliente empresa id={}: {}", c.getIdCliente(), e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            // actualizamos los datos específicos de la empresa
-            String sqlE = "UPDATE clientes_empresa SET razon_social=?, cif=?, contacto_nombre=? WHERE id_cliente=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlE)) {
-                ps.setString(1, c.getRazonSocial());
-                ps.setString(2, c.getCif());
-                ps.setString(3, c.getContactoNombre());
-                ps.setInt(4, c.getIdCliente());
-                ps.executeUpdate();
-            }
-            conn.commit();
-            // registro la modificacion de la empresa
-            logger.info("Cliente empresa actualizado: id={}", c.getIdCliente());
-        } catch (SQLException e) {
-            // si algo falla durante el update lo registro y hago rollback
-            logger.error("Error al actualizar cliente empresa id={}: {}", c.getIdCliente(), e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 

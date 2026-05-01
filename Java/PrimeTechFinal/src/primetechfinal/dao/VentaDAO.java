@@ -16,44 +16,47 @@ public class VentaDAO {
     private static final Logger logger = LogManager.getLogger(VentaDAO.class);
 
     public int registrarVenta(Venta venta) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            int idVenta;
-            String sqlV = "INSERT INTO ventas (id_cliente, id_empleado, metodo_pago, total) VALUES (?,?,?,0)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlV, Statement.RETURN_GENERATED_KEYS)) {
-                if (venta.getIdCliente() > 0) ps.setInt(1, venta.getIdCliente());
-                else ps.setNull(1, Types.INTEGER);
-                ps.setInt(2, venta.getIdEmpleado());
-                ps.setString(3, venta.getMetodoPago());
-                ps.executeUpdate();
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    rs.next();
-                    idVenta = rs.getInt(1);
+        // con el pool hay que meter la conexion en el try-with-resources para que se cierre
+        // al terminar y vuelva al pool, antes no era necesario porque era una conexion fija
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                int idVenta;
+                String sqlV = "INSERT INTO ventas (id_cliente, id_empleado, metodo_pago, total) VALUES (?,?,?,0)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlV, Statement.RETURN_GENERATED_KEYS)) {
+                    if (venta.getIdCliente() > 0) ps.setInt(1, venta.getIdCliente());
+                    else ps.setNull(1, Types.INTEGER);
+                    ps.setInt(2, venta.getIdEmpleado());
+                    ps.setString(3, venta.getMetodoPago());
+                    ps.executeUpdate();
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        rs.next();
+                        idVenta = rs.getInt(1);
+                    }
                 }
-            }
-            String sqlD = "INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?,?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
-                for (DetalleVenta d : venta.getDetalles()) {
-                    ps.setInt(1, idVenta);
-                    ps.setInt(2, d.getIdProducto());
-                    ps.setInt(3, d.getCantidad());
-                    ps.setDouble(4, d.getPrecioUnitario());
-                    ps.addBatch();
+                String sqlD = "INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?,?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
+                    for (DetalleVenta d : venta.getDetalles()) {
+                        ps.setInt(1, idVenta);
+                        ps.setInt(2, d.getIdProducto());
+                        ps.setInt(3, d.getCantidad());
+                        ps.setDouble(4, d.getPrecioUnitario());
+                        ps.addBatch();
+                    }
+                    ps.executeBatch();
                 }
-                ps.executeBatch();
+                conn.commit();
+                // guardo la venta en el log con el id generado y el total
+                logger.info("Venta registrada - id_venta: {}, id_empleado: {}, total: {}", idVenta, venta.getIdEmpleado(), venta.getTotal());
+                return idVenta;
+            } catch (SQLException e) {
+                // si falla la transaccion lo registro como error grave
+                logger.error("Error al registrar venta - id_empleado: {}: {}", venta.getIdEmpleado(), e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            conn.commit();
-            // guardo la venta en el log con el id generado y el total
-            logger.info("Venta registrada - id_venta: {}, id_empleado: {}, total: {}", idVenta, venta.getIdEmpleado(), venta.getTotal());
-            return idVenta;
-        } catch (SQLException e) {
-            // si falla la transaccion lo registro como error grave
-            logger.error("Error al registrar venta - id_empleado: {}: {}", venta.getIdEmpleado(), e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
@@ -66,7 +69,8 @@ public class VentaDAO {
                      "LEFT JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente " +
                      "LEFT JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente " +
                      "ORDER BY v.fecha_venta DESC";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 Venta v = new Venta();
@@ -89,7 +93,8 @@ public class VentaDAO {
         String sql = "SELECT dv.id_detalle, dv.id_venta, dv.id_producto, p.nombre, dv.cantidad, dv.precio_unitario " +
                      "FROM detalle_ventas dv JOIN productos p ON dv.id_producto = p.id_producto " +
                      "WHERE dv.id_venta = ?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idVenta);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -116,7 +121,8 @@ public class VentaDAO {
                      "LEFT JOIN clientes_empresa ce ON c.id_cliente = ce.id_cliente " +
                      "WHERE v.id_venta = ?";
         Venta v = null;
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idVenta);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -147,7 +153,8 @@ public class VentaDAO {
                      "WHERE cp.nombre LIKE ? OR cp.apellidos LIKE ? OR ce.razon_social LIKE ? " +
                      "ORDER BY v.fecha_venta DESC";
         String filtro = "%" + nombre + "%";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, filtro);
             ps.setString(2, filtro);
             ps.setString(3, filtro);
@@ -177,80 +184,83 @@ public class VentaDAO {
         // nunca se ejecutaba y el stock se quedaba mal despues de eliminar una venta.
         // Para solucionarlo hay que borrar los detalles a mano primero, asi el trigger
         // si se dispara y devuelve el stock correctamente, y luego ya se borra la venta.
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            // borramos primero los detalles para que el trigger de stock se active
-            String sqlD = "DELETE FROM detalle_ventas WHERE id_venta=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
-                ps.setInt(1, idVenta);
-                ps.executeUpdate();
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                // borramos primero los detalles para que el trigger de stock se active
+                String sqlD = "DELETE FROM detalle_ventas WHERE id_venta=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
+                    ps.setInt(1, idVenta);
+                    ps.executeUpdate();
+                }
+                // una vez restaurado el stock ya podemos borrar la venta
+                String sqlV = "DELETE FROM ventas WHERE id_venta=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
+                    ps.setInt(1, idVenta);
+                    ps.executeUpdate();
+                }
+                conn.commit();
+                // uso warn porque eliminar una venta es algo que hay que dejar registrado siempre
+                logger.warn("Venta eliminada - id_venta: {}", idVenta);
+            } catch (SQLException e) {
+                logger.error("Error al eliminar venta id={}: {}", idVenta, e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            // una vez restaurado el stock ya podemos borrar la venta
-            String sqlV = "DELETE FROM ventas WHERE id_venta=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
-                ps.setInt(1, idVenta);
-                ps.executeUpdate();
-            }
-            conn.commit();
-            // uso warn porque eliminar una venta es algo que hay que dejar registrado siempre
-            logger.warn("Venta eliminada - id_venta: {}", idVenta);
-        } catch (SQLException e) {
-            logger.error("Error al eliminar venta id={}: {}", idVenta, e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
     public void actualizar(Venta venta) throws SQLException {
-        Connection conn = ConexionDB.getConexion();
-        conn.setAutoCommit(false);
-        try {
-            // actualizamos cliente y metodo de pago
-            String sqlV = "UPDATE ventas SET id_cliente=?, metodo_pago=? WHERE id_venta=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
-                if (venta.getIdCliente() > 0) ps.setInt(1, venta.getIdCliente());
-                else ps.setNull(1, Types.INTEGER);
-                ps.setString(2, venta.getMetodoPago());
-                ps.setInt(3, venta.getIdVenta());
-                ps.executeUpdate();
-            }
-            // eliminamos los detalles antiguos
-            String sqlDelD = "DELETE FROM detalle_ventas WHERE id_venta=?";
-            try (PreparedStatement ps = conn.prepareStatement(sqlDelD)) {
-                ps.setInt(1, venta.getIdVenta());
-                ps.executeUpdate();
-            }
-            // insertamos los nuevos detalles
-            String sqlD = "INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?,?,?,?)";
-            try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
-                for (DetalleVenta d : venta.getDetalles()) {
-                    ps.setInt(1, venta.getIdVenta());
-                    ps.setInt(2, d.getIdProducto());
-                    ps.setInt(3, d.getCantidad());
-                    ps.setDouble(4, d.getPrecioUnitario());
-                    ps.addBatch();
+        try (Connection conn = ConexionDB.getConexion()) {
+            conn.setAutoCommit(false);
+            try {
+                // actualizamos cliente y metodo de pago
+                String sqlV = "UPDATE ventas SET id_cliente=?, metodo_pago=? WHERE id_venta=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
+                    if (venta.getIdCliente() > 0) ps.setInt(1, venta.getIdCliente());
+                    else ps.setNull(1, Types.INTEGER);
+                    ps.setString(2, venta.getMetodoPago());
+                    ps.setInt(3, venta.getIdVenta());
+                    ps.executeUpdate();
                 }
-                ps.executeBatch();
+                // eliminamos los detalles antiguos
+                String sqlDelD = "DELETE FROM detalle_ventas WHERE id_venta=?";
+                try (PreparedStatement ps = conn.prepareStatement(sqlDelD)) {
+                    ps.setInt(1, venta.getIdVenta());
+                    ps.executeUpdate();
+                }
+                // insertamos los nuevos detalles
+                String sqlD = "INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?,?,?,?)";
+                try (PreparedStatement ps = conn.prepareStatement(sqlD)) {
+                    for (DetalleVenta d : venta.getDetalles()) {
+                        ps.setInt(1, venta.getIdVenta());
+                        ps.setInt(2, d.getIdProducto());
+                        ps.setInt(3, d.getCantidad());
+                        ps.setDouble(4, d.getPrecioUnitario());
+                        ps.addBatch();
+                    }
+                    ps.executeBatch();
+                }
+                conn.commit();
+                // registro que se ha modificado la venta correctamente
+                logger.info("Venta actualizada - id_venta: {}", venta.getIdVenta());
+            } catch (SQLException e) {
+                // si falla durante la actualizacion lo registro y hago rollback
+                logger.error("Error al actualizar venta id={}: {}", venta.getIdVenta(), e.getMessage(), e);
+                conn.rollback();
+                throw e;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            conn.commit();
-            // registro que se ha modificado la venta correctamente
-            logger.info("Venta actualizada - id_venta: {}", venta.getIdVenta());
-        } catch (SQLException e) {
-            // si falla durante la actualizacion lo registro y hago rollback
-            logger.error("Error al actualizar venta id={}: {}", venta.getIdVenta(), e.getMessage(), e);
-            conn.rollback();
-            throw e;
-        } finally {
-            conn.setAutoCommit(true);
         }
     }
 
     public double totalVentasHoy() throws SQLException {
         String sql = "SELECT COALESCE(SUM(total),0) FROM ventas WHERE DATE(fecha_venta) = CURDATE()";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             return rs.next() ? rs.getDouble(1) : 0;
         }
@@ -258,7 +268,8 @@ public class VentaDAO {
 
     public int ventasMes() throws SQLException {
         String sql = "SELECT COUNT(*) FROM ventas WHERE MONTH(fecha_venta)=MONTH(CURDATE()) AND YEAR(fecha_venta)=YEAR(CURDATE())";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             return rs.next() ? rs.getInt(1) : 0;
         }
@@ -268,7 +279,8 @@ public class VentaDAO {
         String sql = "SELECT p.nombre, SUM(dv.cantidad) AS total " +
                      "FROM detalle_ventas dv JOIN productos p ON dv.id_producto=p.id_producto " +
                      "GROUP BY p.id_producto ORDER BY total DESC LIMIT 1";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             return rs.next() ? rs.getString("nombre") : "-";
         }
