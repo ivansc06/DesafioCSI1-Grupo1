@@ -146,6 +146,7 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
         lblCerrarSesion = new javax.swing.JLabel();
+        btnExportarExcel = new javax.swing.JButton();
 
         DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
         DialogProductos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -374,9 +375,9 @@ public class Pantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Impact", 3, 36)); // NOI18N
         jLabel1.setText("PRIME TECH SYSTEMS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, -10, -1, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, -10, 360, 80));
 
         lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 300, 40));
@@ -595,6 +596,15 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, -1));
+
+        btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExportarExcel.setText("Exportar Excel");
+        btnExportarExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarExcelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -945,6 +955,24 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
+    private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed
+        javax.swing.JFileChooser selector = new javax.swing.JFileChooser();
+        selector.setDialogTitle("Guardar Excel");
+        selector.setSelectedFile(new java.io.File("informe_primetech.xlsx"));
+
+        int resultado = selector.showSaveDialog(this);
+        if (resultado == javax.swing.JFileChooser.APPROVE_OPTION) {
+            String ruta = selector.getSelectedFile().getAbsolutePath();
+            if (!ruta.endsWith(".xlsx")) ruta += ".xlsx";
+            try {
+                primetechfinal.util.ExportarExcel.exportarTodo(ruta);
+                JOptionPane.showMessageDialog(this, "Excel exportado correctamente en:\n" + ruta);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnExportarExcelActionPerformed
+
     private void cargarTablaProductos() {
     try {
         DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
@@ -1087,6 +1115,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnEliminarProducto1;
     private javax.swing.JButton btnEliminarVenta;
+    private javax.swing.JButton btnExportarExcel;
     private javax.swing.JButton btnGuardarCliente;
     private javax.swing.JButton btnGuardarProducto;
     private javax.swing.JButton btnNuevaVenta;
