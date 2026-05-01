@@ -15,10 +15,12 @@ public class EmpleadoDAO {
     private static final Logger logger = LogManager.getLogger(EmpleadoDAO.class);
 
     public Empleado buscarPorEmail(String email) throws SQLException {
-        // traigo tambien los campos de bloqueo para poder comprobarlos en el login
         String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña, " +
                      "intentos_fallidos, bloqueado FROM empleados WHERE email = ?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        // con el pool hay que cerrar la conexion despues de usarla para que vuelva al pool
+        // antes no habia que hacerlo porque era una conexion unica compartida
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) return mapear(rs);
@@ -52,7 +54,9 @@ public class EmpleadoDAO {
 
         if (ok) {
             // contraseña correcta, reseteo el contador para que pueda volver a fallar desde 0
-            try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(
+            // cierro la conexion dentro del try-with-resources para devolverla al pool
+            try (Connection conn = ConexionDB.getConexion();
+                 PreparedStatement ps = conn.prepareStatement(
                     "UPDATE empleados SET intentos_fallidos = 0, bloqueado = 0 WHERE id_empleado = ?")) {
                 ps.setInt(1, emp.getIdEmpleado());
                 ps.executeUpdate();
@@ -60,7 +64,8 @@ public class EmpleadoDAO {
         } else {
             // contraseña incorrecta, sumo 1 al contador
             // el trigger trg_bloquear_cuenta en la BD se encarga de poner bloqueado = 1 si llega a 5
-            try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(
+            try (Connection conn = ConexionDB.getConexion();
+                 PreparedStatement ps = conn.prepareStatement(
                     "UPDATE empleados SET intentos_fallidos = intentos_fallidos + 1 WHERE id_empleado = ?")) {
                 ps.setInt(1, emp.getIdEmpleado());
                 ps.executeUpdate();
@@ -74,7 +79,9 @@ public class EmpleadoDAO {
         List<Empleado> lista = new ArrayList<>();
         String sql = "SELECT id_empleado, nombre, apellidos, cargo, email, contraseña, " +
                      "intentos_fallidos, bloqueado FROM empleados ORDER BY nombre";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        // igual que en el resto, cierro la conexion al terminar para devolverla al pool
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(mapear(rs));
         }
@@ -84,7 +91,8 @@ public class EmpleadoDAO {
     public void insertar(Empleado emp) throws SQLException {
         String hash = BCrypt.hashpw(emp.getContraseña(), BCrypt.gensalt());
         String sql = "INSERT INTO empleados (nombre, apellidos, cargo, email, contraseña) VALUES (?,?,?,?,?)";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, emp.getNombre());
             ps.setString(2, emp.getApellidos());
             ps.setString(3, emp.getCargo());
@@ -98,7 +106,8 @@ public class EmpleadoDAO {
 
     public void actualizar(Empleado emp) throws SQLException {
         String sql = "UPDATE empleados SET nombre=?, apellidos=?, cargo=?, email=? WHERE id_empleado=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, emp.getNombre());
             ps.setString(2, emp.getApellidos());
             ps.setString(3, emp.getCargo());
@@ -115,7 +124,8 @@ public class EmpleadoDAO {
             ? nuevaContraseñaPlain
             : BCrypt.hashpw(nuevaContraseñaPlain, BCrypt.gensalt());
         String sql = "UPDATE empleados SET contraseña=? WHERE id_empleado=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, hash);
             ps.setInt(2, idEmpleado);
             ps.executeUpdate();
@@ -126,7 +136,8 @@ public class EmpleadoDAO {
 
     public void eliminar(int idEmpleado) throws SQLException {
         String sql = "DELETE FROM empleados WHERE id_empleado=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idEmpleado);
             ps.executeUpdate();
         }

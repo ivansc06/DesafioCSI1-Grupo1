@@ -17,7 +17,10 @@ public class ProductoDAO {
         List<Producto> lista = new ArrayList<>();
         String sql = "SELECT id_producto, nombre, descripcion, precio_compra, precio_venta, stock " +
                      "FROM productos ORDER BY nombre";
-        try (Statement st = ConexionDB.getConexion().createStatement();
+        // con el pool hay que cerrar la conexion al terminar para que vuelva al pool
+        // antes era una conexion unica y no hacia falta cerrarla
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(mapear(rs));
         }
@@ -28,7 +31,8 @@ public class ProductoDAO {
         List<Producto> lista = new ArrayList<>();
         String sql = "SELECT id_producto, nombre, descripcion, precio_compra, precio_venta, stock " +
                      "FROM productos WHERE nombre LIKE ? ORDER BY nombre";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, "%" + nombre + "%");
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) lista.add(mapear(rs));
@@ -40,7 +44,8 @@ public class ProductoDAO {
     public Producto buscarPorId(int id) throws SQLException {
         String sql = "SELECT id_producto, nombre, descripcion, precio_compra, precio_venta, stock " +
                      "FROM productos WHERE id_producto=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) return mapear(rs);
@@ -51,7 +56,8 @@ public class ProductoDAO {
 
     public void insertar(Producto p) throws SQLException {
         String sql = "INSERT INTO productos (nombre, descripcion, precio_compra, precio_venta, stock) VALUES (?,?,?,?,?)";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getDescripcion());
             ps.setDouble(3, p.getPrecioCompra());
@@ -65,7 +71,8 @@ public class ProductoDAO {
 
     public void actualizar(Producto p) throws SQLException {
         String sql = "UPDATE productos SET nombre=?, descripcion=?, precio_compra=?, precio_venta=?, stock=? WHERE id_producto=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getNombre());
             ps.setString(2, p.getDescripcion());
             ps.setDouble(3, p.getPrecioCompra());
@@ -80,7 +87,8 @@ public class ProductoDAO {
 
     public void eliminar(int idProducto) throws SQLException {
         String sql = "DELETE FROM productos WHERE id_producto=?";
-        try (PreparedStatement ps = ConexionDB.getConexion().prepareStatement(sql)) {
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idProducto);
             ps.executeUpdate();
         }
