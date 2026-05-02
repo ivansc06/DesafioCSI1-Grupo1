@@ -55,7 +55,7 @@ jobs:
             CREATE USER IF NOT EXISTS 'tienda_admin'@'%' IDENTIFIED BY 'admin_pass';
             GRANT ALL PRIVILEGES ON tienda_informatica.* TO 'tienda_admin'@'%';
             CREATE USER IF NOT EXISTS 'tienda_app'@'%' IDENTIFIED BY 'app_pass';
-            GRANT SELECT, INSERT, UPDATE ON tienda_informatica.* TO 'tienda_app'@'%';
+            GRANT SELECT, INSERT, UPDATE, DELETE ON tienda_informatica.* TO 'tienda_app'@'%';
             FLUSH PRIVILEGES;
           "
 
