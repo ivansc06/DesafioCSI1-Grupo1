@@ -16,6 +16,7 @@ import primetechfinal.model.DetalleVenta;
 import primetechfinal.model.Producto;
 import primetechfinal.model.Venta;
 import primetechfinal.sesion.Sesion;
+import primetechfinal.util.EnviarEmail;
 import primetechfinal.util.FacturaHTML;
 /**
  *
@@ -139,6 +140,7 @@ public class Pantalla extends javax.swing.JFrame {
         btnBuscarVenta = new javax.swing.JButton();
         btnEditarVenta = new javax.swing.JButton();
         btnEliminarVenta = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
         txtBuscarCliente = new javax.swing.JTextField();
@@ -499,7 +501,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblVentas);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 820, 370));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 820, 370));
 
         txtBuscarVenta.setToolTipText("Buscar Venta");
         txtBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -507,7 +509,7 @@ public class Pantalla extends javax.swing.JFrame {
                 txtBuscarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 180, 40));
+        jPanel2.add(txtBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 140, 40));
 
         btnBuscarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBuscarVenta.setText("Buscar");
@@ -516,7 +518,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnBuscarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(897, 40, 150, 40));
+        jPanel2.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 150, 40));
 
         btnEditarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarVenta.setText("Editar");
@@ -535,6 +537,15 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnEliminarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 250, 160, 40));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setText("Enviar por Correo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, -1, 50));
 
         panelPrincipal.addTab("Ventas", jPanel2);
 
@@ -1003,6 +1014,26 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExportarExcelActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int fila = tblVentas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una venta primero.");
+            return;
+        }
+
+        int idVenta = (int) tblVentas.getValueAt(fila, 0);
+
+        try {
+            Venta venta = ventaDAO.cargarVentaCompleta(idVenta);
+            EnviarEmail.enviarFactura(venta, "Prime Tech Systems");
+            JOptionPane.showMessageDialog(this, "Factura enviada correctamente a " + venta.getEmailCliente());
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al enviar el email: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void cargarTablaProductos() {
     try {
         DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
@@ -1156,6 +1187,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbMetodoPago;
     private javax.swing.JComboBox<String> cmbProductoVenta;
     private javax.swing.JComboBox<String> cmbTipoCliente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
