@@ -96,6 +96,7 @@ public class LoginFrame extends javax.swing.JFrame {
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/cerrar.png"))); // NOI18N
+        btnCerrarLogin.setBorder(null);
         btnCerrarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarLoginActionPerformed(evt);
@@ -104,12 +105,13 @@ public class LoginFrame extends javax.swing.JFrame {
         header.add(btnCerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 40, 40));
 
         btnMinimizarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
+        btnMinimizarLogin.setBorder(null);
         btnMinimizarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizarLoginActionPerformed(evt);
             }
         });
-        header.add(btnMinimizarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, -1));
+        header.add(btnMinimizarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, 40));
 
         pnlFondoLogin.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 40));
 
@@ -160,7 +162,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-        pnlFondoLogin.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 170, 50));
+        pnlFondoLogin.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 170, 50));
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/logoprueba4.png"))); // NOI18N
         pnlFondoLogin.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 160, 120));
