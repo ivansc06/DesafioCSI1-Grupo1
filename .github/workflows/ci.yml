@@ -60,9 +60,9 @@ jobs:
           "
 
       # paso 6: compilar el proyecto y ejecutar los tests con Ant
+      # le pasamos la ruta de Java para que Ant encuentre la plataforma JDK_1.8
       - name: Ejecutar tests
         working-directory: Java/PrimeTechFinal
-        run: ant test
+        run: ant test -Dplatforms.JDK_1.8.home=$JAVA_HOME
         env:
-          # le decimos donde esta el log4j para que no de error en los tests
           ANT_OPTS: -Dlog4j.configurationFile=classpath:primetechfinal/log4j2.xml
