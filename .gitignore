@@ -20,3 +20,6 @@
 /Java/PrimeTechFinal_Prueba/build/
 /Java/PrimeTechPrueba1/nbproject/private/
 /Java/PrimeTechFinal_Boceto/nbproject/private/
+
+# credenciales del correo, nunca subir a GitHub
+**/email.properties
