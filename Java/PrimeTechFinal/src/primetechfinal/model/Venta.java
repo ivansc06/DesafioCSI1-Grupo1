@@ -14,6 +14,7 @@ public class Venta {
     private String        metodoPago;   // efectivo | tarjeta | transferencia
 
     private String        nombreCliente;
+    private String        emailCliente;  // para poder enviar la factura por email
     private List<DetalleVenta> detalles = new ArrayList<>();
 
     public Venta() {}
@@ -25,6 +26,7 @@ public class Venta {
     public double        getTotal()         { return total; }
     public String        getMetodoPago()    { return metodoPago; }
     public String        getNombreCliente() { return nombreCliente; }
+    public String        getEmailCliente()  { return emailCliente; }
     public List<DetalleVenta> getDetalles() { return detalles; }
 
     public void setIdVenta(int idVenta)              { this.idVenta = idVenta; }
@@ -34,5 +36,6 @@ public class Venta {
     public void setTotal(double total)               { this.total = total; }
     public void setMetodoPago(String metodoPago)     { this.metodoPago = metodoPago; }
     public void setNombreCliente(String nc)          { this.nombreCliente = nc; }
+    public void setEmailCliente(String ec)           { this.emailCliente = ec; }
     public void setDetalles(List<DetalleVenta> d)    { this.detalles = d; }
 }

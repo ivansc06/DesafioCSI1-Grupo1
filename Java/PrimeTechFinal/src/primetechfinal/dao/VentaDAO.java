@@ -63,7 +63,7 @@ public class VentaDAO {
     public List<Venta> listarTodas() throws SQLException {
         List<Venta> lista = new ArrayList<>();
         String sql = "SELECT v.id_venta, v.id_cliente, v.id_empleado, v.fecha_venta, v.total, v.metodo_pago, " +
-                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente " +
+                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente, c.email " +
                      "FROM ventas v " +
                      "LEFT JOIN clientes c ON v.id_cliente = c.id_cliente " +
                      "LEFT JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente " +
@@ -82,6 +82,7 @@ public class VentaDAO {
                 v.setTotal(rs.getDouble("total"));
                 v.setMetodoPago(rs.getString("metodo_pago"));
                 v.setNombreCliente(rs.getString("nombre_cliente"));
+                v.setEmailCliente(rs.getString("email"));
                 lista.add(v);
             }
         }
@@ -114,7 +115,7 @@ public class VentaDAO {
 
     public Venta cargarVentaCompleta(int idVenta) throws SQLException {
         String sql = "SELECT v.id_venta, v.id_cliente, v.id_empleado, v.fecha_venta, v.total, v.metodo_pago, " +
-                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente " +
+                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente, c.email " +
                      "FROM ventas v " +
                      "LEFT JOIN clientes c ON v.id_cliente = c.id_cliente " +
                      "LEFT JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente " +
@@ -135,6 +136,7 @@ public class VentaDAO {
                     v.setTotal(rs.getDouble("total"));
                     v.setMetodoPago(rs.getString("metodo_pago"));
                     v.setNombreCliente(rs.getString("nombre_cliente"));
+                    v.setEmailCliente(rs.getString("email"));
                     v.setDetalles(cargarDetalles(idVenta));
                 }
             }
@@ -145,7 +147,7 @@ public class VentaDAO {
     public List<Venta> buscarPorCliente(String nombre) throws SQLException {
         List<Venta> lista = new ArrayList<>();
         String sql = "SELECT v.id_venta, v.id_cliente, v.id_empleado, v.fecha_venta, v.total, v.metodo_pago, " +
-                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente " +
+                     "COALESCE(cp.nombre, ce.razon_social, 'Sin cliente') AS nombre_cliente, c.email " +
                      "FROM ventas v " +
                      "LEFT JOIN clientes c ON v.id_cliente = c.id_cliente " +
                      "LEFT JOIN clientes_particular cp ON c.id_cliente = cp.id_cliente " +
@@ -169,6 +171,7 @@ public class VentaDAO {
                     v.setTotal(rs.getDouble("total"));
                     v.setMetodoPago(rs.getString("metodo_pago"));
                     v.setNombreCliente(rs.getString("nombre_cliente"));
+                    v.setEmailCliente(rs.getString("email"));
                     lista.add(v);
                 }
             }

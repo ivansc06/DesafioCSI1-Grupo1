@@ -32,6 +32,11 @@ public class FacturaHTML {
         return archivo;
     }
 
+    // metodo publico para que EnviarEmail pueda obtener el HTML sin abrir el navegador
+    public static String generarHTMLParaEmail(Venta venta, String empresa) {
+        return generarHTML(venta, empresa);
+    }
+
     private static String generarHTML(Venta venta, String empresa) {
         StringBuilder sb = new StringBuilder();
         double subtotalSinIva = venta.getTotal() / 1.21;
