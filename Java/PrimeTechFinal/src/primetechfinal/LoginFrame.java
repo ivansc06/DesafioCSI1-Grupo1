@@ -4,6 +4,10 @@
  */
 package primetechfinal;
 
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import primetechfinal.dao.EmpleadoDAO;
 import primetechfinal.model.Empleado;
 import primetechfinal.sesion.Sesion;
@@ -24,6 +28,33 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+        SwingUtilities.invokeLater(() -> this.requestFocus()); // evita que el txtEmail tenga foco al abrir
+
+        // linea fina debajo del header para separarlo visualmente del panel principal
+        header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 200, 200)));
+
+        // hacer la ventana arrastrable desde el header
+        final int[] posInicial = new int[2];
+        header.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                // guardamos donde hizo clic el raton en coordenadas de pantalla
+                posInicial[0] = e.getXOnScreen();
+                posInicial[1] = e.getYOnScreen();
+            }
+        });
+        header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(java.awt.event.MouseEvent e) {
+                // calculamos cuanto se ha movido el raton y movemos la ventana lo mismo
+                int deltaX = e.getXOnScreen() - posInicial[0];
+                int deltaY = e.getYOnScreen() - posInicial[1];
+                setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
+                // actualizamos la posicion para el siguiente evento de arrastre
+                posInicial[0] = e.getXOnScreen();
+                posInicial[1] = e.getYOnScreen();
+            }
+        });
     }
 
     /**
@@ -35,6 +66,10 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlFondoLogin = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        btnCerrarLogin = new javax.swing.JButton();
+        btnMinimizarLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,43 +77,106 @@ public class LoginFrame extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         lblError = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+        lblImagenFondo = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblLogo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(870, 640));
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        pnlFondoLogin.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFondoLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        header.setBackground(new java.awt.Color(255, 255, 255));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/cerrar.png"))); // NOI18N
+        btnCerrarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarLoginActionPerformed(evt);
+            }
+        });
+        header.add(btnCerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, 40, 40));
+
+        btnMinimizarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
+        btnMinimizarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarLoginActionPerformed(evt);
+            }
+        });
+        header.add(btnMinimizarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, -1, -1));
+
+        pnlFondoLogin.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 40));
+
+        jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         jLabel1.setText("EMAIL");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        pnlFondoLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         jLabel2.setText("CONTRASEÑA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        pnlFondoLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Medium", 3, 48)); // NOI18N
         jLabel3.setText("PRIME TECH SYSTEMS");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 200, 40));
+        pnlFondoLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 700, -1));
 
+        txtEmail.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(204, 204, 204));
+        txtEmail.setText("Ingrese su Email");
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+        pnlFondoLogin.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 230, 40));
+
+        txtPassword.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
         txtPassword.setText("jPasswordField1");
         txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtPasswordMouseClicked(evt);
             }
         });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 200, 40));
-        getContentPane().add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 680, 90));
+        pnlFondoLogin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 230, 40));
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 153, 255));
-        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblError.setFont(new java.awt.Font("Roboto Condensed ExtraLight", 0, 24)); // NOI18N
+        lblError.setForeground(new java.awt.Color(255, 51, 51));
+        pnlFondoLogin.add(lblError, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 760, 60));
+
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 204, 255));
+        btnIniciarSesion.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciarSesion.setText("INICIAR SESIÓN");
+        btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/botonentrar.png"))); // NOI18N
+        btnIniciarSesion.setText("ENTRAR");
         btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, 300, 50));
+        pnlFondoLogin.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 170, 50));
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/logoprueba4.png"))); // NOI18N
+        pnlFondoLogin.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 160, 120));
+
+        lblImagenFondo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblImagenFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondologin1.png"))); // NOI18N
+        pnlFondoLogin.add(lblImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 340, 600));
+
+        jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
+        jLabel6.setText("INICIAR SESIÓN");
+        pnlFondoLogin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+
+        lblLogo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/logotienda.png"))); // NOI18N
+        pnlFondoLogin.add(lblLogo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        getContentPane().add(pnlFondoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -106,42 +204,50 @@ public class LoginFrame extends javax.swing.JFrame {
                 if (empConsulta != null && empConsulta.isBloqueado()) {
                     // aviso con warn porque es un intento de entrar a una cuenta bloqueada
                     logger.warn("Intento de acceso a cuenta bloqueada - email: {}", email);
-                    lblError.setText("<html>Cuenta bloqueada por demasiados intentos.<br>Contacte con un administrador.</html>");
+                    mostrarError("<html>Cuenta bloqueada por demasiados intentos.<br>Contacte con un administrador.</html>");
                 } else {
                     // contraseña incorrecta, lo guardo como advertencia
                     logger.warn("Intento de login fallido - email: {}", email);
-                    lblError.setText("Email o contraseña incorrectos.");
+                    mostrarError("Email o contraseña incorrectos.");
                 }
             }
         } catch (Exception ex) {
             // si hay un error de conexion o similar lo guardo como error grave
             logger.error("Error al intentar iniciar sesion - email: {}", email, ex);
-            lblError.setText("Error de conexión: " + ex.getMessage());
+            mostrarError("Error de conexión: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    // muestra un mensaje de error en el label y lo oculta automaticamente despues de 4 segundos
+    private void mostrarError(String mensaje) {
+        lblError.setText(mensaje);
+        Timer timer = new Timer(4000, e -> lblError.setText(""));
+        timer.setRepeats(false);
+        timer.start();
+    }
 
     // compruebo que los campos sean correctos antes de enviar nada a la BD
     private boolean validarCampos(String email, String pass) {
 
         // compruebo que no esten vacios
         if (email.isEmpty()) {
-            lblError.setText("El email no puede estar vacío.");
+            mostrarError("El email no puede estar vacío.");
             return false;
         }
         if (pass.isEmpty()) {
-            lblError.setText("La contraseña no puede estar vacía.");
+            mostrarError("La contraseña no puede estar vacía.");
             return false;
         }
 
         // compruebo que el email tenga un formato valido (que tenga @ y un punto despues)
         if (!email.matches("^[^@]+@[^@]+\\.[^@]+$")) {
-            lblError.setText("El formato del email no es válido.");
+            mostrarError("El formato del email no es válido.");
             return false;
         }
 
         // la contraseña debe tener al menos 6 caracteres
         if (pass.length() < 5) {
-            lblError.setText("La contraseña debe tener al menos 5 caracteres.");
+            mostrarError("La contraseña debe tener al menos 5 caracteres.");
             return false;
         }
 
@@ -151,8 +257,28 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
-        txtPassword.setText("");
+        // solo borramos si sigue siendo el texto por defecto
+        if (new String(txtPassword.getPassword()).equals("jPasswordField1")) {
+            txtPassword.setText("");
+            txtPassword.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_txtPasswordMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+        // solo borramos si sigue siendo el texto por defecto
+        if (txtEmail.getText().equals("Ingrese su Email")) {
+            txtEmail.setText("");
+            txtEmail.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void btnCerrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarLoginActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarLoginActionPerformed
+
+    private void btnMinimizarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarLoginActionPerformed
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +306,19 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarLogin;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnMinimizarLogin;
+    private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblImagenFondo;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogo2;
+    private javax.swing.JPanel pnlFondoLogin;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
