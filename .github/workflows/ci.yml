@@ -1,0 +1,68 @@
+name: CI - Tests de integración
+
+# se ejecuta automaticamente cada vez que se hace push o pull request a master
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # levanta un MySQL en el servidor de GitHub antes de ejecutar los pasos
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: tienda_informatica
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      # paso 1: descargar el codigo del repositorio
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      # paso 2: instalar Java 8
+      - name: Instalar Java 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      # paso 3: instalar Ant para poder compilar y ejecutar los tests
+      - name: Instalar Ant
+        run: sudo apt-get install -y ant
+
+      # paso 4: crear la base de datos con todas las tablas, triggers y datos de ejemplo
+      - name: Crear base de datos
+        run: |
+          mysql -h 127.0.0.1 -u root -proot tienda_informatica < Base_De_Datos/Crear_Base_De_Datos_Final.sql
+
+      # paso 5: crear los usuarios de MySQL que usa la aplicacion con permisos para conectar desde cualquier host
+      # en GitHub Actions la conexion es TCP por eso necesitan el % en vez de localhost
+      - name: Crear usuarios de la base de datos
+        run: |
+          mysql -h 127.0.0.1 -u root -proot -e "
+            CREATE USER IF NOT EXISTS 'tienda_admin'@'%' IDENTIFIED BY 'admin_pass';
+            GRANT ALL PRIVILEGES ON tienda_informatica.* TO 'tienda_admin'@'%';
+            CREATE USER IF NOT EXISTS 'tienda_app'@'%' IDENTIFIED BY 'app_pass';
+            GRANT SELECT, INSERT, UPDATE ON tienda_informatica.* TO 'tienda_app'@'%';
+            FLUSH PRIVILEGES;
+          "
+
+      # paso 6: compilar el proyecto y ejecutar los tests con Ant
+      - name: Ejecutar tests
+        working-directory: Java/PrimeTechFinal
+        run: ant test
+        env:
+          # le decimos donde esta el log4j para que no de error en los tests
+          ANT_OPTS: -Dlog4j.configurationFile=classpath:primetechfinal/log4j2.xml
