@@ -40,6 +40,9 @@ public class Pantalla extends javax.swing.JFrame {
         lblEmpleado.setText(Sesion.getEmpleado().getNombreCompleto() 
                         + " · " + Sesion.getEmpleado().getCargo());//necesario para saber que empleado esta conectado
         
+        // quitamos el borde del JTabbedPane para eliminar las lineas blancas
+        panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
         cargarTablaProductos();//asi cargarmos las tablas nada mas empezar el programa
         cargarTablaClientes();
         cargarTablaVentas();
@@ -111,8 +114,7 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btnConfirmarVenta = new javax.swing.JButton();
         btnCancelarVenta = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        lblEmpleado = new javax.swing.JLabel();
+        pnlAzulPantalla = new javax.swing.JPanel();
         panelPrincipal = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         txtBuscarProducto = new javax.swing.JTextField();
@@ -147,6 +149,11 @@ public class Pantalla extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         lblCerrarSesion = new javax.swing.JLabel();
         btnExportarExcel = new javax.swing.JButton();
+        pnlBlancoPantalla = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        lblEmpleado = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
         DialogProductos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -375,13 +382,13 @@ public class Pantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Impact", 3, 36)); // NOI18N
-        jLabel1.setText("PRIME TECH SYSTEMS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, -10, 360, 80));
+        pnlAzulPantalla.setBackground(new java.awt.Color(51, 204, 255));
+        pnlAzulPantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 300, 40));
+        panelPrincipal.setBackground(new java.awt.Color(51, 204, 255));
+        panelPrincipal.setOpaque(true);
 
+        jPanel1.setBackground(new java.awt.Color(51, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtBuscarProducto.setToolTipText("Buscar Producto");
@@ -437,6 +444,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         panelPrincipal.addTab("Productos", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(51, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -530,46 +538,47 @@ public class Pantalla extends javax.swing.JFrame {
 
         panelPrincipal.addTab("Ventas", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(51, 204, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnNuevoCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnNuevoCliente.setText("Nuevo");
+        btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevocliente.png"))); // NOI18N
         btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, 90, -1));
+        jPanel3.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 90, -1));
 
         txtBuscarCliente.setToolTipText("Buscar Cliente");
         jPanel3.add(txtBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 190, -1));
 
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscarCliente.setText("Buscar ");
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 90, -1));
+        jPanel3.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 90, -1));
 
         btnEditarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEditarCliente.setText("Editar");
+        btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarcliente.png"))); // NOI18N
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 140, 90, -1));
+        jPanel3.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, 90, -1));
 
         btnEliminarProducto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEliminarProducto1.setText("Eliminar");
+        btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarcliente.png"))); // NOI18N
         btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducto1ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 190, 90, -1));
+        jPanel3.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 370, 90, -1));
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -585,7 +594,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         panelPrincipal.addTab("Clientes", jPanel3);
 
-        getContentPane().add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1080, 520));
+        pnlAzulPantalla.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1080, 520));
 
         lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
         lblCerrarSesion.setText("Cerrar Sesión");
@@ -595,16 +604,37 @@ public class Pantalla extends javax.swing.JFrame {
                 lblCerrarSesionMouseClicked(evt);
             }
         });
-        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, -1));
+        pnlAzulPantalla.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, -1));
 
         btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnExportarExcel.setText("Exportar Excel");
+        btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/excel.png"))); // NOI18N
+        btnExportarExcel.setText("Exportar");
         btnExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportarExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+        pnlAzulPantalla.add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 170, -1));
+
+        pnlBlancoPantalla.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBlancoPantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 3, 48)); // NOI18N
+        jLabel1.setText("PRIME TECH SYSTEMS");
+        pnlBlancoPantalla.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 550, 80));
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/bordederechopant2.png"))); // NOI18N
+        pnlBlancoPantalla.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, 90, 520));
+
+        lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pnlBlancoPantalla.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 300, 40));
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/bordesuperiorprueba.png"))); // NOI18N
+        pnlBlancoPantalla.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 0, 890, 100));
+
+        pnlAzulPantalla.add(pnlBlancoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 880, 620));
+
+        getContentPane().add(pnlAzulPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1142,6 +1172,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1168,6 +1200,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel lblVentasHoy;
     private javax.swing.JLabel lblVentasMes;
     private javax.swing.JTabbedPane panelPrincipal;
+    private javax.swing.JPanel pnlAzulPantalla;
+    private javax.swing.JPanel pnlBlancoPantalla;
     private javax.swing.JTable tblCarrito;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblProductos;
