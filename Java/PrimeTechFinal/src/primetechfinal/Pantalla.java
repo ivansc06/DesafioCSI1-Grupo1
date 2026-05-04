@@ -36,11 +36,16 @@ public class Pantalla extends javax.swing.JFrame {
     // listas paralelas al combobox de clientes y productos en el dialog de venta
     private java.util.List<Cliente> clientesCombo = new java.util.ArrayList<>();
     private java.util.List<Producto> productosCombo = new java.util.ArrayList<>();
+
+    // timer que cierra la sesion si el usuario lleva 3 minutos sin actividad
+    private javax.swing.Timer timerInactividad;
+    private static final int MINUTOS_INACTIVIDAD = 3;
+
     public Pantalla() {
         initComponents();
-        lblEmpleado.setText(Sesion.getEmpleado().getNombreCompleto() 
+        lblEmpleado.setText(Sesion.getEmpleado().getNombreCompleto()
                         + " · " + Sesion.getEmpleado().getCargo());//necesario para saber que empleado esta conectado
-        
+
         // quitamos el borde del JTabbedPane para eliminar las lineas blancas
         panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
@@ -49,6 +54,42 @@ public class Pantalla extends javax.swing.JFrame {
         cargarTablaVentas();
         cargarEstadisticas();
         cargarGraficaDashboard();
+        iniciarTimerInactividad();
+    }
+
+    // arranca el timer de inactividad y registra los listeners de raton y teclado
+    private void iniciarTimerInactividad() {
+        timerInactividad = new javax.swing.Timer(MINUTOS_INACTIVIDAD * 60 * 1000, e -> cerrarSesionPorInactividad());
+        timerInactividad.setRepeats(false);
+        timerInactividad.start();
+
+        // cualquier movimiento de raton o tecla resetea el timer
+        java.awt.event.AWTEventListener activityListener = event -> resetearTimer();
+        java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(
+            activityListener,
+            java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK |
+            java.awt.AWTEvent.MOUSE_EVENT_MASK |
+            java.awt.AWTEvent.KEY_EVENT_MASK
+        );
+    }
+
+    // reinicia el contador de inactividad cada vez que hay actividad
+    private void resetearTimer() {
+        if (timerInactividad != null) {
+            timerInactividad.restart();
+        }
+    }
+
+    // cierra la sesion y vuelve al login cuando se agota el tiempo de inactividad
+    private void cerrarSesionPorInactividad() {
+        timerInactividad.stop();
+        Sesion.cerrar();
+        JOptionPane.showMessageDialog(this,
+            "Sesión cerrada por inactividad.",
+            "Sesión expirada",
+            JOptionPane.WARNING_MESSAGE);
+        new LoginFrame().setVisible(true);
+        this.dispose();
     }
 
     /**
@@ -1114,38 +1155,43 @@ public class Pantalla extends javax.swing.JFrame {
     // genera la grafica de barras con las ventas de los ultimos 7 dias y la mete en pnlDashboard
     private void cargarGraficaDashboard() {
         try {
-            java.util.LinkedHashMap<String, Double> datos = ventaDAO.ventasUltimos7Dias();
-
-            // creamos el dataset con los datos de ventas por dia
-            org.jfree.data.category.DefaultCategoryDataset dataset = new org.jfree.data.category.DefaultCategoryDataset();
-            for (java.util.Map.Entry<String, Double> entry : datos.entrySet()) {
-                dataset.addValue(entry.getValue(), "Ventas", entry.getKey());
+            // --- GRAFICA DE BARRAS: ventas de los ultimos 7 dias ---
+            java.util.LinkedHashMap<String, Double> datosBarras = ventaDAO.ventasUltimos7Dias();
+            org.jfree.data.category.DefaultCategoryDataset datasetBarras = new org.jfree.data.category.DefaultCategoryDataset();
+            for (java.util.Map.Entry<String, Double> entry : datosBarras.entrySet()) {
+                datasetBarras.addValue(entry.getValue(), "Ventas", entry.getKey());
             }
-
-            // creamos la grafica de barras
-            org.jfree.chart.JFreeChart chart = org.jfree.chart.ChartFactory.createBarChart(
-                "Ventas últimos 7 días",  // titulo
-                "Día",                     // eje X
-                "Total (€)",               // eje Y
-                dataset
-            );
-
-            // personalizamos los colores para que encaje con el estilo de la app
-            org.jfree.chart.plot.CategoryPlot plot = chart.getCategoryPlot();
+            org.jfree.chart.JFreeChart chartBarras = org.jfree.chart.ChartFactory.createBarChart(
+                "Ventas últimos 7 días", "Día", "Total (€)", datasetBarras);
+            org.jfree.chart.plot.CategoryPlot plot = chartBarras.getCategoryPlot();
             plot.setBackgroundPaint(java.awt.Color.WHITE);
             plot.setRangeGridlinePaint(java.awt.Color.LIGHT_GRAY);
             ((org.jfree.chart.renderer.category.BarRenderer) plot.getRenderer())
                 .setSeriesPaint(0, new java.awt.Color(0, 204, 255));
 
-            // metemos la grafica en el panel del dashboard
-            org.jfree.chart.ChartPanel chartPanel = new org.jfree.chart.ChartPanel(chart);
-            chartPanel.setPreferredSize(new java.awt.Dimension(1080, 445));
-            pnlDashboard.setLayout(new java.awt.BorderLayout());
-            pnlDashboard.add(chartPanel, java.awt.BorderLayout.CENTER);
+            // --- GRAFICA DE TARTA: top 5 productos mas vendidos ---
+            java.util.LinkedHashMap<String, Integer> datosTarta = ventaDAO.top5ProductosMasVendidos();
+            org.jfree.data.general.DefaultPieDataset datasetTarta = new org.jfree.data.general.DefaultPieDataset();
+            for (java.util.Map.Entry<String, Integer> entry : datosTarta.entrySet()) {
+                datasetTarta.setValue(entry.getKey(), entry.getValue());
+            }
+            org.jfree.chart.JFreeChart chartTarta = org.jfree.chart.ChartFactory.createPieChart(
+                "Top 5 productos más vendidos", datasetTarta, true, true, false);
+            chartTarta.getPlot().setBackgroundPaint(java.awt.Color.WHITE);
+
+            // ponemos las dos graficas lado a lado en el panel del dashboard
+            org.jfree.chart.ChartPanel panelBarras = new org.jfree.chart.ChartPanel(chartBarras);
+            org.jfree.chart.ChartPanel panelTarta  = new org.jfree.chart.ChartPanel(chartTarta);
+
+            pnlDashboard.setLayout(new java.awt.GridLayout(1, 2));
+            pnlDashboard.removeAll();
+            pnlDashboard.add(panelBarras);
+            pnlDashboard.add(panelTarta);
             pnlDashboard.revalidate();
+            pnlDashboard.repaint();
 
         } catch (SQLException ex) {
-            logger.warning("Error al cargar la grafica del dashboard: " + ex.getMessage());
+            logger.warning("Error al cargar las graficas del dashboard: " + ex.getMessage());
         }
     }
 

@@ -95,7 +95,7 @@ public class LoginFrame extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 255, 255));
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCerrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/cerrar.png"))); // NOI18N
+        btnCerrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar.png"))); // NOI18N
         btnCerrarLogin.setBorder(null);
         btnCerrarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

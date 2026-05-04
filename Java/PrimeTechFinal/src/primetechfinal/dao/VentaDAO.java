@@ -299,6 +299,22 @@ public class VentaDAO {
         return datos;
     }
 
+    // devuelve el top 5 de productos mas vendidos con su cantidad total vendida
+    public java.util.LinkedHashMap<String, Integer> top5ProductosMasVendidos() throws SQLException {
+        java.util.LinkedHashMap<String, Integer> datos = new java.util.LinkedHashMap<>();
+        String sql = "SELECT p.nombre, SUM(dv.cantidad) AS total " +
+                     "FROM detalle_ventas dv JOIN productos p ON dv.id_producto = p.id_producto " +
+                     "GROUP BY p.id_producto ORDER BY total DESC LIMIT 5";
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                datos.put(rs.getString("nombre"), rs.getInt("total"));
+            }
+        }
+        return datos;
+    }
+
     public String productoMasVendido() throws SQLException {
         String sql = "SELECT p.nombre, SUM(dv.cantidad) AS total " +
                      "FROM detalle_ventas dv JOIN productos p ON dv.id_producto=p.id_producto " +

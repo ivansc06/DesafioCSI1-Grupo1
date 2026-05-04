@@ -111,3 +111,8 @@ Caused by: java.sql.SQLException: Stock insuficiente para el producto solicitado
 	... 44 more
 2026-05-04 19:24:27 [WARN ] VentaDAO - Venta eliminada - id_venta: 12
 2026-05-04 19:24:37 [INFO ] VentaDAO - Venta registrada - id_venta: 13, id_empleado: 1, total: 0.0
+2026-05-04 19:49:08 [INFO ] HikariDataSource - HikariPool-1 - Starting...
+2026-05-04 19:49:08 [INFO ] HikariDataSource - HikariPool-1 - Start completed.
+2026-05-04 19:49:08 [INFO ] HikariDataSource - HikariPool-2 - Starting...
+2026-05-04 19:49:08 [INFO ] HikariDataSource - HikariPool-2 - Start completed.
+2026-05-04 19:49:09 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
