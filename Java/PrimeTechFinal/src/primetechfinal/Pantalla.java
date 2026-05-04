@@ -48,6 +48,7 @@ public class Pantalla extends javax.swing.JFrame {
         cargarTablaClientes();
         cargarTablaVentas();
         cargarEstadisticas();
+        cargarGraficaDashboard();
     }
 
     /**
@@ -149,6 +150,7 @@ public class Pantalla extends javax.swing.JFrame {
         btnEliminarProducto1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
+        pnlDashboard = new javax.swing.JPanel();
         lblCerrarSesion = new javax.swing.JLabel();
         btnExportarExcel = new javax.swing.JButton();
         pnlBlancoPantalla = new javax.swing.JPanel();
@@ -604,6 +606,7 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 900, 380));
 
         panelPrincipal.addTab("Clientes", jPanel3);
+        panelPrincipal.addTab("Dashboard", pnlDashboard);
 
         pnlAzulPantalla.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1080, 520));
 
@@ -1035,17 +1038,40 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cargarTablaProductos() {
-    try {
-        DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
-        m.setRowCount(0);
-        for (Producto p : productoDAO.listarTodos()) {
-            m.addRow(new Object[]{
-                p.getIdProducto(), p.getNombre(), p.getDescripcion(),
-                p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
+            m.setRowCount(0);
+            for (Producto p : productoDAO.listarTodos()) {
+                m.addRow(new Object[]{
+                    p.getIdProducto(), p.getNombre(), p.getDescripcion(),
+                    p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
+                });
+            }
+
+            // pintamos las filas con stock bajo en naranja para avisar visualmente
+            // el stock esta en la columna 5 (indice 5) y el minimo es 5 unidades
+            tblProductos.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+                @Override
+                public java.awt.Component getTableCellRendererComponent(
+                        javax.swing.JTable table, Object value, boolean isSelected,
+                        boolean hasFocus, int row, int column) {
+                    java.awt.Component c = super.getTableCellRendererComponent(
+                            table, value, isSelected, hasFocus, row, column);
+                    Object stockVal = table.getValueAt(row, 5);
+                    if (stockVal != null && ((Number) stockVal).intValue() < 5) {
+                        // stock bajo: fondo naranja si no esta seleccionada, mas oscuro si lo esta
+                        c.setBackground(isSelected ? new java.awt.Color(200, 100, 0) : new java.awt.Color(255, 200, 100));
+                        c.setForeground(java.awt.Color.BLACK);
+                    } else {
+                        c.setBackground(isSelected ? table.getSelectionBackground() : java.awt.Color.WHITE);
+                        c.setForeground(isSelected ? table.getSelectionForeground() : java.awt.Color.BLACK);
+                    }
+                    return c;
+                }
             });
-        }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
     }
     private void cargarTablaClientes() {
@@ -1085,6 +1111,44 @@ public class Pantalla extends javax.swing.JFrame {
         lblVentasHoy.setText("Error");
         }
     }
+    // genera la grafica de barras con las ventas de los ultimos 7 dias y la mete en pnlDashboard
+    private void cargarGraficaDashboard() {
+        try {
+            java.util.LinkedHashMap<String, Double> datos = ventaDAO.ventasUltimos7Dias();
+
+            // creamos el dataset con los datos de ventas por dia
+            org.jfree.data.category.DefaultCategoryDataset dataset = new org.jfree.data.category.DefaultCategoryDataset();
+            for (java.util.Map.Entry<String, Double> entry : datos.entrySet()) {
+                dataset.addValue(entry.getValue(), "Ventas", entry.getKey());
+            }
+
+            // creamos la grafica de barras
+            org.jfree.chart.JFreeChart chart = org.jfree.chart.ChartFactory.createBarChart(
+                "Ventas últimos 7 días",  // titulo
+                "Día",                     // eje X
+                "Total (€)",               // eje Y
+                dataset
+            );
+
+            // personalizamos los colores para que encaje con el estilo de la app
+            org.jfree.chart.plot.CategoryPlot plot = chart.getCategoryPlot();
+            plot.setBackgroundPaint(java.awt.Color.WHITE);
+            plot.setRangeGridlinePaint(java.awt.Color.LIGHT_GRAY);
+            ((org.jfree.chart.renderer.category.BarRenderer) plot.getRenderer())
+                .setSeriesPaint(0, new java.awt.Color(0, 204, 255));
+
+            // metemos la grafica en el panel del dashboard
+            org.jfree.chart.ChartPanel chartPanel = new org.jfree.chart.ChartPanel(chart);
+            chartPanel.setPreferredSize(new java.awt.Dimension(1080, 445));
+            pnlDashboard.setLayout(new java.awt.BorderLayout());
+            pnlDashboard.add(chartPanel, java.awt.BorderLayout.CENTER);
+            pnlDashboard.revalidate();
+
+        } catch (SQLException ex) {
+            logger.warning("Error al cargar la grafica del dashboard: " + ex.getMessage());
+        }
+    }
+
     private void limpiarCamposProducto() {
     txtNombre.setText("");
     txtDescripcion.setText("");
@@ -1234,6 +1298,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTabbedPane panelPrincipal;
     private javax.swing.JPanel pnlAzulPantalla;
     private javax.swing.JPanel pnlBlancoPantalla;
+    private javax.swing.JPanel pnlDashboard;
     private javax.swing.JTable tblCarrito;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblProductos;
