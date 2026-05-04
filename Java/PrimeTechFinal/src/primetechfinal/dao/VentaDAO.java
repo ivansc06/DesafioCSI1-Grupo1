@@ -278,6 +278,27 @@ public class VentaDAO {
         }
     }
 
+    // devuelve el total de ventas agrupado por dia de los ultimos 7 dias
+    // el mapa tiene como clave la fecha (dd/MM) y como valor el total vendido ese dia
+    public java.util.LinkedHashMap<String, Double> ventasUltimos7Dias() throws SQLException {
+        java.util.LinkedHashMap<String, Double> datos = new java.util.LinkedHashMap<>();
+        String sql = "SELECT DATE(fecha_venta) AS dia, SUM(total) AS total " +
+                     "FROM ventas " +
+                     "WHERE fecha_venta >= CURDATE() - INTERVAL 6 DAY " +
+                     "GROUP BY dia ORDER BY dia ASC";
+        try (Connection conn = ConexionDB.getConexion();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next()) {
+                // formateamos la fecha como dd/MM para que quede mas corto en la grafica
+                java.time.LocalDate fecha = rs.getDate("dia").toLocalDate();
+                String etiqueta = String.format("%02d/%02d", fecha.getDayOfMonth(), fecha.getMonthValue());
+                datos.put(etiqueta, rs.getDouble("total"));
+            }
+        }
+        return datos;
+    }
+
     public String productoMasVendido() throws SQLException {
         String sql = "SELECT p.nombre, SUM(dv.cantidad) AS total " +
                      "FROM detalle_ventas dv JOIN productos p ON dv.id_producto=p.id_producto " +
