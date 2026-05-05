@@ -1,6 +1,7 @@
 # 🖥️ Prime Tech Systems
 
 ![CI](https://github.com/ivansc06/DesafioCSI1-Grupo1/actions/workflows/ci.yml/badge.svg)
+![Release](https://img.shields.io/github/v/release/ivansc06/DesafioCSI1-Grupo1?label=release&color=brightgreen)
 ![Java](https://img.shields.io/badge/Java-8-orange?logo=java)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql)
 ![License](https://img.shields.io/badge/license-MIT-green)

@@ -49,6 +49,8 @@ public class Pantalla extends javax.swing.JFrame {
         // quitamos el borde del JTabbedPane para eliminar las lineas blancas
         panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
+        
+
         cargarTablaProductos();//asi cargarmos las tablas nada mas empezar el programa
         cargarTablaClientes();
         cargarTablaVentas();
@@ -157,6 +159,9 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btnConfirmarVenta = new javax.swing.JButton();
         btnCancelarVenta = new javax.swing.JButton();
+        lblCerrarSesion = new javax.swing.JLabel();
+        lblEmpleado = new javax.swing.JLabel();
+        lblsuperior = new javax.swing.JLabel();
         pnlAzulPantalla = new javax.swing.JPanel();
         panelPrincipal = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -192,13 +197,8 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
         pnlDashboard = new javax.swing.JPanel();
-        lblCerrarSesion = new javax.swing.JLabel();
         btnExportarExcel = new javax.swing.JButton();
-        pnlBlancoPantalla = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        lblEmpleado = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        lblderecho = new javax.swing.JLabel();
 
         DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
         DialogProductos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -427,8 +427,25 @@ public class Pantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
+        lblCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar-sesion.png"))); // NOI18N
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, -1, -1));
+
+        lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 300, 40));
+
+        lblsuperior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/superiorrecortado (1).png"))); // NOI18N
+        getContentPane().add(lblsuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
+
         pnlAzulPantalla.setBackground(new java.awt.Color(51, 204, 255));
         pnlAzulPantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(pnlAzulPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, -1));
 
         panelPrincipal.setBackground(new java.awt.Color(51, 204, 255));
         panelPrincipal.setOpaque(true);
@@ -649,17 +666,7 @@ public class Pantalla extends javax.swing.JFrame {
         panelPrincipal.addTab("Clientes", jPanel3);
         panelPrincipal.addTab("Dashboard", pnlDashboard);
 
-        pnlAzulPantalla.add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 1080, 520));
-
-        lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
-        lblCerrarSesion.setText("Cerrar Sesión");
-        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCerrarSesionMouseClicked(evt);
-            }
-        });
-        pnlAzulPantalla.add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, -1));
+        getContentPane().add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1080, 520));
 
         btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/excel.png"))); // NOI18N
@@ -669,53 +676,13 @@ public class Pantalla extends javax.swing.JFrame {
                 btnExportarExcelActionPerformed(evt);
             }
         });
-        pnlAzulPantalla.add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 170, -1));
+        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 500, 170, -1));
 
-        pnlBlancoPantalla.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBlancoPantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Roboto Medium", 3, 48)); // NOI18N
-        jLabel1.setText("PRIME TECH SYSTEMS");
-        pnlBlancoPantalla.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 550, 80));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/bordederechopant2.png"))); // NOI18N
-        pnlBlancoPantalla.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, 90, 520));
-
-        lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        pnlBlancoPantalla.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 300, 40));
-
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/bordesuperiorprueba.png"))); // NOI18N
-        pnlBlancoPantalla.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 0, 890, 100));
-
-        pnlAzulPantalla.add(pnlBlancoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 880, 620));
-
-        getContentPane().add(pnlAzulPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, -1));
+        lblderecho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/derechofinal.png"))); // NOI18N
+        getContentPane().add(lblderecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 200, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        try {
-        DefaultTableModel m = (DefaultTableModel) tblProductos.getModel(); //necesario para interactuar con la tabla
-        m.setRowCount(0);//eliminamos contenido de la tabla
-        for (Producto p : productoDAO.buscarPorNombre(txtBuscarProducto.getText())) {//como devuelve un arraylist el metodo
-            //buscar por nombre lo introducimos en el foreach
-            m.addRow(new Object[]{
-                p.getIdProducto(), p.getNombre(), p.getDescripcion(),
-                p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
-            });
-        }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-    }
-    }//GEN-LAST:event_btnBuscarProductoActionPerformed
-
-    private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
-        // ponemos null para indicar que estamos creando un producto nuevo
-        productoActual = null;
-        limpiarCamposProducto();
-        DialogProductos.setVisible(true);
-    }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnGuardarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProductoActionPerformed
         try {
@@ -737,106 +704,9 @@ public class Pantalla extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnGuardarProductoActionPerformed
 
-    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-        int fila = tblProductos.getSelectedRow();//obtenemos fila seleccionada
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un producto.");//si no hay nada seleccionado
-            return;
-        }
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar producto?");//confirmacion para eliminar producto
-        if (confirm != JOptionPane.YES_OPTION) return;
-        try {
-            productoDAO.eliminar((int) tblProductos.getValueAt(fila, 0));//le pasamos el id, y el metodo.eliminar ya sabe eliminar toda la fila
-            cargarTablaProductos();//actualizamos tabla
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnEliminarProductoActionPerformed
-
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-        int fila = tblProductos.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un producto.");
-            return;
-        }
-        productoActual = new Producto();
-        productoActual.setIdProducto((int) tblProductos.getValueAt(fila, 0));
-        limpiarCamposProducto();
-        txtNombre.setText((String) tblProductos.getValueAt(fila, 1));
-        txtDescripcion.setText((String) tblProductos.getValueAt(fila, 2));
-        txtPrecioCompra.setText(String.valueOf(tblProductos.getValueAt(fila, 3)));
-        txtPrecioVenta.setText(String.valueOf(tblProductos.getValueAt(fila, 4)));
-        txtStock.setText(String.valueOf(tblProductos.getValueAt(fila, 5)));
-        DialogProductos.setVisible(true);
-    }//GEN-LAST:event_btnEditarProductoActionPerformed
-
     private void btnCancelarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProductoActionPerformed
         DialogProductos.setVisible(false);
     }//GEN-LAST:event_btnCancelarProductoActionPerformed
-
-    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
-        clienteActual = null;
-        limpiarCamposCliente();
-        cmbTipoCliente.setSelectedIndex(0); // selecciona particular por defecto
-        actualizarVisibilidadCampos();
-        DialogClientes.setVisible(true);
-    }//GEN-LAST:event_btnNuevoClienteActionPerformed
-
-    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        try {
-        DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
-        m.setRowCount(0);
-        for (Cliente c : clienteDAO.buscarPorNombre(txtBuscarCliente.getText())) {
-            m.addRow(new Object[]{
-                c.getIdCliente(), c.getTipo(),
-                c.getNombreVisible(), c.getTelefono(), c.getEmail()
-            });
-        }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
-    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
-        int fila = tblClientes.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un cliente.");
-            return;
-        }
-        clienteActual = new Cliente();
-        clienteActual.setIdCliente((int) tblClientes.getValueAt(fila, 0));
-        clienteActual.setTipo((String) tblClientes.getValueAt(fila, 1));
-        limpiarCamposCliente();
-        // cargamos tipo en el combobox
-        cmbTipoCliente.setSelectedItem(clienteActual.getTipo());
-        actualizarVisibilidadCampos();
-        // cargamos nombre visible en el campo correspondiente
-        if (clienteActual.getTipo().equals("particular")) {
-            // separamos nombre y apellidos del nombre visible (columna 2)
-            txtNombreCliente.setText((String) tblClientes.getValueAt(fila, 2));
-        } else {
-            txtRazonSocial.setText((String) tblClientes.getValueAt(fila, 2));
-        }
-        txtTelefonoCliente.setText((String) tblClientes.getValueAt(fila, 3));
-        txtEmailCliente.setText((String) tblClientes.getValueAt(fila, 4));
-        DialogClientes.setVisible(true);
-    }//GEN-LAST:event_btnEditarClienteActionPerformed
-
-    private void btnEliminarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducto1ActionPerformed
-        int fila = tblClientes.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona un cliente.");
-            return;
-        }
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar cliente?");
-        if (confirm != JOptionPane.YES_OPTION) return;
-        try {
-            clienteDAO.eliminar((int) tblClientes.getValueAt(fila, 0));
-            cargarTablaClientes();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnEliminarProducto1ActionPerformed
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
         try {
@@ -889,27 +759,6 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La cantidad debe ser un número.");
         }
     }//GEN-LAST:event_btnAgregarVentaActionPerformed
-
-    private void btnNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVentaActionPerformed
-        ventaActual = null; // indicamos que es venta nueva
-        limpiarDialogVenta();
-        DialogVenta.setVisible(true);
-    }//GEN-LAST:event_btnNuevaVentaActionPerformed
-
-    private void btnVerFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFacturaActionPerformed
-        int fila = tblVentas.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(this, "Selecciona una venta.");
-            return;
-        }
-        try {
-            int id = (int) tblVentas.getValueAt(fila, 0);
-            Venta v = ventaDAO.cargarVentaCompleta(id);
-            FacturaHTML.generarYAbrir(v, "PRIME TECH SYSTEMS");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnVerFacturaActionPerformed
 
     private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
         DefaultTableModel m = (DefaultTableModel) tblCarrito.getModel();
@@ -965,24 +814,107 @@ public class Pantalla extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
-    private void txtBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarVentaActionPerformed
+    private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed
+        javax.swing.JFileChooser selector = new javax.swing.JFileChooser();
+        selector.setDialogTitle("Guardar Excel");
+        selector.setSelectedFile(new java.io.File("informe_primetech.xlsx"));
 
-    private void btnBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVentaActionPerformed
+        int resultado = selector.showSaveDialog(this);
+        if (resultado == javax.swing.JFileChooser.APPROVE_OPTION) {
+            String ruta = selector.getSelectedFile().getAbsolutePath();
+            if (!ruta.endsWith(".xlsx")) ruta += ".xlsx";
+            try {
+                primetechfinal.util.ExportarExcel.exportarTodo(ruta);
+                JOptionPane.showMessageDialog(this, "Excel exportado correctamente en:\n" + ruta);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnExportarExcelActionPerformed
+
+    private void btnEliminarProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProducto1ActionPerformed
+        int fila = tblClientes.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un cliente.");
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar cliente?");
+        if (confirm != JOptionPane.YES_OPTION) return;
         try {
-            DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
+            clienteDAO.eliminar((int) tblClientes.getValueAt(fila, 0));
+            cargarTablaClientes();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnEliminarProducto1ActionPerformed
+
+    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
+        int fila = tblClientes.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un cliente.");
+            return;
+        }
+        clienteActual = new Cliente();
+        clienteActual.setIdCliente((int) tblClientes.getValueAt(fila, 0));
+        clienteActual.setTipo((String) tblClientes.getValueAt(fila, 1));
+        limpiarCamposCliente();
+        // cargamos tipo en el combobox
+        cmbTipoCliente.setSelectedItem(clienteActual.getTipo());
+        actualizarVisibilidadCampos();
+        // cargamos nombre visible en el campo correspondiente
+        if (clienteActual.getTipo().equals("particular")) {
+            // separamos nombre y apellidos del nombre visible (columna 2)
+            txtNombreCliente.setText((String) tblClientes.getValueAt(fila, 2));
+        } else {
+            txtRazonSocial.setText((String) tblClientes.getValueAt(fila, 2));
+        }
+        txtTelefonoCliente.setText((String) tblClientes.getValueAt(fila, 3));
+        txtEmailCliente.setText((String) tblClientes.getValueAt(fila, 4));
+        DialogClientes.setVisible(true);
+    }//GEN-LAST:event_btnEditarClienteActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
             m.setRowCount(0);
-            for (Venta v : ventaDAO.buscarPorCliente(txtBuscarVenta.getText())) {
+            for (Cliente c : clienteDAO.buscarPorNombre(txtBuscarCliente.getText())) {
                 m.addRow(new Object[]{
-                    v.getIdVenta(), v.getNombreCliente(),
-                    v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
+                    c.getIdCliente(), c.getTipo(),
+                    c.getNombreVisible(), c.getTelefono(), c.getEmail()
                 });
             }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnBuscarVentaActionPerformed
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
+        clienteActual = null;
+        limpiarCamposCliente();
+        cmbTipoCliente.setSelectedIndex(0); // selecciona particular por defecto
+        actualizarVisibilidadCampos();
+        DialogClientes.setVisible(true);
+    }//GEN-LAST:event_btnNuevoClienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int fila = tblVentas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una venta primero.");
+            return;
+        }
+
+        int idVenta = (int) tblVentas.getValueAt(fila, 0);
+
+        try {
+            Venta venta = ventaDAO.cargarVentaCompleta(idVenta);
+            EnviarEmail.enviarFactura(venta, "Prime Tech Systems");
+            JOptionPane.showMessageDialog(this, "Factura enviada correctamente a " + venta.getEmailCliente());
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al enviar el email: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVentaActionPerformed
         int fila = tblVentas.getSelectedRow();
@@ -1042,43 +974,101 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
-    private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed
-        javax.swing.JFileChooser selector = new javax.swing.JFileChooser();
-        selector.setDialogTitle("Guardar Excel");
-        selector.setSelectedFile(new java.io.File("informe_primetech.xlsx"));
-
-        int resultado = selector.showSaveDialog(this);
-        if (resultado == javax.swing.JFileChooser.APPROVE_OPTION) {
-            String ruta = selector.getSelectedFile().getAbsolutePath();
-            if (!ruta.endsWith(".xlsx")) ruta += ".xlsx";
-            try {
-                primetechfinal.util.ExportarExcel.exportarTodo(ruta);
-                JOptionPane.showMessageDialog(this, "Excel exportado correctamente en:\n" + ruta);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage());
+    private void btnBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVentaActionPerformed
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
+            m.setRowCount(0);
+            for (Venta v : ventaDAO.buscarPorCliente(txtBuscarVenta.getText())) {
+                m.addRow(new Object[]{
+                    v.getIdVenta(), v.getNombreCliente(),
+                    v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
+                });
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
-    }//GEN-LAST:event_btnExportarExcelActionPerformed
+    }//GEN-LAST:event_btnBuscarVentaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txtBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarVentaActionPerformed
+
+    private void btnVerFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerFacturaActionPerformed
         int fila = tblVentas.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona una venta primero.");
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona una venta.");
             return;
         }
-
-        int idVenta = (int) tblVentas.getValueAt(fila, 0);
-
         try {
-            Venta venta = ventaDAO.cargarVentaCompleta(idVenta);
-            EnviarEmail.enviarFactura(venta, "Prime Tech Systems");
-            JOptionPane.showMessageDialog(this, "Factura enviada correctamente a " + venta.getEmailCliente());
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            int id = (int) tblVentas.getValueAt(fila, 0);
+            Venta v = ventaDAO.cargarVentaCompleta(id);
+            FacturaHTML.generarYAbrir(v, "PRIME TECH SYSTEMS");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al enviar el email: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVerFacturaActionPerformed
+
+    private void btnNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVentaActionPerformed
+        ventaActual = null; // indicamos que es venta nueva
+        limpiarDialogVenta();
+        DialogVenta.setVisible(true);
+    }//GEN-LAST:event_btnNuevaVentaActionPerformed
+
+    private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
+        int fila = tblProductos.getSelectedRow();//obtenemos fila seleccionada
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto.");//si no hay nada seleccionado
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar producto?");//confirmacion para eliminar producto
+        if (confirm != JOptionPane.YES_OPTION) return;
+        try {
+            productoDAO.eliminar((int) tblProductos.getValueAt(fila, 0));//le pasamos el id, y el metodo.eliminar ya sabe eliminar toda la fila
+            cargarTablaProductos();//actualizamos tabla
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnEliminarProductoActionPerformed
+
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        int fila = tblProductos.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto.");
+            return;
+        }
+        productoActual = new Producto();
+        productoActual.setIdProducto((int) tblProductos.getValueAt(fila, 0));
+        limpiarCamposProducto();
+        txtNombre.setText((String) tblProductos.getValueAt(fila, 1));
+        txtDescripcion.setText((String) tblProductos.getValueAt(fila, 2));
+        txtPrecioCompra.setText(String.valueOf(tblProductos.getValueAt(fila, 3)));
+        txtPrecioVenta.setText(String.valueOf(tblProductos.getValueAt(fila, 4)));
+        txtStock.setText(String.valueOf(tblProductos.getValueAt(fila, 5)));
+        DialogProductos.setVisible(true);
+    }//GEN-LAST:event_btnEditarProductoActionPerformed
+
+    private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
+        // ponemos null para indicar que estamos creando un producto nuevo
+        productoActual = null;
+        limpiarCamposProducto();
+        DialogProductos.setVisible(true);
+    }//GEN-LAST:event_btnNuevoProductoActionPerformed
+
+    private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblProductos.getModel(); //necesario para interactuar con la tabla
+            m.setRowCount(0);//eliminamos contenido de la tabla
+            for (Producto p : productoDAO.buscarPorNombre(txtBuscarProducto.getText())) {//como devuelve un arraylist el metodo
+                //buscar por nombre lo introducimos en el foreach
+                m.addRow(new Object[]{
+                    p.getIdProducto(), p.getNombre(), p.getDescripcion(),
+                    p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void cargarTablaProductos() {
         try {
@@ -1300,7 +1290,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProductoVenta;
     private javax.swing.JComboBox<String> cmbTipoCliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1316,8 +1305,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1343,9 +1330,10 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblVentasHoy;
     private javax.swing.JLabel lblVentasMes;
+    private javax.swing.JLabel lblderecho;
+    private javax.swing.JLabel lblsuperior;
     private javax.swing.JTabbedPane panelPrincipal;
     private javax.swing.JPanel pnlAzulPantalla;
-    private javax.swing.JPanel pnlBlancoPantalla;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JTable tblCarrito;
     private javax.swing.JTable tblClientes;
