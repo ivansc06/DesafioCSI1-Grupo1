@@ -1,0 +1,90 @@
+name: Release - Publicar JAR
+
+# se dispara solo cuando se sube un tag que empiece por "v" (ej: v1.0, v1.2.3)
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    # igual que en ci.yml, necesitamos MySQL para compilar sin errores
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: tienda_informatica
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      # paso 1: descargar el codigo del repositorio
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      # paso 2: instalar Java 8
+      - name: Instalar Java 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      # paso 3: instalar Ant
+      - name: Instalar Ant
+        run: sudo apt-get install -y ant
+
+      # paso 4: crear la base de datos
+      - name: Crear base de datos
+        run: |
+          mysql -h 127.0.0.1 -u root -proot tienda_informatica < Base_De_Datos/Crear_Base_De_Datos_Final.sql
+
+      # paso 5: crear los usuarios de MySQL
+      - name: Crear usuarios de la base de datos
+        run: |
+          mysql -h 127.0.0.1 -u root -proot -e "
+            CREATE USER IF NOT EXISTS 'tienda_admin'@'%' IDENTIFIED BY 'admin_pass';
+            GRANT ALL PRIVILEGES ON tienda_informatica.* TO 'tienda_admin'@'%';
+            CREATE USER IF NOT EXISTS 'tienda_app'@'%' IDENTIFIED BY 'app_pass';
+            GRANT SELECT, INSERT, UPDATE, DELETE ON tienda_informatica.* TO 'tienda_app'@'%';
+            FLUSH PRIVILEGES;
+          "
+
+      # paso 6: compilar y generar el JAR con Ant (target "jar" en lugar de "test")
+      - name: Compilar y generar JAR
+        working-directory: Java/PrimeTechFinal
+        run: ant jar -Dplatforms.JDK_1.8.home=$JAVA_HOME
+
+      # paso 7: renombrar el JAR incluyendo la version del tag (ej: PrimeTechFinal-v1.0.jar)
+      - name: Renombrar JAR con la version
+        run: mv Java/PrimeTechFinal/dist/PrimeTechFinal.jar Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+
+      # paso 8: crear el release en GitHub y subir el JAR como adjunto descargable
+      - name: Crear release en GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "PrimeTech Systems ${{ github.ref_name }}"
+          body: |
+            ## 🚀 PrimeTech Systems ${{ github.ref_name }}
+
+            ### Instalación
+            1. Descarga el archivo `PrimeTechFinal-${{ github.ref_name }}.jar`
+            2. Asegúrate de tener **Java 8** instalado
+            3. Configura la base de datos con el script `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
+            4. Crea el fichero `email.properties` con tus credenciales de correo
+            5. Ejecuta con: `java -jar PrimeTechFinal-${{ github.ref_name }}.jar`
+
+            ### Requisitos
+            - Java 8 o superior
+            - MySQL 8.0
+            - Las librerías del proyecto (incluidas en el JAR)
+          files: Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+          draft: false
+          prerelease: false
