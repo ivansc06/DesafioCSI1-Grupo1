@@ -946,6 +946,7 @@ public class Pantalla extends javax.swing.JFrame {
             cargarTablaVentas();
             cargarTablaProductos(); // el stock cambia al registrar o editar una venta
             cargarEstadisticas();
+            cargarGraficaDashboard(); // actualizamos el dashboard con los nuevos datos
             JOptionPane.showMessageDialog(this, ventaActual != null ? "Venta actualizada correctamente." : "Venta registrada correctamente.");//operacion ternaria ahorramos espacio, mejor que hacer if else
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
@@ -996,6 +997,7 @@ public class Pantalla extends javax.swing.JFrame {
             cargarTablaVentas();
             cargarTablaProductos(); // el stock se restaura al eliminar una venta
             cargarEstadisticas();
+            cargarGraficaDashboard(); // actualizamos el dashboard al eliminar una venta
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
