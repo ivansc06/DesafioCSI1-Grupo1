@@ -115,10 +115,26 @@ public class FacturaHTML {
           .append("  <div class='footer'>\n")
           .append("    <p>Gracias por su compra &mdash; ").append(escape(empresa)).append("</p>\n")
           .append("    <p style='margin-top:6px'>Para dudas contacte: info@primetechfinal.es | Tel: 976 000 000</p>\n")
+          .append(generarSeccionQR(venta, empresa))
           .append("  </div>\n")
           .append("</div>\n</body>\n</html>");
 
         return sb.toString();
+    }
+
+    // genera el bloque HTML con el codigo QR incrustado en Base64
+    // si falla la generacion del QR simplemente no lo incluye, no interrumpe la factura
+    private static String generarSeccionQR(Venta venta, String empresa) {
+        try {
+            String base64 = GenerarQR.generarQRBase64(venta, empresa);
+            return "<div style='margin-top:20px;text-align:center'>" +
+                   "<p style='color:#95a5a6;font-size:11px;margin-bottom:6px'>Escanea para ver el resumen de tu compra</p>" +
+                   "<img src='data:image/png;base64," + base64 + "' width='120' height='120'/>" +
+                   "</div>\n";
+        } catch (Exception e) {
+            // si no se puede generar el QR no bloqueamos la factura
+            return "";
+        }
     }
 
     private static String formatEuro(double value) {
