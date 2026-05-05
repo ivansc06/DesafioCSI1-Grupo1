@@ -57,10 +57,15 @@ jobs:
             FLUSH PRIVILEGES;
           "
 
-      # paso 6: compilar y generar el JAR con Ant (target "jar" en lugar de "test")
+      # paso 6: compilar y generar el JAR con Ant
+      # forzamos jar.archive.disabled=false porque el project.properties lo tiene a true
       - name: Compilar y generar JAR
         working-directory: Java/PrimeTechFinal
-        run: ant jar -Dplatforms.JDK_1.8.home=$JAVA_HOME
+        run: ant jar -Djar.archive.disabled=false -Dplatforms.JDK_1.8.home=$JAVA_HOME
+
+      # paso 6b: listamos lo que hay en dist para depurar si vuelve a fallar
+      - name: Listar carpeta dist
+        run: ls -la Java/PrimeTechFinal/dist/ || echo "La carpeta dist no existe"
 
       # paso 7: renombrar el JAR incluyendo la version del tag (ej: PrimeTechFinal-v1.0.jar)
       - name: Renombrar JAR con la version
