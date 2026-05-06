@@ -76,8 +76,33 @@ jobs:
           echo "Dependencias copiadas:"
           ls Java/PrimeTechFinal/dist/lib/
 
-      # paso 8: empaquetar la carpeta dist completa en un ZIP
-      # incluye el JAR principal + la carpeta lib/ con todas las dependencias
+      # paso 8: corregir el Class-Path del MANIFEST.MF para que apunte a lib/
+      # sin esto java -jar no encuentra las dependencias al ejecutar
+      - name: Corregir Class-Path del manifest
+        run: |
+          LIBS=$(ls Java/PrimeTechFinal/dist/lib/*.jar | xargs -I{} basename {} | awk '{printf "lib/%s ", $0}')
+          printf "Class-Path: $LIBS\n" > /tmp/manifest-patch.txt
+          jar ufm Java/PrimeTechFinal/dist/PrimeTechFinal.jar /tmp/manifest-patch.txt
+          echo "Manifest actualizado con: $LIBS"
+
+      # paso 9: crear scripts de arranque para Windows y Linux
+      - name: Crear scripts de arranque
+        run: |
+          # script para Windows (.bat) - doble clic para abrir
+          cat > Java/PrimeTechFinal/dist/PrimeTech.bat << 'EOF'
+          @echo off
+          java -jar PrimeTechFinal.jar
+          pause
+          EOF
+
+          # script para Linux/Mac (.sh)
+          cat > Java/PrimeTechFinal/dist/PrimeTech.sh << 'EOF'
+          #!/bin/bash
+          java -jar PrimeTechFinal.jar
+          EOF
+          chmod +x Java/PrimeTechFinal/dist/PrimeTech.sh
+
+      # paso 10: empaquetar la carpeta dist completa en un ZIP
       - name: Crear ZIP con JAR y dependencias
         run: |
           cd Java/PrimeTechFinal/dist
