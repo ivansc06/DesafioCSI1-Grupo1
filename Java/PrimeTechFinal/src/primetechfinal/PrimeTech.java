@@ -6,9 +6,9 @@ import javax.swing.SwingUtilities;
 public class PrimeTech {
 
     public static void main(String[] args) {
-        FlatIntelliJLaf.setup();
+        FlatIntelliJLaf.setup();//lanzamos flatlaf, mejora la ui solo con esta linea
 
-        // quitamos el borde blanco del contenido del JTabbedPane
+        
         javax.swing.UIManager.put("TabbedPane.contentBorderInsets", new java.awt.Insets(0, 0, 0, 0));
         javax.swing.UIManager.put("TabbedPane.showContentSeparator", false);
 
