@@ -12,31 +12,35 @@ Aplicación de gestión para una tienda de informática desarrollada en Java Swi
 
 ## ✨ Funcionalidades
 
-- 📦 **Gestión de productos** — altas, bajas, ediciones y búsqueda. Alerta visual de stock bajo
+- 📦 **Gestión de productos** — altas, bajas, ediciones y búsqueda. Alerta visual (fila naranja) cuando el stock baja de 5 unidades
 - 💰 **Gestión de ventas** — registro de ventas con carrito, método de pago y cliente asociado
-- 👥 **Gestión de clientes** — particulares y empresas con todos sus datos
-- 📊 **Dashboard** — gráfica de ventas de los últimos 7 días con JFreeChart
-- 📄 **Facturas HTML** — generación automática de facturas al realizar una venta
-- 📧 **Envío de facturas por email** — envío automático al cliente vía Gmail SMTP
+- 👥 **Gestión de clientes** — particulares y empresas con todos sus datos de contacto
+- 📊 **Dashboard** — gráfica de barras (ventas últimos 7 días) y gráfica de tarta (top 5 productos más vendidos) con JFreeChart. Se actualiza automáticamente al registrar o eliminar una venta
+- 📄 **Facturas HTML** — generación automática de facturas con diseño profesional al realizar una venta, con código QR incrustado
+- 🔲 **Código QR** — cada factura incluye un QR con el resumen de la compra generado con ZXing
+- 📧 **Envío de facturas por email** — envío de la factura HTML al cliente vía Gmail SMTP
 - 📁 **Exportar a Excel** — exportación de productos, ventas y clientes con Apache POI
-- 🔒 **Sistema de login** — autenticación con BCrypt, bloqueo por intentos fallidos y roles
+- 🔒 **Sistema de login** — autenticación con BCrypt, bloqueo automático por intentos fallidos y roles de empleado
+- ⏱️ **Bloqueo por inactividad** — la sesión se cierra automáticamente tras 3 minutos sin actividad
+- 📝 **Sistema de logs** — registro de accesos, errores y operaciones con Log4j2
 
 ---
 
 ## 🛠️ Tecnologías
 
-| Tecnología | Uso |
-|---|---|
-| Java 8 + Swing | Interfaz gráfica |
-| MySQL 8.0 | Base de datos |
-| HikariCP 4.0.3 | Pool de conexiones |
-| FlatLaf 3.4 | Look & Feel moderno |
-| Apache POI 5.3.0 | Exportación a Excel |
-| JavaMail 2.0.1 | Envío de emails |
-| JFreeChart 1.5.4 | Gráficas del dashboard |
-| Log4j 2.25.4 | Sistema de logs |
-| JUnit 4.13.2 | Tests de integración |
-| GitHub Actions | CI/CD |
+| Tecnología | Versión | Uso |
+|---|---|---|
+| Java + Swing | 8 | Interfaz gráfica |
+| MySQL | 8.0 | Base de datos |
+| HikariCP | 4.0.3 | Pool de conexiones |
+| FlatLaf | 3.4 | Look & Feel moderno |
+| Apache POI | 5.3.0 | Exportación a Excel |
+| JavaMail | 2.0.1 | Envío de emails |
+| JFreeChart | 1.5.4 | Gráficas del dashboard |
+| ZXing | 3.5.3 | Generación de códigos QR |
+| Log4j | 2.25.4 | Sistema de logs |
+| JUnit | 4.13.2 | Tests de integración |
+| GitHub Actions | — | CI/CD automático |
 
 ---
 
@@ -81,6 +85,8 @@ email.clave=tucontrasena_de_aplicacion
 email.nombre=Prime Tech Systems
 ```
 
+> ⚠️ Este fichero está en `.gitignore` y nunca se sube al repositorio para proteger las credenciales.
+
 **5. Abrir y ejecutar**
 
 Abre el proyecto `Java/PrimeTechFinal` en NetBeans y ejecuta con F6.
@@ -99,17 +105,35 @@ ant test -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
 ---
 
+## 📦 Releases
+
+Cada vez que se crea un tag `vX.Y`, GitHub Actions compila automáticamente el proyecto y publica el `.jar` listo para descargar en la sección [Releases](https://github.com/ivansc06/DesafioCSI1-Grupo1/releases).
+
+```bash
+git tag v1.0
+git push origin v1.0
+```
+
+---
+
 ## 📁 Estructura del proyecto
 
 ```
 DesafioCSI1-Grupo1/
-├── Base_De_Datos/          # Scripts SQL
+├── Base_De_Datos/              # Scripts SQL
 ├── Java/
-│   ├── librerias/          # JARs de dependencias
-│   └── PrimeTechFinal/     # Proyecto NetBeans
-│       ├── src/            # Código fuente
-│       └── test/           # Tests de integración
-└── .github/workflows/      # CI con GitHub Actions
+│   ├── librerias/              # JARs de dependencias
+│   └── PrimeTechFinal/         # Proyecto NetBeans
+│       ├── src/
+│       │   └── primetechfinal/
+│       │       ├── dao/        # Acceso a base de datos
+│       │       ├── model/      # Clases del modelo
+│       │       ├── sesion/     # Gestión de sesión
+│       │       └── util/       # Facturas, QR, email, Excel
+│       └── test/               # Tests de integración
+└── .github/workflows/
+    ├── ci.yml                  # Tests automáticos en cada push
+    └── release.yml             # Publica el JAR al crear un tag
 ```
 
 ---
