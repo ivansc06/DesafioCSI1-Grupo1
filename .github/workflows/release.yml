@@ -10,7 +10,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    # permiso necesario para crear releases y subir el JAR como adjunto
+    # permiso necesario para crear releases y subir archivos como adjuntos
     permissions:
       contents: write
 
@@ -67,15 +67,20 @@ jobs:
         working-directory: Java/PrimeTechFinal
         run: ant jar -Djar.archive.disabled=false -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
-      # paso 6b: listamos lo que hay en dist para depurar si vuelve a fallar
+      # paso 7: listar dist para depurar si algo falla
       - name: Listar carpeta dist
         run: ls -la Java/PrimeTechFinal/dist/ || echo "La carpeta dist no existe"
 
-      # paso 7: renombrar el JAR incluyendo la version del tag (ej: PrimeTechFinal-v1.0.jar)
-      - name: Renombrar JAR con la version
-        run: mv Java/PrimeTechFinal/dist/PrimeTechFinal.jar Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+      # paso 8: empaquetar la carpeta dist completa en un ZIP
+      # incluye el JAR principal + la carpeta lib/ con todas las dependencias
+      - name: Crear ZIP con JAR y dependencias
+        run: |
+          cd Java/PrimeTechFinal/dist
+          zip -r ../../../PrimeTechFinal-${{ github.ref_name }}.zip .
+          echo "ZIP creado:"
+          ls -lh ../../../PrimeTechFinal-${{ github.ref_name }}.zip
 
-      # paso 8: crear el release en GitHub y subir el JAR como adjunto descargable
+      # paso 9: crear el release en GitHub y subir el ZIP como adjunto descargable
       - name: Crear release en GitHub
         uses: softprops/action-gh-release@v1
         with:
@@ -84,16 +89,17 @@ jobs:
             ## 🚀 PrimeTech Systems ${{ github.ref_name }}
 
             ### Instalación
-            1. Descarga el archivo `PrimeTechFinal-${{ github.ref_name }}.jar`
+            1. Descarga `PrimeTechFinal-${{ github.ref_name }}.zip` y descomprímelo
             2. Asegúrate de tener **Java 8** instalado
             3. Configura la base de datos con el script `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
-            4. Crea el fichero `email.properties` con tus credenciales de correo
-            5. Ejecuta con: `java -jar PrimeTechFinal-${{ github.ref_name }}.jar`
+            4. Crea el fichero `email.properties` con tus credenciales de correo (ver README)
+            5. Ejecuta con: `java -jar PrimeTechFinal.jar`
+
+            > ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` que viene dentro del ZIP.
 
             ### Requisitos
             - Java 8 o superior
             - MySQL 8.0
-            - Las librerías del proyecto (incluidas en el JAR)
-          files: Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+          files: PrimeTechFinal-${{ github.ref_name }}.zip
           draft: false
           prerelease: false
