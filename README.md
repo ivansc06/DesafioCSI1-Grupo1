@@ -107,12 +107,18 @@ ant test -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
 ## 📦 Releases
 
-Cada vez que se crea un tag `vX.Y`, GitHub Actions compila automáticamente el proyecto y publica el `.jar` listo para descargar en la sección [Releases](https://github.com/ivansc06/DesafioCSI1-Grupo1/releases).
+Cada vez que se crea un tag `vX.Y`, GitHub Actions compila automáticamente el proyecto y publica un `.zip` listo para descargar en la sección [Releases](https://github.com/ivansc06/DesafioCSI1-Grupo1/releases).
 
-```bash
-git tag v1.0
-git push origin v1.0
-```
+### Cómo ejecutar la release
+
+1. Descarga el ZIP de la última release y descomprímelo
+2. Asegúrate de tener **Java 8** instalado
+3. Configura la base de datos y el `email.properties` (ver sección de instalación)
+4. Ejecuta el programa:
+   - **Windows**: doble clic en `PrimeTech.bat`
+   - **Linux/Mac**: `./PrimeTech.sh`
+
+> ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` que viene dentro del ZIP.
 
 ---
 
