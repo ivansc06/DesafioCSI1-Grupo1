@@ -119,14 +119,16 @@ jobs:
           body: |
             ## 🚀 PrimeTech Systems ${{ github.ref_name }}
 
-            ### Instalación
+            ### Cómo ejecutar
             1. Descarga `PrimeTechFinal-${{ github.ref_name }}.zip` y descomprímelo
             2. Asegúrate de tener **Java 8** instalado
-            3. Configura la base de datos con el script `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
-            4. Crea el fichero `email.properties` con tus credenciales de correo (ver README)
-            5. Ejecuta con: `java -jar PrimeTechFinal.jar`
+            3. Configura la base de datos con `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
+            4. Crea el fichero `email.properties` con tus credenciales (ver README)
+            5. Ejecuta:
+               - **Windows**: doble clic en `PrimeTech.bat`
+               - **Linux/Mac**: `./PrimeTech.sh`
 
-            > ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` que viene dentro del ZIP.
+            > ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` incluida en el ZIP.
 
             ### Requisitos
             - Java 8 o superior
