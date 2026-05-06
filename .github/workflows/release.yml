@@ -67,12 +67,31 @@ jobs:
         working-directory: Java/PrimeTechFinal
         run: ant jar -Djar.archive.disabled=false -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
-      # paso 7: copiar todas las librerias del proyecto a dist/lib/
-      # ant jar compila pero no copia las dependencias, hay que hacerlo manualmente
+      # paso 7: copiar exactamente los JARs del classpath definido en project.properties
+      # no usamos find porque copia JARs extra de apache-log4j que causan conflictos
       - name: Copiar dependencias a dist/lib
         run: |
           mkdir -p Java/PrimeTechFinal/dist/lib
-          find Java/librerias -name "*.jar" -exec cp {} Java/PrimeTechFinal/dist/lib/ \;
+          cp Java/librerias/AbsoluteLayout.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/apache-log4j-2.25.4-bin/log4j-api-2.25.4.jar               Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/apache-log4j-2.25.4-bin/log4j-core-2.25.4.jar              Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/slf4j-api-2.0.17.jar                                        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/HikariCP-4.0.3.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/log4j-slf4j2-impl-2.25.4.jar                                Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/flatlaf-3.4.jar                                              Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-5.3.0.jar                                                Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-ooxml-5.3.0.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-compress-1.27.1.jar                                  Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/xmlbeans-5.2.1.jar                                           Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-collections4-4.4.jar                                 Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-io-2.15.1.jar                                        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-ooxml-full-5.3.0.jar                                     Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jakarta.mail-2.0.1.jar                                       Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jakarta.activation-2.0.1.jar                                 Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jfreechart-1.5.4.jar                                         Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/core-3.5.3.jar                                               Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/javase-3.5.3.jar                                             Java/PrimeTechFinal/dist/lib/
           echo "Dependencias copiadas:"
           ls Java/PrimeTechFinal/dist/lib/
 
