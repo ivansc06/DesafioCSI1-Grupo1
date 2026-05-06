@@ -77,21 +77,11 @@ jobs:
           ls Java/PrimeTechFinal/dist/lib/
 
       # paso 8: crear scripts de arranque que usan -cp en lugar de -jar
-      # asi no dependemos del Class-Path del manifest, que tiene limite de 72 chars por linea
+      # usamos printf para evitar problemas de sintaxis YAML con heredocs
       - name: Crear scripts de arranque
         run: |
-          # Windows: usa ; como separador de classpath
-          cat > Java/PrimeTechFinal/dist/PrimeTech.bat << 'EOF'
-@echo off
-java -cp "PrimeTechFinal.jar;lib\*" primetechfinal.PrimeTech
-pause
-EOF
-
-          # Linux/Mac: usa : como separador de classpath
-          cat > Java/PrimeTechFinal/dist/PrimeTech.sh << 'EOF'
-#!/bin/bash
-java -cp "PrimeTechFinal.jar:lib/*" primetechfinal.PrimeTech
-EOF
+          printf '@echo off\r\njava -cp "PrimeTechFinal.jar;lib\\*" primetechfinal.PrimeTech\r\npause\r\n' > Java/PrimeTechFinal/dist/PrimeTech.bat
+          printf '#!/bin/bash\njava -cp "PrimeTechFinal.jar:lib/*" primetechfinal.PrimeTech\n' > Java/PrimeTechFinal/dist/PrimeTech.sh
           chmod +x Java/PrimeTechFinal/dist/PrimeTech.sh
 
       # paso 10: empaquetar la carpeta dist completa en un ZIP
