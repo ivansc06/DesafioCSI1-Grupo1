@@ -10,6 +10,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    # permiso necesario para crear releases y subir el JAR como adjunto
+    permissions:
+      contents: write
+
     # igual que en ci.yml, necesitamos MySQL para compilar sin errores
     services:
       mysql:
