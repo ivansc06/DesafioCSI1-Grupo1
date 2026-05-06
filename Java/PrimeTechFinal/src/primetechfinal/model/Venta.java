@@ -19,23 +19,131 @@ public class Venta {
 
     public Venta() {}
 
-    public int           getIdVenta()       { return idVenta; }
-    public int           getIdCliente()     { return idCliente; }
-    public int           getIdEmpleado()    { return idEmpleado; }
-    public LocalDateTime getFechaVenta()    { return fechaVenta; }
-    public double        getTotal()         { return total; }
-    public String        getMetodoPago()    { return metodoPago; }
-    public String        getNombreCliente() { return nombreCliente; }
-    public String        getEmailCliente()  { return emailCliente; }
-    public List<DetalleVenta> getDetalles() { return detalles; }
+    /**
+     * @return the idVenta
+     */
+    public int getIdVenta() {
+        return idVenta;
+    }
 
-    public void setIdVenta(int idVenta)              { this.idVenta = idVenta; }
-    public void setIdCliente(int idCliente)          { this.idCliente = idCliente; }
-    public void setIdEmpleado(int idEmpleado)        { this.idEmpleado = idEmpleado; }
-    public void setFechaVenta(LocalDateTime f)       { this.fechaVenta = f; }
-    public void setTotal(double total)               { this.total = total; }
-    public void setMetodoPago(String metodoPago)     { this.metodoPago = metodoPago; }
-    public void setNombreCliente(String nc)          { this.nombreCliente = nc; }
-    public void setEmailCliente(String ec)           { this.emailCliente = ec; }
-    public void setDetalles(List<DetalleVenta> d)    { this.detalles = d; }
+    /**
+     * @param idVenta the idVenta to set
+     */
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    /**
+     * @return the idEmpleado
+     */
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    /**
+     * @param idEmpleado the idEmpleado to set
+     */
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    /**
+     * @return the fechaVenta
+     */
+    public LocalDateTime getFechaVenta() {
+        return fechaVenta;
+    }
+
+    /**
+     * @param fechaVenta the fechaVenta to set
+     */
+    public void setFechaVenta(LocalDateTime fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+    /**
+     * @return the total
+     */
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    /**
+     * @return the metodoPago
+     */
+    public String getMetodoPago() {
+        return metodoPago;
+    }
+
+    /**
+     * @param metodoPago the metodoPago to set
+     */
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    /**
+     * @return the nombreCliente
+     */
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    /**
+     * @param nombreCliente the nombreCliente to set
+     */
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    /**
+     * @return the emailCliente
+     */
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+
+    /**
+     * @param emailCliente the emailCliente to set
+     */
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
+    }
+
+    /**
+     * @return the detalles
+     */
+    public List<DetalleVenta> getDetalles() {
+        return detalles;
+    }
+
+    /**
+     * @param detalles the detalles to set
+     */
+    public void setDetalles(List<DetalleVenta> detalles) {
+        this.detalles = detalles;
+    }
+
+    
 }

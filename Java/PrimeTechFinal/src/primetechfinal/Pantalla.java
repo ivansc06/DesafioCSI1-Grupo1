@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import primetechfinal.dao.ClienteDAO;
 import primetechfinal.dao.ProductoDAO;
@@ -43,11 +44,14 @@ public class Pantalla extends javax.swing.JFrame {
 
     public Pantalla() {
         initComponents();
+        //con esto solo mostramos el panel productos
+        pnlVentas.setVisible(false);
+        pnlClientes.setVisible(false);
+        pnlDashboard.setVisible(false);
         lblEmpleado.setText(Sesion.getEmpleado().getNombreCompleto()
                         + " · " + Sesion.getEmpleado().getCargo());//necesario para saber que empleado esta conectado
 
-        // quitamos el borde del JTabbedPane para eliminar las lineas blancas
-        panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        
 
         
 
@@ -161,10 +165,8 @@ public class Pantalla extends javax.swing.JFrame {
         btnCancelarVenta = new javax.swing.JButton();
         lblCerrarSesion = new javax.swing.JLabel();
         lblEmpleado = new javax.swing.JLabel();
-        lblsuperior = new javax.swing.JLabel();
-        pnlAzulPantalla = new javax.swing.JPanel();
-        panelPrincipal = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        pnlContenido = new javax.swing.JPanel();
+        pnlProductos = new javax.swing.JPanel();
         txtBuscarProducto = new javax.swing.JTextField();
         btnBuscarProducto = new javax.swing.JButton();
         btnNuevoProducto = new javax.swing.JButton();
@@ -172,7 +174,7 @@ public class Pantalla extends javax.swing.JFrame {
         btnEliminarProducto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        pnlVentas = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         lblVentasHoy = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -188,7 +190,7 @@ public class Pantalla extends javax.swing.JFrame {
         btnEditarVenta = new javax.swing.JButton();
         btnEliminarVenta = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        pnlClientes = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
         txtBuscarCliente = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
@@ -198,6 +200,11 @@ public class Pantalla extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         pnlDashboard = new javax.swing.JPanel();
         btnExportarExcel = new javax.swing.JButton();
+        lblNavDashboard = new javax.swing.JLabel();
+        lblNavVentas = new javax.swing.JLabel();
+        lblNavProductos = new javax.swing.JLabel();
+        lblNavClientes = new javax.swing.JLabel();
+        lblsuperior = new javax.swing.JLabel();
         lblderecho = new javax.swing.JLabel();
 
         DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
@@ -438,59 +445,57 @@ public class Pantalla extends javax.swing.JFrame {
         getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, -1, -1));
 
         lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 300, 40));
+        lblEmpleado.setForeground(new java.awt.Color(153, 255, 153));
+        lblEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 220, 40));
 
-        lblsuperior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/superiorrecortado (1).png"))); // NOI18N
-        getContentPane().add(lblsuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
+        pnlContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlAzulPantalla.setBackground(new java.awt.Color(51, 204, 255));
-        pnlAzulPantalla.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(pnlAzulPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, -1));
-
-        panelPrincipal.setBackground(new java.awt.Color(51, 204, 255));
-        panelPrincipal.setOpaque(true);
-
-        jPanel1.setBackground(new java.awt.Color(51, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlProductos.setBackground(new java.awt.Color(30, 30, 40));
+        pnlProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtBuscarProducto.setToolTipText("Buscar Producto");
-        jPanel1.add(txtBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 190, -1));
+        pnlProductos.add(txtBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 190, -1));
 
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBuscarProducto.setText("Buscar ");
+        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 110, 40));
+        pnlProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, 110, 80));
 
         btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnNuevoProducto.setText("Nuevo");
+        btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevoproducto.png"))); // NOI18N
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, 110, 40));
+        pnlProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 119, 110, 80));
 
         btnEditarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEditarProducto.setText("Editar");
+        btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarproducto.png"))); // NOI18N
+        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 260, 110, 40));
+        pnlProductos.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 250, 110, 80));
 
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEliminarProducto.setText("Eliminar");
+        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarproducto.png"))); // NOI18N
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 370, 110, 40));
+        pnlProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 370, 110, 80));
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -502,54 +507,62 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 940, 420));
+        pnlProductos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 940, 420));
 
-        panelPrincipal.addTab("Productos", jPanel1);
+        pnlContenido.add(pnlProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
-        jPanel2.setBackground(new java.awt.Color(51, 204, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlVentas.setBackground(new java.awt.Color(30, 30, 40));
+        pnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ventas Hoy:");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        pnlVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         lblVentasHoy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasHoy.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasHoy.setText("0.00 €");
-        jPanel2.add(lblVentasHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        pnlVentas.add(lblVentasHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ventas este mes:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        pnlVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
         lblVentasMes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasMes.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasMes.setText("0");
-        jPanel2.add(lblVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        pnlVentas.add(lblVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Más vendido:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
+        pnlVentas.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         lblProductoTop.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblProductoTop.setForeground(new java.awt.Color(0, 204, 255));
         lblProductoTop.setText("-");
-        jPanel2.add(lblProductoTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 160, 20));
+        pnlVentas.add(lblProductoTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 220, 20));
 
         btnNuevaVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnNuevaVenta.setText("Nueva Venta");
+        btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevaventa.png"))); // NOI18N
+        btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 320, 160, 40));
+        pnlVentas.add(btnNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 100, 100, 70));
 
         btnVerFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnVerFactura.setText("Realizar Factura");
+        btnVerFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/factura.png"))); // NOI18N
+        btnVerFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerFacturaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 390, -1, 40));
+        pnlVentas.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 450, 100, 70));
 
         tblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -561,7 +574,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblVentas);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 820, 370));
+        pnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 950, 420));
 
         txtBuscarVenta.setToolTipText("Buscar Venta");
         txtBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -569,87 +582,95 @@ public class Pantalla extends javax.swing.JFrame {
                 txtBuscarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 140, 40));
+        pnlVentas.add(txtBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 220, 40));
 
         btnBuscarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBuscarVenta.setText("Buscar");
+        btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 10, 150, 40));
+        pnlVentas.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, 100, 70));
 
         btnEditarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEditarVenta.setText("Editar");
+        btnEditarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarventa.png"))); // NOI18N
+        btnEditarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 190, 160, 40));
+        pnlVentas.add(btnEditarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, 100, 70));
 
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnEliminarVenta.setText("Eliminar");
+        btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarventa.png"))); // NOI18N
+        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarVentaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEliminarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 250, 160, 40));
+        pnlVentas.add(btnEliminarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 280, 100, 70));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Enviar por Correo");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/enviarcorreo.png"))); // NOI18N
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 110, -1, 50));
+        pnlVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 370, 100, 70));
 
-        panelPrincipal.addTab("Ventas", jPanel2);
+        pnlContenido.add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
-        jPanel3.setBackground(new java.awt.Color(51, 204, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlClientes.setBackground(new java.awt.Color(30, 30, 40));
+        pnlClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnNuevoCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevocliente.png"))); // NOI18N
+        btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 90, -1));
+        pnlClientes.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 90, -1));
 
         txtBuscarCliente.setToolTipText("Buscar Cliente");
-        jPanel3.add(txtBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 190, -1));
+        pnlClientes.add(txtBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 190, -1));
 
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 90, -1));
+        pnlClientes.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 90, -1));
 
         btnEditarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarcliente.png"))); // NOI18N
+        btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, 90, -1));
+        pnlClientes.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, 90, -1));
 
         btnEliminarProducto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarcliente.png"))); // NOI18N
+        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducto1ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 370, 90, -1));
+        pnlClientes.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 370, 90, -1));
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -661,12 +682,15 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblClientes);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 900, 380));
+        pnlClientes.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 900, 380));
 
-        panelPrincipal.addTab("Clientes", jPanel3);
-        panelPrincipal.addTab("Dashboard", pnlDashboard);
+        pnlContenido.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
-        getContentPane().add(panelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1080, 520));
+        pnlDashboard.setBackground(new java.awt.Color(30, 30, 40));
+        pnlDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlContenido.add(pnlDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
+
+        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1080, 520));
 
         btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/excel.png"))); // NOI18N
@@ -677,6 +701,41 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 500, 170, -1));
+
+        lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNavDashboardMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNavDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 440, 180, 40));
+
+        lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNavVentasMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNavVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 270, 180, 40));
+
+        lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNavProductosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNavProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 320, 180, 40));
+
+        lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNavClientesMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNavClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 380, 180, 40));
+
+        lblsuperior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/superiorrecortado (1).png"))); // NOI18N
+        getContentPane().add(lblsuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
         lblderecho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/derechofinal.png"))); // NOI18N
         getContentPane().add(lblderecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 200, 520));
@@ -1070,6 +1129,22 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
+    private void lblNavVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNavVentasMouseClicked
+        mostrarPanel(pnlVentas);
+    }//GEN-LAST:event_lblNavVentasMouseClicked
+
+    private void lblNavProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNavProductosMouseClicked
+        mostrarPanel(pnlProductos);
+    }//GEN-LAST:event_lblNavProductosMouseClicked
+
+    private void lblNavClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNavClientesMouseClicked
+        mostrarPanel(pnlClientes);
+    }//GEN-LAST:event_lblNavClientesMouseClicked
+
+    private void lblNavDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNavDashboardMouseClicked
+        mostrarPanel(pnlDashboard);
+    }//GEN-LAST:event_lblNavDashboardMouseClicked
+
     private void cargarTablaProductos() {
         try {
             DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
@@ -1108,41 +1183,41 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }
     private void cargarTablaClientes() {
-    try {
-        DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
-        m.setRowCount(0);
-        for (Cliente c : clienteDAO.listarTodos()) {
-            m.addRow(new Object[]{
-                c.getIdCliente(), c.getTipo(),
-                c.getNombreVisible(), c.getTelefono(), c.getEmail()
-            });
-        }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-     }
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
+            m.setRowCount(0);
+            for (Cliente c : clienteDAO.listarTodos()) {
+                m.addRow(new Object[]{
+                    c.getIdCliente(), c.getTipo(),
+                    c.getNombreVisible(), c.getTelefono(), c.getEmail()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+         }
     }
     private void cargarTablaVentas() {
-    try {
-        DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
-        m.setRowCount(0);
-        for (Venta v : ventaDAO.listarTodas()) {
-            m.addRow(new Object[]{
-                v.getIdVenta(), v.getNombreCliente(),
-                v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
-            });
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
+            m.setRowCount(0);
+            for (Venta v : ventaDAO.listarTodas()) {
+                m.addRow(new Object[]{
+                    v.getIdVenta(), v.getNombreCliente(),
+                    v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }
-    private void cargarEstadisticas() {
-    try {
-        lblVentasHoy.setText(String.format("%.2f €", ventaDAO.totalVentasHoy()));
-        lblVentasMes.setText(String.valueOf(ventaDAO.ventasMes()));
-        lblProductoTop.setText(ventaDAO.productoMasVendido());
-    } catch (SQLException ex) {
-        lblVentasHoy.setText("Error");
-        }
+        private void cargarEstadisticas() {
+        try {
+            lblVentasHoy.setText(String.format("%.2f €", ventaDAO.totalVentasHoy()));
+            lblVentasMes.setText(String.valueOf(ventaDAO.ventasMes()));
+            lblProductoTop.setText(ventaDAO.productoMasVendido());
+        } catch (SQLException ex) {
+            lblVentasHoy.setText("Error");
+            }
     }
     // genera la grafica de barras con las ventas de los ultimos 7 dias y la mete en pnlDashboard
     private void cargarGraficaDashboard() {
@@ -1188,70 +1263,77 @@ public class Pantalla extends javax.swing.JFrame {
     }
 
     private void limpiarCamposProducto() {
-    txtNombre.setText("");
-    txtDescripcion.setText("");
-    txtPrecioCompra.setText("");//ASI NO REPETIMOS CODIGO
-    txtPrecioVenta.setText("");
-    txtStock.setText("");
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtPrecioCompra.setText("");//ASI NO REPETIMOS CODIGO
+        txtPrecioVenta.setText("");
+        txtStock.setText("");
     }
     private void limpiarCamposCliente() {
-    txtNombreCliente.setText("");
-    txtApellidos.setText("");
-    txtDni.setText("");
-    txtRazonSocial.setText("");
-    txtCif.setText("");
-    txtContacto.setText("");
-    txtTelefonoCliente.setText("");
-    txtEmailCliente.setText("");
-    txtDireccionCliente.setText("");
+        txtNombreCliente.setText("");
+        txtApellidos.setText("");
+        txtDni.setText("");
+        txtRazonSocial.setText("");
+        txtCif.setText("");
+        txtContacto.setText("");
+        txtTelefonoCliente.setText("");
+        txtEmailCliente.setText("");
+        txtDireccionCliente.setText("");
     }
     private void actualizarVisibilidadCampos() {
-    boolean esParticular = cmbTipoCliente.getSelectedItem().equals("particular");
-    lblApellidos.setVisible(esParticular);
-    txtApellidos.setVisible(esParticular);
-    lblDni.setVisible(esParticular);
-    txtDni.setVisible(esParticular);
-    lblRazonSocial.setVisible(!esParticular);//muestra o los campos de particulares o los de empresa según el combobox
-    txtRazonSocial.setVisible(!esParticular);
-    lblCif.setVisible(!esParticular);
-    txtCif.setVisible(!esParticular);
-    lblContacto.setVisible(!esParticular);
-    txtContacto.setVisible(!esParticular);
+        boolean esParticular = cmbTipoCliente.getSelectedItem().equals("particular");
+        lblApellidos.setVisible(esParticular);
+        txtApellidos.setVisible(esParticular);
+        lblDni.setVisible(esParticular);
+        txtDni.setVisible(esParticular);
+        lblRazonSocial.setVisible(!esParticular);//muestra o los campos de particulares o los de empresa según el combobox
+        txtRazonSocial.setVisible(!esParticular);
+        lblCif.setVisible(!esParticular);
+        txtCif.setVisible(!esParticular);
+        lblContacto.setVisible(!esParticular);
+        txtContacto.setVisible(!esParticular);
     }
     private void limpiarDialogVenta() {
-    try {
-        // cargamos clientes en el combobox y en la lista paralela (índice 0 = Sin cliente)
-        clientesCombo.clear();
-        cmbClienteVenta.removeAllItems();
-        cmbClienteVenta.addItem("Sin cliente");
-        for (Cliente c : clienteDAO.listarTodos()) {
-            clientesCombo.add(c);
-            cmbClienteVenta.addItem(c.getNombreVisible()); // nombre legible, no toString()
-        }
-        // cargamos productos en el combobox y en la lista paralela
-        productosCombo.clear();
-        cmbProductoVenta.removeAllItems();
-        for (Producto p : productoDAO.listarTodos()) {
-            productosCombo.add(p);
-            cmbProductoVenta.addItem(p.getNombre()); // nombre legible, no toString()
-        }
-        // limpiamos carrito
-        ((DefaultTableModel) tblCarrito.getModel()).setRowCount(0);
-        jLabel23.setText("0.00 €");
-        txtCantidadVenta.setText("1");
-        cmbMetodoPago.setSelectedIndex(0);
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
+        try {
+            // cargamos clientes en el combobox y en la lista paralela (índice 0 = Sin cliente)
+            clientesCombo.clear();
+            cmbClienteVenta.removeAllItems();
+            cmbClienteVenta.addItem("Sin cliente");
+            for (Cliente c : clienteDAO.listarTodos()) {
+                clientesCombo.add(c);
+                cmbClienteVenta.addItem(c.getNombreVisible()); // nombre legible, no toString()
+            }
+            // cargamos productos en el combobox y en la lista paralela
+            productosCombo.clear();
+            cmbProductoVenta.removeAllItems();
+            for (Producto p : productoDAO.listarTodos()) {
+                productosCombo.add(p);
+                cmbProductoVenta.addItem(p.getNombre()); // nombre legible, no toString()
+            }
+            // limpiamos carrito
+            ((DefaultTableModel) tblCarrito.getModel()).setRowCount(0);
+            jLabel23.setText("0.00 €");
+            txtCantidadVenta.setText("1");
+            cmbMetodoPago.setSelectedIndex(0);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
     }
     private void recalcularTotal() {
-    // suma todos los subtotales del carrito y actualiza el label
-    DefaultTableModel m = (DefaultTableModel) tblCarrito.getModel();
-    double total = 0;
-    for (int i = 0; i < m.getRowCount(); i++) {
-        total += (double) m.getValueAt(i, 3);
+        // suma todos los subtotales del carrito y actualiza el label
+        DefaultTableModel m = (DefaultTableModel) tblCarrito.getModel();
+        double total = 0;
+        for (int i = 0; i < m.getRowCount(); i++) {
+            total += (double) m.getValueAt(i, 3);
+        }
+        jLabel23.setText(String.format("%.2f €", total));
     }
-    jLabel23.setText(String.format("%.2f €", total));
+    private void mostrarPanel(JPanel panel) {
+        pnlProductos.setVisible(false);
+        pnlVentas.setVisible(false);
+        pnlClientes.setVisible(false);
+        pnlDashboard.setVisible(false);
+        panel.setVisible(true);
     }
      
    
@@ -1312,9 +1394,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1325,6 +1404,10 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel lblContacto;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JLabel lblNavClientes;
+    private javax.swing.JLabel lblNavDashboard;
+    private javax.swing.JLabel lblNavProductos;
+    private javax.swing.JLabel lblNavVentas;
     private javax.swing.JLabel lblProductoTop;
     private javax.swing.JLabel lblRazonSocial;
     private javax.swing.JLabel lblTelefono;
@@ -1332,9 +1415,11 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel lblVentasMes;
     private javax.swing.JLabel lblderecho;
     private javax.swing.JLabel lblsuperior;
-    private javax.swing.JTabbedPane panelPrincipal;
-    private javax.swing.JPanel pnlAzulPantalla;
+    private javax.swing.JPanel pnlClientes;
+    private javax.swing.JPanel pnlContenido;
     private javax.swing.JPanel pnlDashboard;
+    private javax.swing.JPanel pnlProductos;
+    private javax.swing.JPanel pnlVentas;
     private javax.swing.JTable tblCarrito;
     private javax.swing.JTable tblClientes;
     private javax.swing.JTable tblProductos;

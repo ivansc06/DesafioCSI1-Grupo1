@@ -17,19 +17,93 @@ public class DetalleVenta {
         this.cantidad       = cantidad;
         this.precioUnitario = precioUnitario;
     }
+    public double getSubtotal(){
+        return cantidad * precioUnitario; 
+    }
 
-    public int    getIdDetalle()      { return idDetalle; }
-    public int    getIdVenta()        { return idVenta; }
-    public int    getIdProducto()     { return idProducto; }
-    public String getNombreProducto() { return nombreProducto; }
-    public int    getCantidad()       { return cantidad; }
-    public double getPrecioUnitario() { return precioUnitario; }
-    public double getSubtotal()       { return cantidad * precioUnitario; }
+    /**
+     * @return the idDetalle
+     */
+    public int getIdDetalle() {
+        return idDetalle;
+    }
 
-    public void setIdDetalle(int idDetalle)         { this.idDetalle = idDetalle; }
-    public void setIdVenta(int idVenta)             { this.idVenta = idVenta; }
-    public void setIdProducto(int idProducto)       { this.idProducto = idProducto; }
-    public void setNombreProducto(String n)         { this.nombreProducto = n; }
-    public void setCantidad(int cantidad)           { this.cantidad = cantidad; }
-    public void setPrecioUnitario(double p)         { this.precioUnitario = p; }
+    /**
+     * @param idDetalle the idDetalle to set
+     */
+    public void setIdDetalle(int idDetalle) {
+        this.idDetalle = idDetalle;
+    }
+
+    /**
+     * @return the idVenta
+     */
+    public int getIdVenta() {
+        return idVenta;
+    }
+
+    /**
+     * @param idVenta the idVenta to set
+     */
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    /**
+     * @return the idProducto
+     */
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    /**
+     * @param idProducto the idProducto to set
+     */
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    /**
+     * @return the nombreProducto
+     */
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    /**
+     * @param nombreProducto the nombreProducto to set
+     */
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    /**
+     * @return the cantidad
+     */
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    /**
+     * @param cantidad the cantidad to set
+     */
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /**
+     * @return the precioUnitario
+     */
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    /**
+     * @param precioUnitario the precioUnitario to set
+     */
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    
 }
