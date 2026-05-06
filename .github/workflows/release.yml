@@ -67,9 +67,14 @@ jobs:
         working-directory: Java/PrimeTechFinal
         run: ant jar -Djar.archive.disabled=false -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
-      # paso 7: listar dist para depurar si algo falla
-      - name: Listar carpeta dist
-        run: ls -la Java/PrimeTechFinal/dist/ || echo "La carpeta dist no existe"
+      # paso 7: copiar todas las librerias del proyecto a dist/lib/
+      # ant jar compila pero no copia las dependencias, hay que hacerlo manualmente
+      - name: Copiar dependencias a dist/lib
+        run: |
+          mkdir -p Java/PrimeTechFinal/dist/lib
+          find Java/librerias -name "*.jar" -exec cp {} Java/PrimeTechFinal/dist/lib/ \;
+          echo "Dependencias copiadas:"
+          ls Java/PrimeTechFinal/dist/lib/
 
       # paso 8: empaquetar la carpeta dist completa en un ZIP
       # incluye el JAR principal + la carpeta lib/ con todas las dependencias
