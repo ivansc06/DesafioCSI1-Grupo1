@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Archivo: productos.xml
+  Empresa: PrimeTech Systems
+  Descripción: Catálogo de productos en formato XML
+-->
+
+<catalogo empresa="PrimeTech Systems" fecha="2025">
+
+  <producto id="1">
+    <nombre>Portátil PrimeTech Pro 15"</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">899</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Portátil de altas prestaciones con pantalla Full HD de 15 pulgadas.</descripcion>
+    <especificaciones>
+      <procesador>Intel Core i7 12ª Gen</procesador>
+      <ram>16 GB DDR5</ram>
+      <almacenamiento>512 GB SSD NVMe</almacenamiento>
+      <pantalla>15.6" Full HD IPS</pantalla>
+      <bateria>12 horas</bateria>
+    </especificaciones>
+    <imagen>img/portatil.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <producto id="2">
+    <nombre>Antivirus PrimeGuard Empresarial</nombre>
+    <categoria>Software</categoria>
+    <precio moneda="EUR">49</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Protección completa contra virus, malware y ransomware para empresas.</descripcion>
+    <especificaciones>
+      <licencias>Hasta 10 equipos</licencias>
+      <actualizaciones>Automáticas</actualizaciones>
+      <soporte>24/7</soporte>
+      <plataforma>Windows, macOS, Linux</plataforma>
+      <tipo_licencia>Anual</tipo_licencia>
+    </especificaciones>
+    <imagen>img/antivirus.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="3">
+    <nombre>Servidor NAS PrimeStor 4TB</nombre>
+    <categoria>Almacenamiento</categoria>
+    <precio moneda="EUR">599</precio>
+    <disponibilidad>Últimas unidades</disponibilidad>
+    <descripcion>Servidor de almacenamiento en red para empresas. Ideal para backups.</descripcion>
+    <especificaciones>
+      <capacidad>4 TB</capacidad>
+      <bahias>4</bahias>
+      <raid>RAID 0/1/5/10</raid>
+      <conectividad>Gigabit Ethernet</conectividad>
+      <consumo>25W</consumo>
+    </especificaciones>
+    <imagen>img/nas.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="4">
+    <nombre>Mantenimiento Anual PC</nombre>
+    <categoria>Servicio</categoria>
+    <precio moneda="EUR">120</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Servicio de mantenimiento anual para ordenadores de empresa.</descripcion>
+    <especificaciones>
+      <visitas>2 visitas anuales</visitas>
+      <soporte_remoto>Incluido</soporte_remoto>
+      <tiempo_respuesta>24 horas</tiempo_respuesta>
+      <actualizaciones>Sistema operativo incluido</actualizaciones>
+      <limpieza>Física y software</limpieza>
+    </especificaciones>
+    <imagen>img/mantenimiento.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="5">
+    <nombre>Instalación Red WiFi Empresa</nombre>
+    <categoria>Redes</categoria>
+    <precio moneda="EUR">200</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Instalación y configuración de red WiFi profesional para empresas.</descripcion>
+    <especificaciones>
+      <estandar>WiFi 6 (802.11ax)</estandar>
+      <cobertura>Hasta 500 m²</cobertura>
+      <seguridad>WPA3</seguridad>
+      <puntos_acceso>Hasta 3 incluidos</puntos_acceso>
+      <gestion>Remota</gestion>
+    </especificaciones>
+    <imagen>img/wifi.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="6">
+    <nombre>Monitor 27" 4K PrimView</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">349</precio>
+    <disponibilidad>Agotado</disponibilidad>
+    <descripcion>Monitor de alta resolución 4K ideal para diseño y trabajo profesional.</descripcion>
+    <especificaciones>
+      <resolucion>3840x2160 (4K UHD)</resolucion>
+      <panel>IPS</panel>
+      <tasa_refresco>60 Hz</tasa_refresco>
+      <conectores>HDMI, DisplayPort, USB-C</conectores>
+      <tiempo_respuesta>5 ms</tiempo_respuesta>
+    </especificaciones>
+    <imagen>img/monitor.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="7">
+    <nombre>Pack Microsoft 365 Business</nombre>
+    <categoria>Software</categoria>
+    <precio moneda="EUR">12</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Suite completa de productividad con Word, Excel, Teams y OneDrive.</descripcion>
+    <especificaciones>
+      <aplicaciones>Word, Excel, PowerPoint, Teams, Outlook</aplicaciones>
+      <almacenamiento_nube>1 TB OneDrive</almacenamiento_nube>
+      <usuarios>Por usuario/mes</usuarios>
+      <soporte>Microsoft incluido</soporte>
+      <tipo_licencia>Mensual</tipo_licencia>
+    </especificaciones>
+    <imagen>img/microsoft365.jpg</imagen>
+    <garantia_anios>0</garantia_anios>
+  </producto>
+
+  <producto id="8">
+    <nombre>Teclado y Ratón Inalámbrico</nombre>
+    <categoria>Periféricos</categoria>
+    <precio moneda="EUR">59</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Pack de teclado y ratón inalámbrico ergonómico para uso diario.</descripcion>
+    <especificaciones>
+      <conexion>USB Receptor 2.4GHz</conexion>
+      <bateria>18 meses (teclado), 12 meses (ratón)</bateria>
+      <dpi>1000 DPI ajustable</dpi>
+      <layout>Español (ES)</layout>
+      <color>Negro</color>
+    </especificaciones>
+    <imagen>img/teclado.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <!-- Productos adicionales para llegar a más de 10... -->
+
+  <producto id="9">
+    <nombre>Disco Duro Externo 2TB USB 3.0</nombre>
+    <categoria>Almacenamiento</categoria>
+    <precio moneda="EUR">79</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Disco duro portátil de 2 TB para almacenamiento y backup personal.</descripcion>
+    <especificaciones>
+      <capacidad>2 TB</capacidad>
+      <interfaz>USB 3.0</interfaz>
+      <velocidad_lectura>120 MB/s</velocidad_lectura>
+      <velocidad_escritura>100 MB/s</velocidad_escritura>
+      <alimentacion>Bus USB (sin adaptador)</alimentacion>
+    </especificaciones>
+    <imagen>img/disco_externo.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <producto id="10">
+    <nombre>Switch Gestionable 24 Puertos</nombre>
+    <categoria>Redes</categoria>
+    <precio moneda="EUR">280</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Switch de red gestionable para entornos empresariales con 24 puertos Gigabit.</descripcion>
+    <especificaciones>
+      <puertos>24 x Gigabit Ethernet</puertos>
+      <velocidad>1 Gbps por puerto</velocidad>
+      <gestion>Web + SNMP</gestion>
+      <vlan>Soporte VLAN 802.1Q</vlan>
+      <montaje>Rack 19"</montaje>
+    </especificaciones>
+    <imagen>img/switch.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+</catalogo>

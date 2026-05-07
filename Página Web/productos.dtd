@@ -1,0 +1,125 @@
+<!-- 
+  Archivo: productos.dtd
+  Empresa: PrimeTech Systems
+  Descripción: DTD para validar el archivo productos.xml
+-->
+
+<!-- Elemento raíz del catálogo -->
+<!ELEMENT catalogo (producto+)>
+<!ATTLIST catalogo
+  empresa CDATA #REQUIRED
+  fecha   CDATA #REQUIRED
+>
+
+<!-- Cada producto tiene estos elementos obligatorios -->
+<!ELEMENT producto (nombre, categoria, precio, disponibilidad, descripcion, especificaciones, imagen, garantia_anios)>
+<!ATTLIST producto
+  id CDATA #REQUIRED
+>
+
+<!-- Datos básicos del producto -->
+<!ELEMENT nombre         (#PCDATA)>
+<!ELEMENT categoria      (#PCDATA)>
+<!ELEMENT disponibilidad (#PCDATA)>
+<!ELEMENT descripcion    (#PCDATA)>
+<!ELEMENT imagen         (#PCDATA)>
+<!ELEMENT garantia_anios (#PCDATA)>
+
+<!-- Precio con atributo de moneda -->
+<!ELEMENT precio (#PCDATA)>
+<!ATTLIST precio
+  moneda CDATA #REQUIRED
+>
+
+<!-- Especificaciones técnicas - todos opcionales porque varían por producto -->
+<!ELEMENT especificaciones (
+  procesador?   |
+  ram?          |
+  almacenamiento? |
+  pantalla?     |
+  bateria?      |
+  licencias?    |
+  actualizaciones? |
+  soporte?      |
+  plataforma?   |
+  tipo_licencia? |
+  capacidad?    |
+  bahias?       |
+  raid?         |
+  conectividad? |
+  consumo?      |
+  visitas?      |
+  soporte_remoto? |
+  tiempo_respuesta? |
+  limpieza?     |
+  estandar?     |
+  cobertura?    |
+  seguridad?    |
+  puntos_acceso? |
+  gestion?      |
+  resolucion?   |
+  panel?        |
+  tasa_refresco? |
+  conectores?   |
+  tiempo_respuesta_ms? |
+  aplicaciones? |
+  almacenamiento_nube? |
+  usuarios?     |
+  conexion?     |
+  dpi?          |
+  layout?       |
+  color?        |
+  interfaz?     |
+  velocidad_lectura? |
+  velocidad_escritura? |
+  alimentacion? |
+  puertos?      |
+  velocidad?    |
+  vlan?         |
+  montaje?
+)*>
+
+<!-- Todos los campos de especificaciones contienen texto -->
+<!ELEMENT procesador        (#PCDATA)>
+<!ELEMENT ram               (#PCDATA)>
+<!ELEMENT almacenamiento    (#PCDATA)>
+<!ELEMENT pantalla          (#PCDATA)>
+<!ELEMENT bateria           (#PCDATA)>
+<!ELEMENT licencias         (#PCDATA)>
+<!ELEMENT actualizaciones   (#PCDATA)>
+<!ELEMENT soporte           (#PCDATA)>
+<!ELEMENT plataforma        (#PCDATA)>
+<!ELEMENT tipo_licencia     (#PCDATA)>
+<!ELEMENT capacidad         (#PCDATA)>
+<!ELEMENT bahias            (#PCDATA)>
+<!ELEMENT raid              (#PCDATA)>
+<!ELEMENT conectividad      (#PCDATA)>
+<!ELEMENT consumo           (#PCDATA)>
+<!ELEMENT visitas           (#PCDATA)>
+<!ELEMENT soporte_remoto    (#PCDATA)>
+<!ELEMENT tiempo_respuesta  (#PCDATA)>
+<!ELEMENT limpieza          (#PCDATA)>
+<!ELEMENT estandar          (#PCDATA)>
+<!ELEMENT cobertura         (#PCDATA)>
+<!ELEMENT seguridad         (#PCDATA)>
+<!ELEMENT puntos_acceso     (#PCDATA)>
+<!ELEMENT gestion           (#PCDATA)>
+<!ELEMENT resolucion        (#PCDATA)>
+<!ELEMENT panel             (#PCDATA)>
+<!ELEMENT tasa_refresco     (#PCDATA)>
+<!ELEMENT conectores        (#PCDATA)>
+<!ELEMENT aplicaciones      (#PCDATA)>
+<!ELEMENT almacenamiento_nube (#PCDATA)>
+<!ELEMENT usuarios          (#PCDATA)>
+<!ELEMENT conexion          (#PCDATA)>
+<!ELEMENT dpi               (#PCDATA)>
+<!ELEMENT layout            (#PCDATA)>
+<!ELEMENT color             (#PCDATA)>
+<!ELEMENT interfaz          (#PCDATA)>
+<!ELEMENT velocidad_lectura (#PCDATA)>
+<!ELEMENT velocidad_escritura (#PCDATA)>
+<!ELEMENT alimentacion      (#PCDATA)>
+<!ELEMENT puertos           (#PCDATA)>
+<!ELEMENT velocidad         (#PCDATA)>
+<!ELEMENT vlan              (#PCDATA)>
+<!ELEMENT montaje           (#PCDATA)>

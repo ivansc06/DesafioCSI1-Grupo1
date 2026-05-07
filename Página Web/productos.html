@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimeTech Systems - Productos</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-cpu-fill me-2"></i>PrimeTech Systems
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ==================== CABECERA DE PÁGINA ==================== -->
+  <section class="hero animar" style="padding: 50px 20px;">
+    <div class="container">
+      <h1><i class="bi bi-box-seam me-2"></i>Nuestros Productos y Servicios</h1>
+      <p>Encuentra la solución tecnológica que mejor se adapte a tus necesidades</p>
+    </div>
+  </section>
+
+
+  <!-- ==================== TABLA DE PRODUCTOS ==================== -->
+  <section class="seccion">
+    <div class="container">
+      <h2 class="seccion-titulo">Catálogo de productos</h2>
+
+      <!-- Tabla responsive -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover tabla-estilo">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Producto</th>
+              <th>Categoría</th>
+              <th>Precio (€)</th>
+              <th>Disponibilidad</th>
+              <th>Imagen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Portátil PrimeTech Pro 15"</td>
+              <td>Hardware</td>
+              <td>899 €</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-laptop fs-4 text-primary"></i></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Antivirus PrimeGuard Empresarial</td>
+              <td>Software</td>
+              <td>49 €/año</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-shield-fill-check fs-4 text-success"></i></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Servidor NAS PrimeStor 4TB</td>
+              <td>Almacenamiento</td>
+              <td>599 €</td>
+              <td><span class="badge bg-warning text-dark">Últimas unidades</span></td>
+              <td><i class="bi bi-hdd-fill fs-4 text-warning"></i></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Mantenimiento Anual PC</td>
+              <td>Servicio</td>
+              <td>120 €/año</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-tools fs-4 text-secondary"></i></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Instalación Red WiFi Empresa</td>
+              <td>Redes</td>
+              <td>Desde 200 €</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-wifi fs-4 text-info"></i></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Monitor 27" 4K PrimView</td>
+              <td>Hardware</td>
+              <td>349 €</td>
+              <td><span class="badge bg-danger">Agotado</span></td>
+              <td><i class="bi bi-display fs-4 text-primary"></i></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Pack Microsoft 365 Business</td>
+              <td>Software</td>
+              <td>12 €/mes</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-cloud fs-4 text-primary"></i></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Teclado y Ratón Inalámbrico</td>
+              <td>Periféricos</td>
+              <td>59 €</td>
+              <td><span class="badge bg-success">Disponible</span></td>
+              <td><i class="bi bi-keyboard fs-4 text-secondary"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== DESPLEGABLE (Accordion) ==================== -->
+  <section class="seccion bg-white">
+    <div class="container">
+      <h2 class="seccion-titulo">Preguntas frecuentes sobre productos</h2>
+
+      <!-- Accordion de Bootstrap -->
+      <div class="accordion" id="preguntasProductos">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#preg1">
+              ¿Ofrecéis garantía en los productos?
+            </button>
+          </h2>
+          <div id="preg1" class="accordion-collapse collapse show" data-bs-parent="#preguntasProductos">
+            <div class="accordion-body">
+              Sí, todos nuestros productos tienen mínimo 2 años de garantía oficial.
+              Los servicios de mantenimiento incluyen soporte técnico ilimitado.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#preg2">
+              ¿Hacéis envíos a domicilio?
+            </button>
+          </h2>
+          <div id="preg2" class="accordion-collapse collapse" data-bs-parent="#preguntasProductos">
+            <div class="accordion-body">
+              Sí, enviamos a toda España. El envío es gratuito para pedidos superiores a 100 €.
+              El plazo de entrega es de 2 a 5 días laborables.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#preg3">
+              ¿Puedo solicitar un presupuesto personalizado?
+            </button>
+          </h2>
+          <div id="preg3" class="accordion-collapse collapse" data-bs-parent="#preguntasProductos">
+            <div class="accordion-body">
+              Por supuesto. Rellena el formulario en nuestra página de
+              <a href="contacto.html">Contacto</a> y te responderemos en menos de 24 horas.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <p class="mb-1"><strong>PrimeTech Systems</strong> &copy; 2025</p>
+      <p class="mb-0">
+        <a href="contacto.html">Contacto</a> |
+        <a href="nosotros.html">Quiénes somos</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
