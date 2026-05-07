@@ -51,9 +51,47 @@ public class Pantalla extends javax.swing.JFrame {
         lblEmpleado.setText(Sesion.getEmpleado().getNombreCompleto()
                         + " · " + Sesion.getEmpleado().getCargo());//necesario para saber que empleado esta conectado
 
+        // estilo oscuro solo para los buscadores de Pantalla, sin afectar al Login
+        java.awt.Color fondoBuscador = new java.awt.Color(45, 45, 60);
+        java.awt.Color textoBuscador = new java.awt.Color(200, 200, 210);
+        for (javax.swing.JTextField txt : new javax.swing.JTextField[]{txtBuscarProducto, txtBuscarVenta, txtBuscarCliente}) {
+            txt.setBackground(fondoBuscador);
+            txt.setForeground(textoBuscador);
+            txt.setCaretColor(java.awt.Color.WHITE);
+        }
+
         
 
         
+
+        // color oscuro que se verá en el área vacía debajo de las filas de datos
+        java.awt.Color fondoTablaVacia = new java.awt.Color(30, 30, 40);
+
+        // renderer personalizado para ventas y clientes:
+        // swing pinta cada celda llamando a getTableCellRendererComponent, que devuelve
+        // un componente visual. aqui sobreescribimos ese metodo para controlar el color.
+        javax.swing.table.DefaultTableCellRenderer rendererBlanco = new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                // primero dejamos que el renderer por defecto aplique fuente, bordes, etc.
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (!isSelected) {
+                    // fila normal (no seleccionada): fondo blanco y texto oscuro
+                    setBackground(java.awt.Color.WHITE);
+                    setForeground(new java.awt.Color(30, 30, 40));
+                }
+                // si la fila esta seleccionada, super() ya aplica el cian del UIManager
+                return this;
+            }
+        };
+
+        // setBackground en la tabla solo afecta al area vacia (sin celdas),
+        // porque el renderer tiene prioridad sobre las celdas con datos
+        tblProductos.setBackground(fondoTablaVacia);
+        tblVentas.setBackground(fondoTablaVacia);
+        tblVentas.setDefaultRenderer(Object.class, rendererBlanco);   // aplicamos el renderer a todas las celdas de tipo Object
+        tblClientes.setBackground(fondoTablaVacia);
+        tblClientes.setDefaultRenderer(Object.class, rendererBlanco); // tblProductos no necesita este renderer porque ya tiene el suyo para las filas naranjas
 
         cargarTablaProductos();//asi cargarmos las tablas nada mas empezar el programa
         cargarTablaClientes();
@@ -63,40 +101,7 @@ public class Pantalla extends javax.swing.JFrame {
         iniciarTimerInactividad();
     }
 
-    // arranca el timer de inactividad y registra los listeners de raton y teclado
-    private void iniciarTimerInactividad() {
-        timerInactividad = new javax.swing.Timer(MINUTOS_INACTIVIDAD * 60 * 1000, e -> cerrarSesionPorInactividad());
-        timerInactividad.setRepeats(false);
-        timerInactividad.start();
-
-        // cualquier movimiento de raton o tecla resetea el timer
-        java.awt.event.AWTEventListener activityListener = event -> resetearTimer();
-        java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(
-            activityListener,
-            java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK |
-            java.awt.AWTEvent.MOUSE_EVENT_MASK |
-            java.awt.AWTEvent.KEY_EVENT_MASK
-        );
-    }
-
-    // reinicia el contador de inactividad cada vez que hay actividad
-    private void resetearTimer() {
-        if (timerInactividad != null) {
-            timerInactividad.restart();
-        }
-    }
-
-    // cierra la sesion y vuelve al login cuando se agota el tiempo de inactividad
-    private void cerrarSesionPorInactividad() {
-        timerInactividad.stop();
-        Sesion.cerrar();
-        JOptionPane.showMessageDialog(this,
-            "Sesión cerrada por inactividad.",
-            "Sesión expirada",
-            JOptionPane.WARNING_MESSAGE);
-        new LoginFrame().setVisible(true);
-        this.dispose();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -514,32 +519,32 @@ public class Pantalla extends javax.swing.JFrame {
         pnlVentas.setBackground(new java.awt.Color(30, 30, 40));
         pnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ventas Hoy:");
         pnlVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        lblVentasHoy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasHoy.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblVentasHoy.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasHoy.setText("0.00 €");
         pnlVentas.add(lblVentasHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ventas este mes:");
         pnlVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        lblVentasMes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasMes.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblVentasMes.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasMes.setText("0");
         pnlVentas.add(lblVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Más vendido:");
         pnlVentas.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
-        lblProductoTop.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblProductoTop.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblProductoTop.setForeground(new java.awt.Color(0, 204, 255));
         lblProductoTop.setText("-");
         pnlVentas.add(lblProductoTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 220, 20));
@@ -574,7 +579,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblVentas);
 
-        pnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 950, 420));
+        pnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 420));
 
         txtBuscarVenta.setToolTipText("Buscar Venta");
         txtBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1155,9 +1160,12 @@ public class Pantalla extends javax.swing.JFrame {
                     p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
                 });
             }
-
-            // pintamos las filas con stock bajo en naranja para avisar visualmente
-            // el stock esta en la columna 5 (indice 5) y el minimo es 5 unidades
+            //Tambien me he ayudado de la ia
+            // pintamos las filas segun el nivel de stock (columna 5):
+            //   rojo/naranja  stock < 5  (critico, hay que reponer ya)
+            //   amarillo      stock < 10 (bajo, avisar pronto)
+            //   blanco        stock normal
+            //   verde         stock > 25 (bien abastecido)
             tblProductos.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
                 @Override
                 public java.awt.Component getTableCellRendererComponent(
@@ -1166,13 +1174,24 @@ public class Pantalla extends javax.swing.JFrame {
                     java.awt.Component c = super.getTableCellRendererComponent(
                             table, value, isSelected, hasFocus, row, column);
                     Object stockVal = table.getValueAt(row, 5);
-                    if (stockVal != null && ((Number) stockVal).intValue() < 5) {
-                        // stock bajo: fondo naranja si no esta seleccionada, mas oscuro si lo esta
-                        c.setBackground(isSelected ? new java.awt.Color(200, 100, 0) : new java.awt.Color(255, 200, 100));
-                        c.setForeground(java.awt.Color.BLACK);
-                    } else {
-                        c.setBackground(isSelected ? table.getSelectionBackground() : java.awt.Color.WHITE);
-                        c.setForeground(isSelected ? table.getSelectionForeground() : java.awt.Color.BLACK);
+                    if (stockVal != null) {
+                        int stock = ((Number) stockVal).intValue();
+                        if (!isSelected) {
+                            if (stock < 5) {
+                                c.setBackground(new java.awt.Color(255, 180, 80));  // naranja: critico
+                            } else if (stock < 10) {
+                                c.setBackground(new java.awt.Color(255, 245, 130)); // amarillo: stock bajo
+                            } else if (stock > 25) {
+                                c.setBackground(new java.awt.Color(180, 230, 180)); // verde: bien abastecido
+                            } else {
+                                c.setBackground(java.awt.Color.WHITE);              // normal
+                            }
+                            c.setForeground(java.awt.Color.BLACK);
+                        } else {
+                            // fila seleccionada: usamos los colores del UIManager (cian)
+                            c.setBackground(table.getSelectionBackground());
+                            c.setForeground(table.getSelectionForeground());
+                        }
                     }
                     return c;
                 }
@@ -1200,10 +1219,13 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
             m.setRowCount(0);
+            java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             for (Venta v : ventaDAO.listarTodas()) {
+                String fecha = v.getFechaVenta() != null ? v.getFechaVenta().format(fmt) : "-";
+                String total = String.format("%.2f €", v.getTotal());
                 m.addRow(new Object[]{
                     v.getIdVenta(), v.getNombreCliente(),
-                    v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
+                    fecha, total, v.getMetodoPago()
                 });
             }
         } catch (SQLException ex) {
@@ -1334,6 +1356,40 @@ public class Pantalla extends javax.swing.JFrame {
         pnlClientes.setVisible(false);
         pnlDashboard.setVisible(false);
         panel.setVisible(true);
+    }
+    // arranca el timer de inactividad y registra los listeners de raton y teclado
+    private void iniciarTimerInactividad() {
+        timerInactividad = new javax.swing.Timer(MINUTOS_INACTIVIDAD * 60 * 1000, e -> cerrarSesionPorInactividad());
+        timerInactividad.setRepeats(false);
+        timerInactividad.start();
+
+        // cualquier movimiento de raton o tecla resetea el timer
+        java.awt.event.AWTEventListener activityListener = event -> resetearTimer();
+        java.awt.Toolkit.getDefaultToolkit().addAWTEventListener(
+            activityListener,
+            java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK |
+            java.awt.AWTEvent.MOUSE_EVENT_MASK |
+            java.awt.AWTEvent.KEY_EVENT_MASK
+        );
+    }
+
+    // reinicia el contador de inactividad cada vez que hay actividad
+    private void resetearTimer() {
+        if (timerInactividad != null) {
+            timerInactividad.restart();
+        }
+    }
+
+    // cierra la sesion y vuelve al login cuando se agota el tiempo de inactividad
+    private void cerrarSesionPorInactividad() {
+        timerInactividad.stop();
+        Sesion.cerrar();
+        JOptionPane.showMessageDialog(this,
+            "Sesión cerrada por inactividad.",
+            "Sesión expirada",
+            JOptionPane.WARNING_MESSAGE);
+        new LoginFrame().setVisible(true);
+        this.dispose();
     }
      
    
