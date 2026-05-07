@@ -20,44 +20,174 @@ public class Cliente {
 
     public Cliente() {}
 
-    public int    getIdCliente() { return idCliente; }
-    public String getTipo()      { return tipo; }
-    public String getTelefono()  { return telefono; }
-    public String getEmail()     { return email; }
-    public String getDireccion() { return direccion; }
-
-    public void setIdCliente(int idCliente)    { this.idCliente = idCliente; }
-    public void setTipo(String tipo)            { this.tipo = tipo; }
-    public void setTelefono(String telefono)    { this.telefono = telefono; }
-    public void setEmail(String email)          { this.email = email; }
-    public void setDireccion(String direccion)  { this.direccion = direccion; }
-
-    public String getNombre()    { return nombre; }
-    public String getApellidos() { return apellidos; }
-    public String getDni()       { return dni; }
-    public void setNombre(String nombre)        { this.nombre = nombre; }
-    public void setApellidos(String apellidos)  { this.apellidos = apellidos; }
-    public void setDni(String dni)              { this.dni = dni; }
-
-    public String getRazonSocial()    { return razonSocial; }
-    public String getCif()            { return cif; }
-    public String getContactoNombre() { return contactoNombre; }
-    public void setRazonSocial(String razonSocial)       { this.razonSocial = razonSocial; }
-    public void setCif(String cif)                        { this.cif = cif; }
-    public void setContactoNombre(String contactoNombre) { this.contactoNombre = contactoNombre; }
+   
 
     public String getNombreVisible() {
-        if ("empresa".equals(tipo)) {
-            return razonSocial != null ? razonSocial : "Empresa sin nombre";
+        if ("empresa".equals(getTipo())) {
+            return getRazonSocial() != null ? getRazonSocial() : "Empresa sin nombre";
         }
-        String n = nombre != null ? nombre : "";
-        String a = apellidos != null ? apellidos : "";
+        String n = getNombre() != null ? getNombre() : "";
+        String a = getApellidos() != null ? getApellidos() : "";
         return (n + " " + a).trim();
     }
 
     @Override
     public String toString() {
-        return "[" + (tipo != null ? tipo.substring(0,1).toUpperCase() + tipo.substring(1) : "?") + "] "
+        return "[" + (getTipo() != null ? getTipo().substring(0,1).toUpperCase() + getTipo().substring(1) : "?") + "] "
             + getNombreVisible();
+    }
+
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the apellidos
+     */
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    /**
+     * @param apellidos the apellidos to set
+     */
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    /**
+     * @return the dni
+     */
+    public String getDni() {
+        return dni;
+    }
+
+    /**
+     * @param dni the dni to set
+     */
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    /**
+     * @return the razonSocial
+     */
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    /**
+     * @param razonSocial the razonSocial to set
+     */
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    /**
+     * @return the cif
+     */
+    public String getCif() {
+        return cif;
+    }
+
+    /**
+     * @param cif the cif to set
+     */
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
+
+    /**
+     * @return the contactoNombre
+     */
+    public String getContactoNombre() {
+        return contactoNombre;
+    }
+
+    /**
+     * @param contactoNombre the contactoNombre to set
+     */
+    public void setContactoNombre(String contactoNombre) {
+        this.contactoNombre = contactoNombre;
     }
 }

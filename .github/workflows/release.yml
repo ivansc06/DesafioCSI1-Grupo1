@@ -10,6 +10,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    # permiso necesario para crear releases y subir archivos como adjuntos
+    permissions:
+      contents: write
+
     # igual que en ci.yml, necesitamos MySQL para compilar sin errores
     services:
       mysql:
@@ -63,15 +67,51 @@ jobs:
         working-directory: Java/PrimeTechFinal
         run: ant jar -Djar.archive.disabled=false -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
-      # paso 6b: listamos lo que hay en dist para depurar si vuelve a fallar
-      - name: Listar carpeta dist
-        run: ls -la Java/PrimeTechFinal/dist/ || echo "La carpeta dist no existe"
+      # paso 7: copiar exactamente los JARs del classpath definido en project.properties
+      # no usamos find porque copia JARs extra de apache-log4j que causan conflictos
+      - name: Copiar dependencias a dist/lib
+        run: |
+          mkdir -p Java/PrimeTechFinal/dist/lib
+          cp Java/librerias/AbsoluteLayout.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/mysql-connector-j-9.6.0/mysql-connector-j-9.6.0.jar        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/apache-log4j-2.25.4-bin/log4j-api-2.25.4.jar               Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/apache-log4j-2.25.4-bin/log4j-core-2.25.4.jar              Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/slf4j-api-2.0.17.jar                                        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/HikariCP-4.0.3.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/log4j-slf4j2-impl-2.25.4.jar                                Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/flatlaf-3.4.jar                                              Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-5.3.0.jar                                                Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-ooxml-5.3.0.jar                                          Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-compress-1.27.1.jar                                  Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/xmlbeans-5.2.1.jar                                           Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-collections4-4.4.jar                                 Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/commons-io-2.15.1.jar                                        Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/poi-ooxml-full-5.3.0.jar                                     Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jakarta.mail-2.0.1.jar                                       Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jakarta.activation-2.0.1.jar                                 Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/jfreechart-1.5.4.jar                                         Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/core-3.5.3.jar                                               Java/PrimeTechFinal/dist/lib/
+          cp Java/librerias/javase-3.5.3.jar                                             Java/PrimeTechFinal/dist/lib/
+          echo "Dependencias copiadas:"
+          ls Java/PrimeTechFinal/dist/lib/
 
-      # paso 7: renombrar el JAR incluyendo la version del tag (ej: PrimeTechFinal-v1.0.jar)
-      - name: Renombrar JAR con la version
-        run: mv Java/PrimeTechFinal/dist/PrimeTechFinal.jar Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+      # paso 8: crear scripts de arranque que usan -cp en lugar de -jar
+      # usamos printf para evitar problemas de sintaxis YAML con heredocs
+      - name: Crear scripts de arranque
+        run: |
+          printf '@echo off\r\ncd /d "%%~dp0"\r\njava -cp "PrimeTechFinal.jar;lib/*" primetechfinal.PrimeTech\r\npause\r\n' > Java/PrimeTechFinal/dist/PrimeTech.bat
+          printf '#!/bin/bash\njava -cp "PrimeTechFinal.jar:lib/*" primetechfinal.PrimeTech\n' > Java/PrimeTechFinal/dist/PrimeTech.sh
+          chmod +x Java/PrimeTechFinal/dist/PrimeTech.sh
 
-      # paso 8: crear el release en GitHub y subir el JAR como adjunto descargable
+      # paso 10: empaquetar la carpeta dist completa en un ZIP
+      - name: Crear ZIP con JAR y dependencias
+        run: |
+          cd Java/PrimeTechFinal/dist
+          zip -r ../../../PrimeTechFinal-${{ github.ref_name }}.zip .
+          echo "ZIP creado:"
+          ls -lh ../../../PrimeTechFinal-${{ github.ref_name }}.zip
+
+      # paso 9: crear el release en GitHub y subir el ZIP como adjunto descargable
       - name: Crear release en GitHub
         uses: softprops/action-gh-release@v1
         with:
@@ -79,17 +119,20 @@ jobs:
           body: |
             ## 🚀 PrimeTech Systems ${{ github.ref_name }}
 
-            ### Instalación
-            1. Descarga el archivo `PrimeTechFinal-${{ github.ref_name }}.jar`
+            ### Cómo ejecutar
+            1. Descarga `PrimeTechFinal-${{ github.ref_name }}.zip` y descomprímelo
             2. Asegúrate de tener **Java 8** instalado
-            3. Configura la base de datos con el script `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
-            4. Crea el fichero `email.properties` con tus credenciales de correo
-            5. Ejecuta con: `java -jar PrimeTechFinal-${{ github.ref_name }}.jar`
+            3. Configura la base de datos con `Base_De_Datos/Crear_Base_De_Datos_Final.sql`
+            4. Crea el fichero `email.properties` con tus credenciales (ver README)
+            5. Ejecuta:
+               - **Windows**: doble clic en `PrimeTech.bat`
+               - **Linux/Mac**: `./PrimeTech.sh`
+
+            > ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` incluida en el ZIP.
 
             ### Requisitos
             - Java 8 o superior
             - MySQL 8.0
-            - Las librerías del proyecto (incluidas en el JAR)
-          files: Java/PrimeTechFinal/dist/PrimeTechFinal-${{ github.ref_name }}.jar
+          files: PrimeTechFinal-${{ github.ref_name }}.zip
           draft: false
           prerelease: false

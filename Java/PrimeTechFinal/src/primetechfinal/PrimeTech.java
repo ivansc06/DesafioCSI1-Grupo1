@@ -2,15 +2,44 @@ package primetechfinal;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.SwingUtilities;
+import java.awt.Color;
 
 public class PrimeTech {
 
     public static void main(String[] args) {
-        FlatIntelliJLaf.setup();
+        FlatIntelliJLaf.setup();//lanzamos flatlaf, mejora la ui solo con esta linea
 
-        // quitamos el borde blanco del contenido del JTabbedPane
-        javax.swing.UIManager.put("TabbedPane.contentBorderInsets", new java.awt.Insets(0, 0, 0, 0));
-        javax.swing.UIManager.put("TabbedPane.showContentSeparator", false);
+        // redondear los botones con FlatLaf (mayor numero = mas redondeado)
+        javax.swing.UIManager.put("Button.arc", 999);
+
+        // botones en cian con texto blanco
+        javax.swing.UIManager.put("Button.background", new Color(0, 204, 255));
+        javax.swing.UIManager.put("Button.foreground", Color.WHITE);
+        javax.swing.UIManager.put("Button.hoverBackground", new Color(0, 170, 210));
+
+        // redondear campos de texto
+        javax.swing.UIManager.put("TextComponent.arc", 10);
+
+        // fuente Roboto para las tablas
+        javax.swing.UIManager.put("Table.font", new java.awt.Font("Roboto", java.awt.Font.PLAIN, 13));
+        javax.swing.UIManager.put("TableHeader.font", new java.awt.Font("Roboto", java.awt.Font.BOLD, 13));
+
+        // filas de tabla en blanco con texto oscuro
+        javax.swing.UIManager.put("Table.background", Color.WHITE);
+        javax.swing.UIManager.put("Table.foreground", new Color(30, 30, 40));
+        javax.swing.UIManager.put("Table.gridColor", new Color(210, 210, 220));
+        javax.swing.UIManager.put("TableHeader.background", new Color(50, 90, 150));
+        javax.swing.UIManager.put("TableHeader.foreground", Color.WHITE);
+
+        // seleccion de tabla en cian
+        javax.swing.UIManager.put("Table.selectionBackground", new Color(0, 204, 255));
+        javax.swing.UIManager.put("Table.selectionForeground", Color.WHITE);
+
+        // scroll discreto
+        javax.swing.UIManager.put("ScrollBar.thumb", new Color(80, 80, 100));
+
+        // quitar borde de foco azul al hacer clic
+        javax.swing.UIManager.put("Component.focusWidth", 0);
 
         SwingUtilities.invokeLater(() -> {
             new LoginFrame().setVisible(true); //forma de abrir pantalla gastando menos memoria
