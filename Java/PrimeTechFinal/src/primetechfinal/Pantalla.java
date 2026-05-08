@@ -496,17 +496,22 @@ public class Pantalla extends javax.swing.JFrame {
         pnlProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtBuscarProducto.setToolTipText("Buscar Producto");
-        pnlProductos.add(txtBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 190, -1));
+        txtBuscarProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarProductoKeyReleased(evt);
+            }
+        });
+        pnlProductos.add(txtBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 22, 190, 30));
 
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
         btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 80, 70));
+        pnlProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 50, 50));
 
         btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevoproducto.png"))); // NOI18N
@@ -516,7 +521,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnNuevoProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 150, 80, 60));
+        pnlProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 110, 80, 80));
 
         btnEditarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarproducto.png"))); // NOI18N
@@ -526,7 +531,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEditarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 280, 80, 60));
+        pnlProductos.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 240, 80, 80));
 
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarproducto.png"))); // NOI18N
@@ -536,7 +541,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 400, 80, 60));
+        pnlProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 360, 80, 80));
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -548,7 +553,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductos);
 
-        pnlProductos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 970, 440));
+        pnlProductos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 950, 440));
 
         pnlContenido.add(pnlProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
@@ -593,7 +598,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnNuevaVentaActionPerformed(evt);
             }
         });
-        pnlVentas.add(btnNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 100, 100, 70));
+        pnlVentas.add(btnNuevaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 100, 70));
 
         btnVerFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVerFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/factura.png"))); // NOI18N
@@ -603,7 +608,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnVerFacturaActionPerformed(evt);
             }
         });
-        pnlVentas.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 450, 100, 70));
+        pnlVentas.add(btnVerFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 430, 100, 70));
 
         tblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -615,7 +620,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblVentas);
 
-        pnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 420));
+        pnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 940, 420));
 
         txtBuscarVenta.setToolTipText("Buscar Venta");
         txtBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -623,17 +628,22 @@ public class Pantalla extends javax.swing.JFrame {
                 txtBuscarVentaActionPerformed(evt);
             }
         });
+        txtBuscarVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarVentaKeyReleased(evt);
+            }
+        });
         pnlVentas.add(txtBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 220, 40));
 
         btnBuscarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
         btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarVentaActionPerformed(evt);
             }
         });
-        pnlVentas.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, 100, 70));
+        pnlVentas.add(btnBuscarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 20, 50, 50));
 
         btnEditarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarventa.png"))); // NOI18N
@@ -643,7 +653,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEditarVentaActionPerformed(evt);
             }
         });
-        pnlVentas.add(btnEditarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, 100, 70));
+        pnlVentas.add(btnEditarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 170, 100, 70));
 
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarventa.png"))); // NOI18N
@@ -653,7 +663,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEliminarVentaActionPerformed(evt);
             }
         });
-        pnlVentas.add(btnEliminarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 280, 100, 70));
+        pnlVentas.add(btnEliminarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 260, 100, 70));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/enviarcorreo.png"))); // NOI18N
@@ -663,7 +673,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        pnlVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 370, 100, 70));
+        pnlVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 100, 70));
 
         pnlContenido.add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
@@ -678,20 +688,25 @@ public class Pantalla extends javax.swing.JFrame {
                 btnNuevoClienteActionPerformed(evt);
             }
         });
-        pnlClientes.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 90, -1));
+        pnlClientes.add(btnNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 110, 90, -1));
 
         txtBuscarCliente.setToolTipText("Buscar Cliente");
+        txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarClienteKeyReleased(evt);
+            }
+        });
         pnlClientes.add(txtBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 190, -1));
 
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/buscar.png"))); // NOI18N
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
         btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        pnlClientes.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 90, -1));
+        pnlClientes.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 60, -1));
 
         btnEditarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarcliente.png"))); // NOI18N
@@ -701,7 +716,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEditarClienteActionPerformed(evt);
             }
         });
-        pnlClientes.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, 90, -1));
+        pnlClientes.add(btnEditarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, 90, -1));
 
         btnEliminarProducto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarcliente.png"))); // NOI18N
@@ -711,7 +726,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEliminarProducto1ActionPerformed(evt);
             }
         });
-        pnlClientes.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 370, 90, -1));
+        pnlClientes.add(btnEliminarProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 340, 90, -1));
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -999,18 +1014,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        try {
-            DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
-            m.setRowCount(0);
-            for (Cliente c : clienteDAO.buscarPorNombre(txtBuscarCliente.getText())) {
-                m.addRow(new Object[]{
-                    c.getIdCliente(), c.getTipo(),
-                    c.getNombreVisible(), c.getTelefono(), c.getEmail()
-                });
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
+        txtBuscarCliente.setText("");
+        cargarTablaClientes();
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
@@ -1100,18 +1105,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarVentaActionPerformed
 
     private void btnBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVentaActionPerformed
-        try {
-            DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
-            m.setRowCount(0);
-            for (Venta v : ventaDAO.buscarPorCliente(txtBuscarVenta.getText())) {
-                m.addRow(new Object[]{
-                    v.getIdVenta(), v.getNombreCliente(),
-                    v.getFechaVenta(), v.getTotal(), v.getMetodoPago()
-                });
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
+        txtBuscarVenta.setText("");
+        cargarTablaVentas();
     }//GEN-LAST:event_btnBuscarVentaActionPerformed
 
     private void txtBuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarVentaActionPerformed
@@ -1180,19 +1175,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        try {
-            DefaultTableModel m = (DefaultTableModel) tblProductos.getModel(); //necesario para interactuar con la tabla
-            m.setRowCount(0);//eliminamos contenido de la tabla
-            for (Producto p : productoDAO.buscarPorNombre(txtBuscarProducto.getText())) {//como devuelve un arraylist el metodo
-                //buscar por nombre lo introducimos en el foreach
-                m.addRow(new Object[]{
-                    p.getIdProducto(), p.getNombre(), p.getDescripcion(),
-                    p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
-                });
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
+        txtBuscarProducto.setText("");
+        cargarTablaProductos();
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void lblNavVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNavVentasMouseClicked
@@ -1220,6 +1204,54 @@ public class Pantalla extends javax.swing.JFrame {
         // minimizar
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarPantallaActionPerformed
+
+    private void txtBuscarProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProductoKeyReleased
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
+            m.setRowCount(0);
+            for (Producto p : productoDAO.buscarPorNombre(txtBuscarProducto.getText())) {
+                m.addRow(new Object[]{
+                    p.getIdProducto(), p.getNombre(), p.getDescripcion(),
+                    p.getPrecioCompra(), p.getPrecioVenta(), p.getStock()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_txtBuscarProductoKeyReleased
+
+    private void txtBuscarVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarVentaKeyReleased
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
+            m.setRowCount(0);
+            java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            for (Venta v : ventaDAO.buscarPorCliente(txtBuscarVenta.getText())) {
+                String fecha = v.getFechaVenta() != null ? v.getFechaVenta().format(fmt) : "-";
+                String total = String.format("%.2f €", v.getTotal());
+                m.addRow(new Object[]{
+                    v.getIdVenta(), v.getNombreCliente(),
+                    fecha, total, v.getMetodoPago()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_txtBuscarVentaKeyReleased
+
+    private void txtBuscarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyReleased
+        try {
+            DefaultTableModel m = (DefaultTableModel) tblClientes.getModel();
+            m.setRowCount(0);
+            for (Cliente c : clienteDAO.buscarPorNombre(txtBuscarCliente.getText())) {
+                m.addRow(new Object[]{
+                    c.getIdCliente(), c.getTipo(),
+                    c.getNombreVisible(), c.getTelefono(), c.getEmail()
+                });
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_txtBuscarClienteKeyReleased
 
     private void cargarTablaProductos() {
         try {
