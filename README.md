@@ -107,18 +107,33 @@ ant test -Dplatforms.JDK_1.8.home=$JAVA_HOME
 
 ## 📦 Releases
 
-Cada vez que se crea un tag `vX.Y`, GitHub Actions compila automáticamente el proyecto y publica un `.zip` listo para descargar en la sección [Releases](https://github.com/ivansc06/DesafioCSI1-Grupo1/releases).
+Cada vez que se crea un tag `vX.Y`, el workflow `release.yml` se dispara automáticamente y:
+
+1. Levanta un contenedor MySQL y crea la base de datos
+2. Compila el proyecto con Ant generando el JAR
+3. Copia exactamente las dependencias necesarias a `dist/lib/`
+4. Genera scripts de arranque `PrimeTech.bat` (Windows) y `PrimeTech.sh` (Linux/Mac)
+5. Empaqueta todo en un ZIP y lo publica en [Releases](https://github.com/ivansc06/DesafioCSI1-Grupo1/releases)
+
+Los scripts usan `java -cp "PrimeTechFinal.jar:lib/*"` en lugar de `-jar` para evitar el límite de 72 caracteres por línea del `MANIFEST.MF`.
 
 ### Cómo ejecutar la release
 
 1. Descarga el ZIP de la última release y descomprímelo
-2. Asegúrate de tener **Java 8** instalado
+2. Asegúrate de tener **Java 8 o superior** instalado
 3. Configura la base de datos y el `email.properties` (ver sección de instalación)
 4. Ejecuta el programa:
    - **Windows**: doble clic en `PrimeTech.bat`
    - **Linux/Mac**: `./PrimeTech.sh`
 
 > ⚠️ No muevas el JAR fuera de la carpeta — necesita la carpeta `lib/` que viene dentro del ZIP.
+
+### Crear una nueva release
+
+```bash
+git tag v1.0
+git push origin v1.0
+```
 
 ---
 
