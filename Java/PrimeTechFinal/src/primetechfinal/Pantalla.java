@@ -44,6 +44,37 @@ public class Pantalla extends javax.swing.JFrame {
 
     public Pantalla() {
         initComponents();
+
+        // fondo blanco en los botones del header para que no hereden el cian del UIManager
+        btnCerrarPantalla.setBackground(java.awt.Color.WHITE);
+        btnMinimizarPantalla.setBackground(java.awt.Color.WHITE);
+
+        // cerrar la aplicacion
+        btnCerrarPantalla.addActionListener(e -> System.exit(0));
+
+        // minimizar la ventana
+        btnMinimizarPantalla.addActionListener(e -> setState(JFrame.ICONIFIED));
+
+        // hacer la ventana arrastrable desde el header
+        final int[] posInicial = new int[2];
+        pnlHeader.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                posInicial[0] = e.getXOnScreen();
+                posInicial[1] = e.getYOnScreen();
+            }
+        });
+        pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(java.awt.event.MouseEvent e) {
+                int deltaX = e.getXOnScreen() - posInicial[0];
+                int deltaY = e.getYOnScreen() - posInicial[1];
+                setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
+                posInicial[0] = e.getXOnScreen();
+                posInicial[1] = e.getYOnScreen();
+            }
+        });
+
         //con esto solo mostramos el panel productos
         pnlVentas.setVisible(false);
         pnlClientes.setVisible(false);
@@ -211,6 +242,9 @@ public class Pantalla extends javax.swing.JFrame {
         lblNavClientes = new javax.swing.JLabel();
         lblsuperior = new javax.swing.JLabel();
         lblderecho = new javax.swing.JLabel();
+        pnlHeader = new javax.swing.JPanel();
+        btnCerrarPantalla = new javax.swing.JButton();
+        btnMinimizarPantalla = new javax.swing.JButton();
 
         DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
         DialogProductos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -437,6 +471,8 @@ public class Pantalla extends javax.swing.JFrame {
         DialogVenta.getContentPane().add(btnCancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 660, 140, 50));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
@@ -447,12 +483,12 @@ public class Pantalla extends javax.swing.JFrame {
                 lblCerrarSesionMouseClicked(evt);
             }
         });
-        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, -1, -1));
+        getContentPane().add(lblCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 50, -1, -1));
 
         lblEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblEmpleado.setForeground(new java.awt.Color(153, 255, 153));
         lblEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 220, 40));
+        getContentPane().add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 40, 220, 40));
 
         pnlContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -470,7 +506,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, 110, 80));
+        pnlProductos.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 80, 70));
 
         btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevoproducto.png"))); // NOI18N
@@ -480,7 +516,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnNuevoProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 119, 110, 80));
+        pnlProductos.add(btnNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 150, 80, 60));
 
         btnEditarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarproducto.png"))); // NOI18N
@@ -490,7 +526,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEditarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 250, 110, 80));
+        pnlProductos.add(btnEditarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 280, 80, 60));
 
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarproducto.png"))); // NOI18N
@@ -500,7 +536,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
-        pnlProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 370, 110, 80));
+        pnlProductos.add(btnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 400, 80, 60));
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -512,7 +548,7 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblProductos);
 
-        pnlProductos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 940, 420));
+        pnlProductos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 970, 440));
 
         pnlContenido.add(pnlProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
@@ -695,7 +731,7 @@ public class Pantalla extends javax.swing.JFrame {
         pnlDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         pnlContenido.add(pnlDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 520));
 
-        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1080, 520));
+        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1080, 520));
 
         btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/excel.png"))); // NOI18N
@@ -705,7 +741,7 @@ public class Pantalla extends javax.swing.JFrame {
                 btnExportarExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 500, 170, -1));
+        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 540, 170, -1));
 
         lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -713,7 +749,7 @@ public class Pantalla extends javax.swing.JFrame {
                 lblNavDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblNavDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 440, 180, 40));
+        getContentPane().add(lblNavDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, 180, 40));
 
         lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavVentas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -721,7 +757,7 @@ public class Pantalla extends javax.swing.JFrame {
                 lblNavVentasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblNavVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 270, 180, 40));
+        getContentPane().add(lblNavVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 310, 180, 40));
 
         lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -729,7 +765,7 @@ public class Pantalla extends javax.swing.JFrame {
                 lblNavProductosMouseClicked(evt);
             }
         });
-        getContentPane().add(lblNavProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 320, 180, 40));
+        getContentPane().add(lblNavProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 360, 180, 40));
 
         lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -737,13 +773,38 @@ public class Pantalla extends javax.swing.JFrame {
                 lblNavClientesMouseClicked(evt);
             }
         });
-        getContentPane().add(lblNavClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 380, 180, 40));
+        getContentPane().add(lblNavClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 420, 180, 40));
 
         lblsuperior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/superiorrecortado (1).png"))); // NOI18N
-        getContentPane().add(lblsuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
+        getContentPane().add(lblsuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1280, 100));
 
         lblderecho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/derechofinal.png"))); // NOI18N
-        getContentPane().add(lblderecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 200, 520));
+        getContentPane().add(lblderecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 200, 520));
+
+        pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar.png"))); // NOI18N
+        btnCerrarPantalla.setBorder(null);
+        btnCerrarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrarPantalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarPantallaActionPerformed(evt);
+            }
+        });
+        pnlHeader.add(btnCerrarPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 0, 40, 40));
+
+        btnMinimizarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
+        btnMinimizarPantalla.setBorder(null);
+        btnMinimizarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizarPantalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarPantallaActionPerformed(evt);
+            }
+        });
+        pnlHeader.add(btnMinimizarPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(1192, 0, 40, 40));
+
+        getContentPane().add(pnlHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1150,6 +1211,16 @@ public class Pantalla extends javax.swing.JFrame {
         mostrarPanel(pnlDashboard);
     }//GEN-LAST:event_lblNavDashboardMouseClicked
 
+    private void btnCerrarPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarPantallaActionPerformed
+        // cerrar
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarPantallaActionPerformed
+
+    private void btnMinimizarPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarPantallaActionPerformed
+        // minimizar
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarPantallaActionPerformed
+
     private void cargarTablaProductos() {
         try {
             DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
@@ -1409,6 +1480,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarCliente;
     private javax.swing.JButton btnCancelarProducto;
     private javax.swing.JButton btnCancelarVenta;
+    private javax.swing.JButton btnCerrarPantalla;
     private javax.swing.JButton btnConfirmarVenta;
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEditarProducto;
@@ -1419,6 +1491,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnExportarExcel;
     private javax.swing.JButton btnGuardarCliente;
     private javax.swing.JButton btnGuardarProducto;
+    private javax.swing.JButton btnMinimizarPantalla;
     private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JButton btnNuevoProducto;
@@ -1474,6 +1547,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlContenido;
     private javax.swing.JPanel pnlDashboard;
+    private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlProductos;
     private javax.swing.JPanel pnlVentas;
     private javax.swing.JTable tblCarrito;
