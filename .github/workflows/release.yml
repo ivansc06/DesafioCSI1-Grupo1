@@ -99,8 +99,8 @@ jobs:
       # usamos printf para evitar problemas de sintaxis YAML con heredocs
       - name: Crear scripts de arranque
         run: |
-          printf '@echo off\r\ncd /d "%%~dp0"\r\njava -cp "PrimeTechFinal.jar;lib/*" primetechfinal.PrimeTech\r\npause\r\n' > Java/PrimeTechFinal/dist/PrimeTech.bat
-          printf '#!/bin/bash\njava -cp "PrimeTechFinal.jar:lib/*" primetechfinal.PrimeTech\n' > Java/PrimeTechFinal/dist/PrimeTech.sh
+          printf '@echo off\r\ncd /d "%%~dp0"\r\njava --enable-native-access=ALL-UNNAMED -cp "PrimeTechFinal.jar;lib/*" primetechfinal.PrimeTech\r\npause\r\n' > Java/PrimeTechFinal/dist/PrimeTech.bat
+          printf '#!/bin/bash\njava --enable-native-access=ALL-UNNAMED -cp "PrimeTechFinal.jar:lib/*" primetechfinal.PrimeTech\n' > Java/PrimeTechFinal/dist/PrimeTech.sh
           chmod +x Java/PrimeTechFinal/dist/PrimeTech.sh
 
       # paso 10: empaquetar la carpeta dist completa en un ZIP
