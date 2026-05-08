@@ -30,6 +30,10 @@ public class LoginFrame extends javax.swing.JFrame {
         initComponents();
         SwingUtilities.invokeLater(() -> this.requestFocus()); // evita que el txtEmail tenga foco al abrir
 
+        // fondo blanco en los botones del header para que no hereden el cian del UIManager
+        btnCerrarLogin.setBackground(java.awt.Color.WHITE);
+        btnMinimizarLogin.setBackground(java.awt.Color.WHITE);
+
         // linea fina debajo del header para separarlo visualmente del panel principal
         header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 200, 200)));
 
