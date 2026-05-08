@@ -42,7 +42,34 @@ public class PrimeTech {
         javax.swing.UIManager.put("Component.focusWidth", 0);
 
         SwingUtilities.invokeLater(() -> {
-            new LoginFrame().setVisible(true); //forma de abrir pantalla gastando menos memoria
+            PantallaCarga splash = new PantallaCarga();
+            splash.setLocationRelativeTo(null); // centrar en pantalla
+            splash.setVisible(true);
+
+            // hilo en segundo plano para no bloquear la interfaz
+            new Thread(() -> {
+                try {
+                    splash.setProgreso(20, "Iniciando...");
+                    Thread.sleep(400);
+
+                    splash.setProgreso(50, "Conectando con la base de datos...");
+                    primetechfinal.db.ConexionDB.getConexionApp().close(); // inicializa el pool de HikariCP
+                    Thread.sleep(400);
+
+                    splash.setProgreso(80, "Cargando interfaz...");
+                    Thread.sleep(400);
+
+                    splash.setProgreso(100, "Listo");
+                    Thread.sleep(300);
+
+                    SwingUtilities.invokeLater(() -> {
+                        splash.dispose();
+                        new LoginFrame().setVisible(true);
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
         });
     }
 }
