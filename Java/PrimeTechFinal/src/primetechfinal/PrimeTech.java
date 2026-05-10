@@ -43,33 +43,11 @@ public class PrimeTech {
 
         SwingUtilities.invokeLater(() -> {
             PantallaCarga splash = new PantallaCarga();
-            splash.setLocationRelativeTo(null); // centrar en pantalla
+            splash.setLocationRelativeTo(null);
             splash.setVisible(true);
-
-            // hilo en segundo plano para no bloquear la interfaz
-            new Thread(() -> {
-                try {
-                    splash.setProgreso(20, "Iniciando...");
-                    Thread.sleep(400);
-
-                    splash.setProgreso(50, "Conectando con la base de datos...");
-                    primetechfinal.db.ConexionDB.getConexionApp().close(); // inicializa el pool de HikariCP
-                    Thread.sleep(400);
-
-                    splash.setProgreso(80, "Cargando interfaz...");
-                    Thread.sleep(400);
-
-                    splash.setProgreso(100, "Listo");
-                    Thread.sleep(300);
-
-                    SwingUtilities.invokeLater(() -> {
-                        splash.dispose();
-                        new LoginFrame().setVisible(true);
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            // forma corta: creamos el hilo y lo arrancamos en la misma linea
+            // no guardamos la referencia porque no necesitamos pausarlo ni cancelarlo
+            new HiloCarga(splash).start();
         });
     }
 }
