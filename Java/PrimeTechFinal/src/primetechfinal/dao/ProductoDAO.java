@@ -54,6 +54,20 @@ public class ProductoDAO {
         return null;
     }
 
+    public List<Producto> listarStockBajo(int umbral) throws SQLException {
+        List<Producto> lista = new ArrayList<>();
+        String sql = "SELECT id_producto, nombre, descripcion, precio_compra, precio_venta, stock " +
+                     "FROM productos WHERE stock < ? ORDER BY stock ASC";
+        try (Connection conn = ConexionDB.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, umbral);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) lista.add(mapear(rs));
+            }
+        }
+        return lista;
+    }
+
     public void insertar(Producto p) throws SQLException {
         String sql = "INSERT INTO productos (nombre, descripcion, precio_compra, precio_venta, stock) VALUES (?,?,?,?,?)";
         try (Connection conn = ConexionDB.getConexion();
