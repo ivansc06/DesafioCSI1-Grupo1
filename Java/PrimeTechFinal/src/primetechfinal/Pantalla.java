@@ -3,11 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package primetechfinal;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import primetechfinal.dao.ClienteDAO;
 import primetechfinal.dao.ProductoDAO;
@@ -25,8 +39,8 @@ import primetechfinal.util.FacturaHTML;
  */
 public class Pantalla extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pantalla.class.getName());
-    private primetechfinal.model.Producto productoActual = null; //Guarda el producto que se está editando. 
+    private static final Logger logger = Logger.getLogger(Pantalla.class.getName());
+    private Producto productoActual = null; //Guarda el producto que se está editando.
     //Si es null significa que estamos creando uno nuevo. Si tiene valor significa que estamos editando ese producto
     
     private Cliente clienteActual = null; // null = creando, con valor = editando
@@ -35,8 +49,8 @@ public class Pantalla extends javax.swing.JFrame {
     private VentaDAO ventaDAO = new VentaDAO();
     private Venta ventaActual = null; // null = nueva venta, con valor = editando
     // listas paralelas al combobox de clientes y productos en el dialog de venta
-    private java.util.List<Cliente> clientesCombo = new java.util.ArrayList<>();
-    private java.util.List<Producto> productosCombo = new java.util.ArrayList<>();
+    private List<Cliente> clientesCombo = new ArrayList<>();
+    private List<Producto> productosCombo = new ArrayList<>();
 
     // timer que cierra la sesion si el usuario lleva 3 minutos sin actividad
     private javax.swing.Timer timerInactividad;
@@ -46,8 +60,8 @@ public class Pantalla extends javax.swing.JFrame {
         initComponents();
 
         // fondo blanco en los botones del header para que no hereden el cian del UIManager
-        btnCerrarPantalla.setBackground(java.awt.Color.WHITE);
-        btnMinimizarPantalla.setBackground(java.awt.Color.WHITE);
+        btnCerrarPantalla.setBackground(Color.WHITE);
+        btnMinimizarPantalla.setBackground(Color.WHITE);
 
         // cerrar la aplicacion
         btnCerrarPantalla.addActionListener(e -> System.exit(0));
@@ -57,16 +71,16 @@ public class Pantalla extends javax.swing.JFrame {
 
         // hacer la ventana arrastrable desde el header
         final int[] posInicial = new int[2];
-        pnlHeader.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlHeader.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 posInicial[0] = e.getXOnScreen();
                 posInicial[1] = e.getYOnScreen();
             }
         });
-        pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlHeader.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
-            public void mouseDragged(java.awt.event.MouseEvent e) {
+            public void mouseDragged(MouseEvent e) {
                 int deltaX = e.getXOnScreen() - posInicial[0];
                 int deltaY = e.getYOnScreen() - posInicial[1];
                 setLocation(getLocation().x + deltaX, getLocation().y + deltaY);
@@ -83,12 +97,12 @@ public class Pantalla extends javax.swing.JFrame {
                         + " · " + Sesion.getEmpleado().getCargo());//necesario para saber que empleado esta conectado
 
         // estilo oscuro solo para los buscadores de Pantalla, sin afectar al Login
-        java.awt.Color fondoBuscador = new java.awt.Color(45, 45, 60);
-        java.awt.Color textoBuscador = new java.awt.Color(200, 200, 210);
-        for (javax.swing.JTextField txt : new javax.swing.JTextField[]{txtBuscarProducto, txtBuscarVenta, txtBuscarCliente}) {
+        Color fondoBuscador = new Color(45, 45, 60);
+        Color textoBuscador = new Color(200, 200, 210);
+        for (JTextField txt : new JTextField[]{txtBuscarProducto, txtBuscarVenta, txtBuscarCliente}) {
             txt.setBackground(fondoBuscador);
             txt.setForeground(textoBuscador);
-            txt.setCaretColor(java.awt.Color.WHITE);
+            txt.setCaretColor(Color.WHITE);
         }
 
         
@@ -96,20 +110,20 @@ public class Pantalla extends javax.swing.JFrame {
         
 
         // color oscuro que se verá en el área vacía debajo de las filas de datos
-        java.awt.Color fondoTablaVacia = new java.awt.Color(30, 30, 40);
+        Color fondoTablaVacia = new Color(30, 30, 40);
 
         // renderer personalizado para ventas y clientes:
         // swing pinta cada celda llamando a getTableCellRendererComponent, que devuelve
         // un componente visual. aqui sobreescribimos ese metodo para controlar el color.
-        javax.swing.table.DefaultTableCellRenderer rendererBlanco = new javax.swing.table.DefaultTableCellRenderer() {
+        DefaultTableCellRenderer rendererBlanco = new DefaultTableCellRenderer() {
             @Override
-            public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 // primero dejamos que el renderer por defecto aplique fuente, bordes, etc.
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 if (!isSelected) {
                     // fila normal (no seleccionada): fondo blanco y texto oscuro
-                    setBackground(java.awt.Color.WHITE);
-                    setForeground(new java.awt.Color(30, 30, 40));
+                    setBackground(Color.WHITE);
+                    setForeground(new Color(30, 30, 40));
                 }
                 // si la fila esta seleccionada, super() ya aplica el cian del UIManager
                 return this;
@@ -130,6 +144,20 @@ public class Pantalla extends javax.swing.JFrame {
         cargarEstadisticas();
         cargarGraficaDashboard();
         iniciarTimerInactividad();
+
+        // aviso de stock critico al arrancar — productos con menos de 5 unidades
+        try {
+            List<Producto> criticos = productoDAO.listarStockBajo(5);
+            if (!criticos.isEmpty()) {
+                StringBuilder sb = new StringBuilder("Productos con stock crítico (menos de 5 unidades):\n\n");
+                for (Producto p : criticos) {
+                    sb.append("  • ").append(p.getNombre()).append(" — ").append(p.getStock()).append(" ud.\n");
+                }
+                JOptionPane.showMessageDialog(this, sb.toString(), "Stock bajo", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            // no interrumpimos el arranque si falla el aviso
+        }
     }
 
     
@@ -1224,7 +1252,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
             m.setRowCount(0);
-            java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             for (Venta v : ventaDAO.buscarPorCliente(txtBuscarVenta.getText())) {
                 String fecha = v.getFechaVenta() != null ? v.getFechaVenta().format(fmt) : "-";
                 String total = String.format("%.2f €", v.getTotal());
@@ -1269,27 +1297,27 @@ public class Pantalla extends javax.swing.JFrame {
             //   amarillo      stock < 10 (bajo, avisar pronto)
             //   blanco        stock normal
             //   verde         stock > 25 (bien abastecido)
-            tblProductos.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            tblProductos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
                 @Override
-                public java.awt.Component getTableCellRendererComponent(
-                        javax.swing.JTable table, Object value, boolean isSelected,
+                public Component getTableCellRendererComponent(
+                        JTable table, Object value, boolean isSelected,
                         boolean hasFocus, int row, int column) {
-                    java.awt.Component c = super.getTableCellRendererComponent(
+                    Component c = super.getTableCellRendererComponent(
                             table, value, isSelected, hasFocus, row, column);
                     Object stockVal = table.getValueAt(row, 5);
                     if (stockVal != null) {
                         int stock = ((Number) stockVal).intValue();
                         if (!isSelected) {
                             if (stock < 5) {
-                                c.setBackground(new java.awt.Color(255, 180, 80));  // naranja: critico
+                                c.setBackground(new Color(255, 180, 80));  // naranja: critico
                             } else if (stock < 10) {
-                                c.setBackground(new java.awt.Color(255, 245, 130)); // amarillo: stock bajo
+                                c.setBackground(new Color(255, 245, 130)); // amarillo: stock bajo
                             } else if (stock > 25) {
-                                c.setBackground(new java.awt.Color(180, 230, 180)); // verde: bien abastecido
+                                c.setBackground(new Color(180, 230, 180)); // verde: bien abastecido
                             } else {
-                                c.setBackground(java.awt.Color.WHITE);              // normal
+                                c.setBackground(Color.WHITE);              // normal
                             }
-                            c.setForeground(java.awt.Color.BLACK);
+                            c.setForeground(Color.BLACK);
                         } else {
                             // fila seleccionada: usamos los colores del UIManager (cian)
                             c.setBackground(table.getSelectionBackground());
@@ -1322,7 +1350,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             DefaultTableModel m = (DefaultTableModel) tblVentas.getModel();
             m.setRowCount(0);
-            java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             for (Venta v : ventaDAO.listarTodas()) {
                 String fecha = v.getFechaVenta() != null ? v.getFechaVenta().format(fmt) : "-";
                 String total = String.format("%.2f €", v.getTotal());
@@ -1348,28 +1376,28 @@ public class Pantalla extends javax.swing.JFrame {
     private void cargarGraficaDashboard() {
         try {
             // --- GRAFICA DE BARRAS: ventas de los ultimos 7 dias ---
-            java.util.LinkedHashMap<String, Double> datosBarras = ventaDAO.ventasUltimos7Dias();
+            LinkedHashMap<String, Double> datosBarras = ventaDAO.ventasUltimos7Dias();
             org.jfree.data.category.DefaultCategoryDataset datasetBarras = new org.jfree.data.category.DefaultCategoryDataset();
-            for (java.util.Map.Entry<String, Double> entry : datosBarras.entrySet()) {
+            for (Map.Entry<String, Double> entry : datosBarras.entrySet()) {
                 datasetBarras.addValue(entry.getValue(), "Ventas", entry.getKey());
             }
             org.jfree.chart.JFreeChart chartBarras = org.jfree.chart.ChartFactory.createBarChart(
                 "Ventas últimos 7 días", "Día", "Total (€)", datasetBarras);
             org.jfree.chart.plot.CategoryPlot plot = chartBarras.getCategoryPlot();
-            plot.setBackgroundPaint(java.awt.Color.WHITE);
-            plot.setRangeGridlinePaint(java.awt.Color.LIGHT_GRAY);
+            plot.setBackgroundPaint(Color.WHITE);
+            plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
             ((org.jfree.chart.renderer.category.BarRenderer) plot.getRenderer())
-                .setSeriesPaint(0, new java.awt.Color(0, 204, 255));
+                .setSeriesPaint(0, new Color(0, 204, 255));
 
             // --- GRAFICA DE TARTA: top 5 productos mas vendidos ---
-            java.util.LinkedHashMap<String, Integer> datosTarta = ventaDAO.top5ProductosMasVendidos();
+            LinkedHashMap<String, Integer> datosTarta = ventaDAO.top5ProductosMasVendidos();
             org.jfree.data.general.DefaultPieDataset datasetTarta = new org.jfree.data.general.DefaultPieDataset();
-            for (java.util.Map.Entry<String, Integer> entry : datosTarta.entrySet()) {
+            for (Map.Entry<String, Integer> entry : datosTarta.entrySet()) {
                 datasetTarta.setValue(entry.getKey(), entry.getValue());
             }
             org.jfree.chart.JFreeChart chartTarta = org.jfree.chart.ChartFactory.createPieChart(
                 "Top 5 productos más vendidos", datasetTarta, true, true, false);
-            chartTarta.getPlot().setBackgroundPaint(java.awt.Color.WHITE);
+            chartTarta.getPlot().setBackgroundPaint(Color.WHITE);
 
             // ponemos las dos graficas lado a lado en el panel del dashboard
             org.jfree.chart.ChartPanel panelBarras = new org.jfree.chart.ChartPanel(chartBarras);
