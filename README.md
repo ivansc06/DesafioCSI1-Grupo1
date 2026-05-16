@@ -21,6 +21,7 @@ Aplicación de gestión para una tienda de informática desarrollada en Java Swi
 - 📧 **Envío de facturas por email** — envío de la factura HTML al cliente vía Gmail SMTP
 - 📁 **Exportar a Excel** — exportación de productos, ventas y clientes con Apache POI
 - 🔒 **Sistema de login** — autenticación con BCrypt, bloqueo automático por intentos fallidos y roles de empleado
+- 🔐 **Conexión SSL** — comunicación cifrada con la base de datos MySQL mediante SSL
 - ⏱️ **Bloqueo por inactividad** — la sesión se cierra automáticamente tras 3 minutos sin actividad
 - 📝 **Sistema de logs** — registro de accesos, errores y operaciones con Log4j2
 
@@ -32,7 +33,7 @@ Aplicación de gestión para una tienda de informática desarrollada en Java Swi
 |---|---|---|
 | Java + Swing | 8 | Interfaz gráfica |
 | MySQL | 8.0 | Base de datos |
-| HikariCP | 4.0.3 | Pool de conexiones |
+| HikariCP | 4.0.3 | Pool de conexiones con SSL |
 | FlatLaf | 3.4 | Look & Feel moderno |
 | Apache POI | 5.3.0 | Exportación a Excel |
 | JavaMail | 2.0.1 | Envío de emails |
@@ -63,7 +64,15 @@ git clone https://github.com/ivansc06/DesafioCSI1-Grupo1.git
 mysql -u root -p < Base_De_Datos/Crear_Base_De_Datos_Final.sql
 ```
 
-**3. Crear los usuarios de MySQL**
+**3. Verificar que SSL está activo en MySQL**
+
+```sql
+SHOW VARIABLES LIKE '%ssl%';
+```
+
+> La conexión usa `useSSL=true` con `verifyServerCertificate=false` — adecuado para entornos locales con certificado autofirmado. MySQL 8.0 tiene SSL activado por defecto.
+
+**4. Crear los usuarios de MySQL**
 ```sql
 CREATE USER 'tienda_admin'@'localhost' IDENTIFIED BY 'admin_pass';
 GRANT ALL PRIVILEGES ON tienda_informatica.* TO 'tienda_admin'@'localhost';
@@ -74,7 +83,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON tienda_informatica.* TO 'tienda_app'@'lo
 FLUSH PRIVILEGES;
 ```
 
-**4. Configurar el email** *(opcional)*
+**5. Configurar el email** *(opcional)*
 
 Crea el archivo `Java/PrimeTechFinal/src/primetechfinal/email.properties`:
 ```properties
@@ -87,7 +96,7 @@ email.nombre=Prime Tech Systems
 
 > ⚠️ Este fichero está en `.gitignore` y nunca se sube al repositorio para proteger las credenciales.
 
-**5. Abrir y ejecutar**
+**6. Abrir y ejecutar**
 
 Abre el proyecto `Java/PrimeTechFinal` en NetBeans y ejecuta con F6.
 
