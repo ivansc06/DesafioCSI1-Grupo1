@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogo SYSTEM "productos.dtd">
+<catalogo empresa="PrimeTech Systems" fecha="2026">
+
+  <producto id="1">
+    <nombre>Portátil HP 15 (Ryzen 5, 16GB RAM, 512GB SSD)</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">429</precio>
+    <disponibilidad>Últimas unidades</disponibilidad>
+    <descripcion>Portátil HP con procesador AMD Ryzen 5, 16GB de RAM y 512GB de almacenamiento SSD.</descripcion>
+    <especificaciones>
+      <procesador>AMD Ryzen 5</procesador>
+      <ram>16 GB</ram>
+      <almacenamiento>512 GB SSD</almacenamiento>
+      <pantalla>15.6 pulgadas</pantalla>
+      <bateria>Hasta 8 horas</bateria>
+    </especificaciones>
+    <imagen>../Imagenes-LM/hp1.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <producto id="2">
+    <nombre>Portátil Dell Inspiron 15 (i5, 16GB RAM, 512GB SSD)</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">749</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Portátil Dell Inspiron con procesador Intel Core i5, 16GB de RAM y 512GB SSD.</descripcion>
+    <especificaciones>
+      <procesador>Intel Core i5</procesador>
+      <ram>16 GB</ram>
+      <almacenamiento>512 GB SSD</almacenamiento>
+      <pantalla>15.6 pulgadas Full HD</pantalla>
+      <bateria>Hasta 10 horas</bateria>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Dell1.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <producto id="3">
+    <nombre>Microsoft Surface Laptop 5 15"</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">1799</precio>
+    <disponibilidad>Últimas unidades</disponibilidad>
+    <descripcion>Portátil premium Microsoft Surface Laptop 5 con pantalla táctil de 15 pulgadas.</descripcion>
+    <especificaciones>
+      <procesador>Intel Core i7 12a Gen</procesador>
+      <ram>16 GB</ram>
+      <almacenamiento>512 GB SSD</almacenamiento>
+      <pantalla>15 pulgadas tactil PixelSense</pantalla>
+      <bateria>Hasta 17 horas</bateria>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Microsoft1.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+  <producto id="4">
+    <nombre>Norton 360 Standard (1 dispositivo)</nombre>
+    <categoria>Software</categoria>
+    <precio moneda="EUR">19.99</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Antivirus Norton 360 con protección completa para 1 dispositivo durante un año.</descripcion>
+    <especificaciones>
+      <licencias>1 dispositivo</licencias>
+      <actualizaciones>Automaticas</actualizaciones>
+      <soporte>Chat y telefono 24/7</soporte>
+      <plataforma>Windows, macOS, iOS, Android</plataforma>
+      <tipo_licencia>Anual</tipo_licencia>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Norton360.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="5">
+    <nombre>ESET Small Business Security</nombre>
+    <categoria>Software</categoria>
+    <precio moneda="EUR">79.99</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Suite de seguridad para pequeñas empresas con protección avanzada contra amenazas.</descripcion>
+    <especificaciones>
+      <licencias>Hasta 5 dispositivos</licencias>
+      <actualizaciones>Automaticas</actualizaciones>
+      <soporte>Soporte tecnico incluido</soporte>
+      <plataforma>Windows, macOS, Android</plataforma>
+      <tipo_licencia>Anual</tipo_licencia>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Antivirus1.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="6">
+    <nombre>Avast Business Security</nombre>
+    <categoria>Software</categoria>
+    <precio moneda="EUR">34.99</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Antivirus empresarial Avast con gestión centralizada y protección en tiempo real.</descripcion>
+    <especificaciones>
+      <licencias>Por dispositivo al año</licencias>
+      <actualizaciones>Automaticas</actualizaciones>
+      <soporte>Panel de gestion centralizado</soporte>
+      <plataforma>Windows, macOS</plataforma>
+      <tipo_licencia>Anual</tipo_licencia>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Avast.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="7">
+    <nombre>Synology BeeStation 4TB</nombre>
+    <categoria>Almacenamiento</categoria>
+    <precio moneda="EUR">259</precio>
+    <disponibilidad>Últimas unidades</disponibilidad>
+    <descripcion>Almacenamiento personal en la nube privada con 4TB de capacidad de Synology.</descripcion>
+    <especificaciones>
+      <capacidad>4 TB</capacidad>
+      <bahias>1</bahias>
+      <raid>No aplica</raid>
+      <conectividad>Gigabit Ethernet y WiFi</conectividad>
+      <consumo>10W</consumo>
+    </especificaciones>
+    <imagen>../Imagenes-LM/synology.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="8">
+    <nombre>Synology DS220j (sin discos)</nombre>
+    <categoria>Almacenamiento</categoria>
+    <precio moneda="EUR">219</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>NAS de 2 bahias Synology ideal para backup domestico y de pequeña empresa.</descripcion>
+    <especificaciones>
+      <capacidad>Hasta 32 TB con discos compatibles</capacidad>
+      <bahias>2</bahias>
+      <raid>RAID 0/1/JBOD</raid>
+      <conectividad>Gigabit Ethernet</conectividad>
+      <consumo>15W</consumo>
+    </especificaciones>
+    <imagen>../Imagenes-LM/synology2.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="9">
+    <nombre>Synology DS423 (sin discos)</nombre>
+    <categoria>Almacenamiento</categoria>
+    <precio moneda="EUR">419</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>NAS de 4 bahias Synology para empresas con soporte RAID avanzado.</descripcion>
+    <especificaciones>
+      <capacidad>Hasta 64 TB con discos compatibles</capacidad>
+      <bahias>4</bahias>
+      <raid>RAID 0/1/5/6/10</raid>
+      <conectividad>Gigabit Ethernet</conectividad>
+      <consumo>30W</consumo>
+    </especificaciones>
+    <imagen>../Imagenes-LM/synology3.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="10">
+    <nombre>Mantenimiento anual PC</nombre>
+    <categoria>Servicio</categoria>
+    <precio moneda="EUR">99</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Servicio de mantenimiento anual para ordenadores de empresa con visitas incluidas.</descripcion>
+    <especificaciones>
+      <visitas>2 visitas anuales</visitas>
+      <soporte_remoto>Incluido</soporte_remoto>
+      <tiempo_respuesta>24 horas laborables</tiempo_respuesta>
+      <actualizaciones>Sistema operativo incluido</actualizaciones>
+      <limpieza>Fisica y software</limpieza>
+    </especificaciones>
+    <imagen>../Imagenes-LM/JoseluRepair.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="11">
+    <nombre>Instalación red WiFi empresa</nombre>
+    <categoria>Redes</categoria>
+    <precio moneda="EUR">180</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Instalación y configuración de red WiFi profesional para empresas desde 180 euros.</descripcion>
+    <especificaciones>
+      <estandar>WiFi 6 (802.11ax)</estandar>
+      <cobertura>Hasta 500 m2</cobertura>
+      <seguridad>WPA3</seguridad>
+      <puntos_acceso>Hasta 3 incluidos</puntos_acceso>
+      <gestion>Remota</gestion>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Wifi.jpg</imagen>
+    <garantia_anios>1</garantia_anios>
+  </producto>
+
+  <producto id="12">
+    <nombre>Soporte técnico informático</nombre>
+    <categoria>Servicio</categoria>
+    <precio moneda="EUR">30</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Servicio de soporte tecnico informatico para empresas y autonomos.</descripcion>
+    <especificaciones>
+      <visitas>Acceso remoto sin desplazamiento</visitas>
+      <soporte_remoto>Incluido</soporte_remoto>
+      <tiempo_respuesta>2 horas laborables</tiempo_respuesta>
+      <actualizaciones>Incluidas</actualizaciones>
+      <limpieza>Software incluida</limpieza>
+    </especificaciones>
+    <imagen>../Imagenes-LM/Soporte.jpg</imagen>
+    <garantia_anios>0</garantia_anios>
+  </producto>
+
+  <producto id="13">
+    <nombre>Monitor LG 27" 4K UHD</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">189</precio>
+    <disponibilidad>Agotado</disponibilidad>
+    <descripcion>Monitor LG de 27 pulgadas con resolución 4K UHD, ideal para diseño y trabajo profesional.</descripcion>
+    <especificaciones>
+      <resolucion>3840x2160 4K UHD</resolucion>
+      <panel>IPS</panel>
+      <tasa_refresco>60 Hz</tasa_refresco>
+      <conectores>HDMI, DisplayPort, USB-C</conectores>
+      <respuesta>5 ms</respuesta>
+    </especificaciones>
+    <imagen>../Imagenes-LM/MonitorLG.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="14">
+    <nombre>Monitor MSI Pro 27" 4K</nombre>
+    <categoria>Hardware</categoria>
+    <precio moneda="EUR">179</precio>
+    <disponibilidad>Disponible</disponibilidad>
+    <descripcion>Monitor MSI Pro de 27 pulgadas con resolución 4K para uso profesional y ofimatico.</descripcion>
+    <especificaciones>
+      <resolucion>3840x2160 4K UHD</resolucion>
+      <panel>IPS</panel>
+      <tasa_refresco>60 Hz</tasa_refresco>
+      <conectores>HDMI, DisplayPort</conectores>
+      <respuesta>4 ms</respuesta>
+    </especificaciones>
+    <imagen>../Imagenes-LM/MonitorMSI.jpg</imagen>
+    <garantia_anios>3</garantia_anios>
+  </producto>
+
+  <producto id="15">
+    <nombre>Pack teclado + ratón inalámbrico Logitech</nombre>
+    <categoria>Periféricos</categoria>
+    <precio moneda="EUR">49</precio>
+    <disponibilidad>Últimas unidades</disponibilidad>
+    <descripcion>Pack de teclado y raton inalambrico Logitech para uso diario en oficina.</descripcion>
+    <especificaciones>
+      <conexion>USB Receptor 2.4GHz</conexion>
+      <bateria>24 meses teclado y 18 meses raton</bateria>
+      <dpi>1000 DPI</dpi>
+      <layout>Español ES</layout>
+      <color>Negro</color>
+    </especificaciones>
+    <imagen>../Imagenes-LM/PackTR.jpg</imagen>
+    <garantia_anios>2</garantia_anios>
+  </producto>
+
+</catalogo>
