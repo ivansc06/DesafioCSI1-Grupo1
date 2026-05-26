@@ -11,6 +11,7 @@ public class PrimeTech {
 
         // redondear los botones con FlatLaf (mayor numero = mas redondeado)
         javax.swing.UIManager.put("Button.arc", 999);
+        javax.swing.UIManager.put("Button.arc", 999);
 
         // botones en cian con texto blanco
         javax.swing.UIManager.put("Button.background", new Color(0, 204, 255));
