@@ -64,7 +64,8 @@ public class ClienteDAO {
 
     public void insertarParticular(Cliente c) throws SQLException {
         // con el pool la conexion hay que cerrarla al terminar, por eso la meto en el try-with-resources
-        // antes solo habia que poner el autoCommit a true en el finally, ahora ademas se cierra sola
+        // antes solo habia que poner el autoCommit a true en el finally, ahora ademas se cierra sola, se hace automaticamente
+        //prueba para git
         try (Connection conn = ConexionDB.getConexion()) {
             conn.setAutoCommit(false);
             try {
