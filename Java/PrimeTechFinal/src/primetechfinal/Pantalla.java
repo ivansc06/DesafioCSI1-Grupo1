@@ -505,7 +505,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
         lblCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar-sesion.png"))); // NOI18N
-        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrarSesionMouseClicked(evt);
@@ -533,7 +533,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
@@ -543,7 +543,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevoproducto.png"))); // NOI18N
-        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoProductoActionPerformed(evt);
@@ -553,7 +553,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarproducto.png"))); // NOI18N
-        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProductoActionPerformed(evt);
@@ -563,7 +563,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarproducto.png"))); // NOI18N
-        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProductoActionPerformed(evt);
@@ -620,7 +620,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevaVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevaventa.png"))); // NOI18N
-        btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaVentaActionPerformed(evt);
@@ -630,7 +630,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnVerFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVerFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/factura.png"))); // NOI18N
-        btnVerFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVerFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerFacturaActionPerformed(evt);
@@ -665,7 +665,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarVentaActionPerformed(evt);
@@ -675,7 +675,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarventa.png"))); // NOI18N
-        btnEditarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarVentaActionPerformed(evt);
@@ -685,7 +685,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarventa.png"))); // NOI18N
-        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarVentaActionPerformed(evt);
@@ -695,7 +695,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/enviarcorreo.png"))); // NOI18N
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -710,7 +710,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevoCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevocliente.png"))); // NOI18N
-        btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoClienteActionPerformed(evt);
@@ -728,7 +728,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
@@ -738,7 +738,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarcliente.png"))); // NOI18N
-        btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
@@ -748,7 +748,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarProducto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarcliente.png"))); // NOI18N
-        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducto1ActionPerformed(evt);
@@ -786,7 +786,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 540, 170, -1));
 
-        lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblNavDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavDashboardMouseClicked(evt);
@@ -794,7 +794,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, 180, 40));
 
-        lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblNavVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavVentasMouseClicked(evt);
@@ -802,7 +802,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 310, 180, 40));
 
-        lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblNavProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavProductosMouseClicked(evt);
@@ -810,7 +810,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 360, 180, 40));
 
-        lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblNavClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavClientesMouseClicked(evt);
@@ -829,7 +829,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnCerrarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar.png"))); // NOI18N
         btnCerrarPantalla.setBorder(null);
-        btnCerrarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrarPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarPantallaActionPerformed(evt);
@@ -839,7 +839,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnMinimizarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
         btnMinimizarPantalla.setBorder(null);
-        btnMinimizarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizarPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizarPantallaActionPerformed(evt);
