@@ -100,7 +100,7 @@ public class EmpleadoDAO {
             ps.setString(5, hash);
             ps.executeUpdate();
         }
-        // dejo constancia de que se ha creado un empleado nuevo
+        // dejo constancia de que se ha creado un empleado nuevo--------
         logger.info("Empleado creado: {} - {}", emp.getNombreCompleto(), emp.getEmail());
     }
 

@@ -1,0 +1,189 @@
+/* ===================================
+   PRIMETECH SYSTEMS - CSS Principal
+   Archivo: style.css
+=================================== */
+
+/* Variables de colores de la empresa */
+:root {
+  --azul-principal: #0d6efd;
+  --azul-oscuro: #0a3d6b;
+  --gris-fondo: #f4f6f9;
+  --blanco: #ffffff;
+  --texto-oscuro: #222222;
+}
+
+/* Estilos generales del body */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--gris-fondo);
+  color: var(--texto-oscuro);
+}
+
+/* ---- NAVBAR ---- */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--blanco) !important;
+  letter-spacing: 1px;
+}
+
+.navbar {
+  background-color: var(--azul-oscuro) !important;
+}
+
+.nav-link {
+  color: #cce0ff !important;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--blanco) !important;
+  text-decoration: underline;
+}
+
+/* ---- HERO (cabecera grande) ---- */
+.hero {
+  background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-principal));
+  color: var(--blanco);
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-top: 15px;
+}
+
+/* ---- TARJETAS (cards) ---- */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  border-radius: 12px 12px 0 0 !important;
+  font-weight: bold;
+}
+
+/* ---- SECCIÓN de contenido ---- */
+.seccion {
+  padding: 60px 0;
+}
+
+.seccion-titulo {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  background-color: var(--azul-oscuro);
+  color: #aac4e8;
+  padding: 30px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+
+footer a {
+  color: #cce0ff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---- BOTONES ---- */
+.btn-primetech {
+  background-color: var(--azul-principal);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-primetech:hover {
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+/* ---- TABLA ---- */
+.tabla-estilo {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.tabla-estilo thead {
+  background-color: var(--azul-oscuro);
+  color: white;
+}
+
+/* ---- IMAGEN CIRCULAR (equipo) ---- */
+.img-equipo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Hace la foto circular */
+  object-fit: cover;   /* Evita que la foto se deforme si no es cuadrada */
+  margin: 0 auto 12px; /* Centra la imagen y da espacio abajo */
+  border: 3px solid var(--azul); /* Opcional: un borde para que resalte */
+ }
+
+ .tabla-bonita td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.tabla-bonita td img {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+ .navbar-brand {
+  animation: pulso 2s infinite;
+}
+
+/* ---- ANIMACIONES---- */
+@keyframes pulso {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animar {
+  animation: fadeInUp 0.7s ease forwards;
+}

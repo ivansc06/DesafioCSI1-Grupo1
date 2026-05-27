@@ -1,0 +1,6 @@
+2026-05-21 17:11:27 [INFO ] HikariDataSource - HikariPool-1 - Starting...
+2026-05-21 17:11:28 [INFO ] HikariDataSource - HikariPool-1 - Start completed.
+2026-05-21 17:11:28 [INFO ] HikariDataSource - HikariPool-2 - Starting...
+2026-05-21 17:11:28 [INFO ] HikariDataSource - HikariPool-2 - Start completed.
+2026-05-21 17:11:40 [INFO ] LoginFrame - Login correcto - empleado: Admin  (admin@tienda.com)
+2026-05-21 17:12:23 [INFO ] VentaDAO - Venta registrada - id_venta: 21, id_empleado: 1, total: 0.0
