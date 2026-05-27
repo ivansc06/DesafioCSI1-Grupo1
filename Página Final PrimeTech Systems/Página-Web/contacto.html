@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PrimeTech Systems - Contacto</title>
 
-  <link rel="icon" type="image/png" href="../Imágenes-Página/logoprueba4.png" />
+  <link rel="icon" type="image/png" href="../Imagenes-LM/logoprueba4.png" />
   <link href="../bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../bootstrap-icons-1.13.1/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -14,14 +14,11 @@
 <body>
 
   <!-- ==================== NAVBAR ==================== -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <i class="bi bi-cpu-fill me-2"></i>PrimeTech Systems
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="menuNavbar">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
@@ -102,9 +99,8 @@
               </div>
 
               <!-- Botón enviar -->
-              <button type="submit" class="btn btn-primetech w-100"
-                onclick="mostrarMensaje(event)">
-                <i class="bi bi-send me-2"></i>Enviar mensaje
+              <button type="submit" class="btn btn-primetech w-100">
+                Enviar mensaje
               </button>
             </form>
 
@@ -125,7 +121,6 @@
             <h3 class="mb-3 text-primary">
             </i>Área de clientes
             </h3>
-            <p class="text-muted small">Accede con tu cuenta para ver el estado de tus pedidos.</p>
 
             <div class="mb-3">
               <label for="loginEmail" class="form-label">Correo electrónico</label>
@@ -137,15 +132,8 @@
               <input type="password" class="form-control" id="loginPass" placeholder="••••••••" />
             </div>
 
-            <button class="btn btn-primetech w-100"
-              onclick="mostrarLoginMsg(event)">
-              <i class="bi bi-box-arrow-in-right me-2"></i>Entrar
+            <button class="btn btn-primetech w-100">Entrar
             </button>
-
-            <div id="loginMsg" class="alert alert-info mt-3 d-none">
-              <i class="bi bi-info-circle me-2"></i>
-              Función en desarrollo. Próximamente disponible.
-            </div>
           </div>
 
 
@@ -169,30 +157,34 @@
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
-    <div class="container">
-      <p class="mb-1"><strong>PrimeTech Systems</strong> &copy; 2026</p>
-      <p class="mb-0">
-        <a href="contacto.html">Contacto</a> |
-        <a href="nosotros.html">Quiénes somos</a>
-      </p>
+  <div class="container">
+    <p class="mb-1">
+      <strong>PrimeTech Systems</strong> &copy; 2026
+    </p>
+    <p class="mb-0">
+      <a href="contacto.html">Contacto</a> |
+      <a href="nosotros.html">Quiénes somos</a>
+    </p>
+    <!-- Redes sociales -->
+    <div class="footer-socials mt-3">
+      <a href="https://www.instagram.com/PrimeTechSystems" target="_blank" title="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.x.com/PrimeTechSystems" target="_blank" title="X (Twitter)">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+      <a href="https://www.facebook.com/PrimeTechSystems" target="_blank" title="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/PrimeTechSystems" target="_blank" title="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://www.youtube.com/@PrimeTechSystems" target="_blank" title="YouTube">
+        <i class="bi bi-youtube"></i>
+      </a>
     </div>
-  </footer>
-
-
-  <!-- Script sencillo para mostrar confirmaciones -->
-  <script>
-    // Muestra mensaje al enviar el formulario de contacto
-    function mostrarMensaje(event) {
-      event.preventDefault(); // Evita que la página se recargue
-      document.getElementById('mensajeOk').classList.remove('d-none');
-    }
-
-    // Muestra mensaje en el login
-    function mostrarLoginMsg(event) {
-      event.preventDefault();
-      document.getElementById('loginMsg').classList.remove('d-none');
-    }
-  </script>
+  </div>
+</footer>
 
   <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 </body>

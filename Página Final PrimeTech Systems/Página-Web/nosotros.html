@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PrimeTech Systems - Nosotros</title>
 
-  <link rel="icon" type="image/png" href="../Imágenes-Página/logoprueba4.png" />
+  <link rel="icon" type="image/png" href="../Imagenes-LM/logoprueba4.png" />
   <link href="../bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../bootstrap-icons-1.13.1/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -14,7 +14,7 @@
 <body>
 
   <!-- ==================== NAVBAR ==================== -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <i class="bi bi-cpu-fill me-2"></i>PrimeTech Systems
@@ -118,7 +118,7 @@ nuestros clientes es lo que nos hace crecer.
         <!-- Miembro 1 -->
         <div class="col-12 col-sm-6 col-md-3 animar">
           <div class="card p-3">
-            <img src="../Imágenes-Página/ivan2.jpg" class="img-equipo" alt="Iván Segura">
+            <img src="../Imagenes-Pagina/ivan2.jpg" class="img-equipo" alt="Iván Segura">
             <h5>Iván Segura</h5>
             <p class="text-muted small">Gerente</p>
             <p class="small">Experto en gestión empresarial y estrategia tecnológica.</p>
@@ -128,7 +128,7 @@ nuestros clientes es lo que nos hace crecer.
         <!-- Miembro 2 -->
         <div class="col-12 col-sm-6 col-md-3 animar">
           <div class="card p-3">
-            <img src="../Imágenes-Página/Javi.jpg" class="img-equipo" alt="Javier Maza">
+            <img src="../Imagenes-Pagina/Javi.jpg" class="img-equipo" alt="Javier Maza">
             <h5>Javier Maza</h5>
             <p class="text-muted small">Vendedor</p>
             <p class="small">Especialista en atención al cliente y ventas tecnológicas.</p>
@@ -138,7 +138,7 @@ nuestros clientes es lo que nos hace crecer.
         <!-- Miembro 3 -->
         <div class="col-12 col-sm-6 col-md-3 animar">
           <div class="card p-3">
-            <img src="../Imágenes-Página/Markelfinal.jpg" class="img-equipo" alt="Markel Corbaton">
+            <img src="../Imagenes-Pagina/Markelfinal.jpg" class="img-equipo" alt="Markel Corbaton">
             <h5>Markel Corbaton</h5>
             <p class="text-muted small">Gerente</p>
             <p class="small">Responsable de operaciones y gestión de proyectos.</p>
@@ -148,7 +148,7 @@ nuestros clientes es lo que nos hace crecer.
         <!-- Miembro 4 -->
         <div class="col-12 col-sm-6 col-md-3 animar">
           <div class="card p-3">
-            <img src="../Imágenes-Página/Joselu.jpg" class="img-equipo" alt="Joselu Pérez">
+            <img src="../Imagenes-Pagina/Joselu.jpg" class="img-equipo" alt="Joselu Pérez">
             <h5>Joselu Pérez</h5>
             <p class="text-muted small">Técnico</p>
             <p class="small">Especialista en reparación y mantenimiento de equipos.</p>
@@ -166,22 +166,23 @@ nuestros clientes es lo que nos hace crecer.
       <h2 class="seccion-titulo">Nuestros valores</h2>
 
       <div class="row g-3">
-        <div class="col-12 col-md-4">
-          <div class="card p-4 text-center h-100">
+        <div class="col-12 col-md-4 ">
+          <!-- lo del border es para ponerle un borde de color en la parte superior -->
+          <div class="card p-4 text-center h-100 border-top border-4 border-danger">
             <i class="bi bi-heart-fill fs-2 text-danger mb-2"></i>
             <h5>Compromiso</h5>
             <p>Nos comprometemos con cada cliente al 100%, sea cual sea el proyecto.</p>
           </div>
         </div>
         <div class="col-12 col-md-4">
-          <div class="card p-4 text-center h-100">
+          <div class="card p-4 text-center h-100 border-top border-4 border-warning">
             <i class="bi bi-lightbulb-fill fs-2 text-warning mb-2"></i>
             <h5>Innovación</h5>
             <p>Nos mantenemos actualizados con las últimas tendencias tecnológicas.</p>
           </div>
         </div>
         <div class="col-12 col-md-4">
-          <div class="card p-4 text-center h-100">
+          <div class="card p-4 text-center h-100 border-top border-4 border-success">
             <i class="bi bi-hand-thumbs-up-fill fs-2 text-success mb-2"></i>
             <h5>Honestidad</h5>
             <p>Presupuestos transparentes, sin letra pequeña ni sorpresas.</p>
@@ -194,14 +195,33 @@ nuestros clientes es lo que nos hace crecer.
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
-    <div class="container">
-      <p class="mb-1"><strong>PrimeTech Systems</strong> &copy; 2026</p>
-      <p class="mb-0">
-        <a href="contacto.html">Contacto</a> |
-        <a href="nosotros.html">Quiénes somos</a>
-      </p>
+  <div class="container">
+    <p class="mb-1">
+      <strong>PrimeTech Systems</strong> &copy; 2026
+    </p>
+    <p class="mb-0">
+      <a href="contacto.html">Contacto</a> |
+      <a href="nosotros.html">Quiénes somos</a>
+    </p>
+    <div class="footer-socials mt-3">
+      <a href="https://www.instagram.com/PrimeTechSystems" target="_blank" title="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.x.com/PrimeTechSystems" target="_blank" title="X (Twitter)">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+      <a href="https://www.facebook.com/PrimeTechSystems" target="_blank" title="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/PrimeTechSystems" target="_blank" title="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://www.youtube.com/@PrimeTechSystems" target="_blank" title="YouTube">
+        <i class="bi bi-youtube"></i>
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script src="../bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
 </body>
