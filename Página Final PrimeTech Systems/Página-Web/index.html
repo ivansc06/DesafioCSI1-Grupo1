@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>PrimeTech Systems</title>
     
-    <link rel="icon" type="image/png" href="../Imágenes-Página/logoprueba4.png" />
+    <link rel="icon" type="image/png" href="../Imagenes-LM/logoprueba4.png">
     
     <link href="../bootstrap-5.3.8-dist/css/bootstrap.min.css" rel="stylesheet"/>
     
@@ -19,11 +19,12 @@
 <body>
 
   <!-- ==================== NAVBAR ==================== -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+   <!-- con sticky-top mantienes el menu de arriba accesible cuando se desplaza -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <!-- Logo / Nombre empresa -->
       <a class="navbar-brand" href="index.html">
-       <img src="../Imagenes-LM/logoprueba4.png" alt="PrimeTech Systems" height="80"></i>PrimeTech Systems
+       <img src="../Imagenes-Pagina/logoprueba4.png" alt="PrimeTech Systems" height="80"></img>PrimeTech Systems
       </a>
 
       <!-- Botón para móvil (hamburguesa) -->
@@ -174,19 +175,47 @@
   </section>
   <!-- FIN CARRUSEL -->
 
+  <!-- boton para contactar -->
+  <div class="bg-light py-5 ">
+    <div class="container text-center">
+      <h3 class="fw-bold mb-3">¿Necesitas una solución a medida para tu empresa?</h3>
+      <p class="text-muted mb-4">Nuestro equipo de expertos está listo para estudiar tu caso y asesorarte sin ningún compromiso.</p>
+      <a href="contacto.html" class="btn btn-primary btn-lg">
+        <i class="bi bi-envelope-fill me-2"></i>Pedir presupuesto
+      </a>
+    </div>
+  </div>
+  <br>
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
-    <div class="container">
-      <p class="mb-1">
-        <strong>PrimeTech Systems</strong> &copy; 2026
-      </p>
-      <p class="mb-0">
-        <a href="contacto.html">Contacto</a> |
-        <a href="nosotros.html">Quiénes somos</a>
-      </p>
+  <div class="container">
+    <p class="mb-1">
+      <strong>PrimeTech Systems</strong> &copy; 2026
+    </p>
+    <p class="mb-0">
+      <a href="contacto.html">Contacto</a> |
+      <a href="nosotros.html">Quiénes somos</a>
+    </p>
+    <div class="footer-socials mt-3">
+      <a href="https://www.instagram.com/PrimeTechSystems" target="_blank" title="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.x.com/PrimeTechSystems" target="_blank" title="X (Twitter)">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+      <a href="https://www.facebook.com/PrimeTechSystems" target="_blank" title="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/PrimeTechSystems" target="_blank" title="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://www.youtube.com/@PrimeTechSystems" target="_blank" title="YouTube">
+        <i class="bi bi-youtube"></i>
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
   <!-- FIN FOOTER -->
 
 
