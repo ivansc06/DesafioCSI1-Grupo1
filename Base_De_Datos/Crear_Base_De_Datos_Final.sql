@@ -244,7 +244,7 @@ GRANT ALL PRIVILEGES ON tienda_informatica.* TO 'tienda_admin'@'localhost';
 -- 2. Usuario de la aplicación JavaFX (solo permisos necesarios)
 --    No puede borrar tablas ni hacer operaciones destructivas
 CREATE USER IF NOT EXISTS 'tienda_app'@'localhost' IDENTIFIED BY 'app_pass';
-GRANT SELECT, INSERT, UPDATE ON tienda_informatica.* TO 'tienda_app'@'localhost';
-
+GRANT SELECT, INSERT, UPDATE, PROCESS ON tienda_informatica.* TO 'tienda_app'@'localhost';
+-- PROCESS
 -- Aplicar los cambios de permisos
 FLUSH PRIVILEGES;
