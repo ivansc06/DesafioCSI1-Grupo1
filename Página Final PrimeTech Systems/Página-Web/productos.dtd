@@ -1,0 +1,71 @@
+<!ELEMENT catalogo (producto+)>
+<!ATTLIST catalogo
+    empresa CDATA #REQUIRED
+    fecha   CDATA #REQUIRED
+>
+
+<!ELEMENT producto (nombre, categoria, precio, disponibilidad, descripcion, especificaciones, imagen, garantia_anios)>
+<!ATTLIST producto
+    id CDATA #REQUIRED
+>
+
+<!ELEMENT nombre         (#PCDATA)>
+<!ELEMENT categoria      (#PCDATA)>
+<!ELEMENT disponibilidad (#PCDATA)>
+<!ELEMENT descripcion    (#PCDATA)>
+<!ELEMENT imagen         (#PCDATA)>
+<!ELEMENT garantia_anios (#PCDATA)>
+
+<!ELEMENT precio (#PCDATA)>
+<!ATTLIST precio
+    moneda CDATA #REQUIRED
+>
+
+<!ELEMENT especificaciones (
+    procesador | ram | almacenamiento | pantalla | bateria |
+    licencias | actualizaciones | soporte | plataforma | tipo_licencia |
+    capacidad | bahias | raid | conectividad | consumo |
+    visitas | soporte_remoto | tiempo_respuesta | limpieza |
+    estandar | cobertura | seguridad | puntos_acceso | gestion |
+    resolucion | panel | tasa_refresco | conectores | respuesta |
+    conexion | dpi | layout | color |
+    montaje | velocidad | puertos | vlan
+)*>
+
+<!ELEMENT procesador              (#PCDATA)>
+<!ELEMENT ram                     (#PCDATA)>
+<!ELEMENT almacenamiento          (#PCDATA)>
+<!ELEMENT pantalla                (#PCDATA)>
+<!ELEMENT bateria                 (#PCDATA)>
+<!ELEMENT licencias               (#PCDATA)>
+<!ELEMENT actualizaciones         (#PCDATA)>
+<!ELEMENT soporte                 (#PCDATA)>
+<!ELEMENT plataforma              (#PCDATA)>
+<!ELEMENT tipo_licencia           (#PCDATA)>
+<!ELEMENT capacidad               (#PCDATA)>
+<!ELEMENT bahias                  (#PCDATA)>
+<!ELEMENT raid                    (#PCDATA)>
+<!ELEMENT conectividad            (#PCDATA)>
+<!ELEMENT consumo                 (#PCDATA)>
+<!ELEMENT visitas                 (#PCDATA)>
+<!ELEMENT soporte_remoto          (#PCDATA)>
+<!ELEMENT tiempo_respuesta        (#PCDATA)>
+<!ELEMENT limpieza                (#PCDATA)>
+<!ELEMENT estandar                (#PCDATA)>
+<!ELEMENT cobertura               (#PCDATA)>
+<!ELEMENT seguridad               (#PCDATA)>
+<!ELEMENT puntos_acceso           (#PCDATA)>
+<!ELEMENT gestion                 (#PCDATA)>
+<!ELEMENT resolucion              (#PCDATA)>
+<!ELEMENT panel                   (#PCDATA)>
+<!ELEMENT tasa_refresco           (#PCDATA)>
+<!ELEMENT conectores              (#PCDATA)>
+<!ELEMENT respuesta               (#PCDATA)>
+<!ELEMENT conexion                (#PCDATA)>
+<!ELEMENT dpi                     (#PCDATA)>
+<!ELEMENT layout                  (#PCDATA)>
+<!ELEMENT color                   (#PCDATA)>
+<!ELEMENT montaje                 (#PCDATA)>
+<!ELEMENT velocidad               (#PCDATA)>
+<!ELEMENT puertos                 (#PCDATA)>
+<!ELEMENT vlan                    (#PCDATA)>
