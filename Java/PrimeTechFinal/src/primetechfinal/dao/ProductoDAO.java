@@ -16,7 +16,7 @@ public class ProductoDAO {
     public List<Producto> listarTodos() throws SQLException {
         List<Producto> lista = new ArrayList<>();
         String sql = "SELECT id_producto, nombre, descripcion, precio_compra, precio_venta, stock " +
-                     "FROM productos ORDER BY nombre";
+                     "FROM productos ORDER BY stock ASC, nombre ASC";
         // con el pool hay que cerrar la conexion al terminar para que vuelva al pool
         // antes era una conexion unica y no hacia falta cerrarla
         try (Connection conn = ConexionDB.getConexion();
