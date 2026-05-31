@@ -1,4 +1,4 @@
-package primetechfinal.util;
+    package primetechfinal.util;
 
 import primetechfinal.db.ConexionDB;
 import java.sql.*;

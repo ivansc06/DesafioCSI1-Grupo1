@@ -28,6 +28,7 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         SwingUtilities.invokeLater(() -> this.requestFocus()); // evita que el txtEmail tenga foco al abrir
 
         // fondo blanco en los botones del header para que no hereden el cian del UIManager
@@ -59,6 +60,9 @@ public class LoginFrame extends javax.swing.JFrame {
                 posInicial[1] = e.getYOnScreen();
             }
         });
+        //CADA VEZ QUE SE PULSE ENTER SE PRESIONA BOTON ENTRAR:
+        // Hacer que Enter en cualquier campo dispare el botón
+        getRootPane().setDefaultButton(btnIniciarSesion);
     }
 
     /**
@@ -97,10 +101,12 @@ public class LoginFrame extends javax.swing.JFrame {
         pnlFondoLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         header.setBackground(new java.awt.Color(255, 255, 255));
+        header.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar.png"))); // NOI18N
         btnCerrarLogin.setBorder(null);
+        btnCerrarLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarLoginActionPerformed(evt);
@@ -110,6 +116,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         btnMinimizarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
         btnMinimizarLogin.setBorder(null);
+        btnMinimizarLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizarLoginActionPerformed(evt);

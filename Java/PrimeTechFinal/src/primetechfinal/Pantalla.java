@@ -6,6 +6,7 @@ package primetechfinal;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -58,6 +60,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     public Pantalla() {
         initComponents();
+        setLocationRelativeTo(null);
 
         // fondo blanco en los botones del header para que no hereden el cian del UIManager
         btnCerrarPantalla.setBackground(Color.WHITE);
@@ -158,6 +161,16 @@ public class Pantalla extends javax.swing.JFrame {
         } catch (SQLException ex) {
             // no interrumpimos el arranque si falla el aviso
         }
+        // Cambia 'jLabelBanner' por el nombre de variable exacto que le diste a tu JLabel superior
+        int anchoReal = lblsuperior.getWidth();
+        int altoReal = lblsuperior.getHeight();
+
+        // En NetBeans a veces el layout da 0 antes de renderizar la ventana por primera vez
+        if (anchoReal == 0) anchoReal = 1010; // Pon aquí el ancho aproximado que tiene en tu diseñador
+        if (altoReal == 0) altoReal = 100;
+
+        // Reemplaza la ruta por la ubicación exacta de tu archivo dentro de tu source package
+        lblsuperior.setIcon(calibrarBanner("/primetechfinal/fotos/superiorrecortado (1).png", anchoReal, altoReal));
     }
 
     
@@ -177,17 +190,16 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtPrecioCompra = new javax.swing.JTextField();
         txtPrecioVenta = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
-        btnGuardarProducto = new javax.swing.JButton();
-        btnCancelarProducto = new javax.swing.JButton();
+        lblGuardarProducto = new javax.swing.JLabel();
+        lblCancelarProducto = new javax.swing.JLabel();
+        lblFondoProductos = new javax.swing.JLabel();
         DialogClientes = new javax.swing.JDialog();
         cmbTipoCliente = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
@@ -207,10 +219,10 @@ public class Pantalla extends javax.swing.JFrame {
         txtEmailCliente = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtDireccionCliente = new javax.swing.JTextField();
-        btnGuardarCliente = new javax.swing.JButton();
-        btnCancelarCliente = new javax.swing.JButton();
+        lblGuardarClientes = new javax.swing.JLabel();
+        lblCancelarClientes = new javax.swing.JLabel();
+        lblFondoClientes = new javax.swing.JLabel();
         DialogVenta = new javax.swing.JDialog();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         cmbClienteVenta = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
@@ -225,8 +237,9 @@ public class Pantalla extends javax.swing.JFrame {
         tblCarrito = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        btnConfirmarVenta = new javax.swing.JButton();
-        btnCancelarVenta = new javax.swing.JButton();
+        lblGuardarVenta = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblFondoVentas = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
         lblEmpleado = new javax.swing.JLabel();
         pnlContenido = new javax.swing.JPanel();
@@ -274,59 +287,62 @@ public class Pantalla extends javax.swing.JFrame {
         btnCerrarPantalla = new javax.swing.JButton();
         btnMinimizarPantalla = new javax.swing.JButton();
 
-        DialogProductos.setMinimumSize(new java.awt.Dimension(800, 611));
+        DialogProductos.setMaximumSize(new java.awt.Dimension(877, 717));
+        DialogProductos.setMinimumSize(new java.awt.Dimension(877, 717));
+        DialogProductos.setPreferredSize(new java.awt.Dimension(877, 717));
         DialogProductos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
-        DialogProductos.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        DialogProductos.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descripción:");
-        DialogProductos.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+        DialogProductos.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Precio Compra:");
-        DialogProductos.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        DialogProductos.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Precio Venta:");
-        DialogProductos.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        DialogProductos.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Stock:");
-        DialogProductos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
+        DialogProductos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+        DialogProductos.getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 180, 30));
+        DialogProductos.getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 180, 30));
+        DialogProductos.getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 180, 30));
+        DialogProductos.getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 180, 30));
+        DialogProductos.getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 180, 30));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
-        jLabel7.setText("PRODUCTOS");
-        DialogProductos.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, -1));
-        DialogProductos.getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 160, -1));
-        DialogProductos.getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 160, -1));
-        DialogProductos.getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 160, -1));
-        DialogProductos.getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 160, -1));
-        DialogProductos.getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 160, -1));
-
-        btnGuardarProducto.setBackground(new java.awt.Color(0, 255, 51));
-        btnGuardarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnGuardarProducto.setText("GUARDAR");
-        btnGuardarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarProductoActionPerformed(evt);
+        lblGuardarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarProductoMouseClicked(evt);
             }
         });
-        DialogProductos.getContentPane().add(btnGuardarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 560, -1, -1));
+        DialogProductos.getContentPane().add(lblGuardarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 626, 80, 40));
 
-        btnCancelarProducto.setBackground(new java.awt.Color(255, 0, 0));
-        btnCancelarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCancelarProducto.setText("CANCELAR");
-        btnCancelarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarProductoActionPerformed(evt);
+        lblCancelarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCancelarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCancelarProductoMouseClicked(evt);
             }
         });
-        DialogProductos.getContentPane().add(btnCancelarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 560, -1, -1));
+        DialogProductos.getContentPane().add(lblCancelarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 626, 70, 40));
 
-        DialogClientes.setMinimumSize(new java.awt.Dimension(900, 610));
+        lblFondoProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogproductos.png"))); // NOI18N
+        DialogProductos.getContentPane().add(lblFondoProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 720));
+
+        DialogClientes.setMaximumSize(new java.awt.Dimension(932, 751));
+        DialogClientes.setMinimumSize(new java.awt.Dimension(932, 751));
         DialogClientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmbTipoCliente.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -336,116 +352,125 @@ public class Pantalla extends javax.swing.JFrame {
                 cmbTipoClienteActionPerformed(evt);
             }
         });
-        DialogClientes.getContentPane().add(cmbTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
-        jLabel8.setText("CLIENTES");
-        DialogClientes.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, -1));
+        DialogClientes.getContentPane().add(cmbTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tipo:");
-        DialogClientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        DialogClientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre:");
-        DialogClientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-        DialogClientes.getContentPane().add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 150, -1));
+        DialogClientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
+        DialogClientes.getContentPane().add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 150, -1));
 
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblApellidos.setForeground(new java.awt.Color(255, 255, 255));
         lblApellidos.setText("Apellidos:");
-        DialogClientes.getContentPane().add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
-        DialogClientes.getContentPane().add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 150, -1));
+        DialogClientes.getContentPane().add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, -1, -1));
+        DialogClientes.getContentPane().add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 150, -1));
 
         lblDni.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblDni.setForeground(new java.awt.Color(255, 255, 255));
         lblDni.setText("DNI:");
-        DialogClientes.getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
-        DialogClientes.getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 150, -1));
+        DialogClientes.getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, -1, -1));
+        DialogClientes.getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 150, -1));
 
         lblRazonSocial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblRazonSocial.setForeground(new java.awt.Color(255, 255, 255));
         lblRazonSocial.setText("Razón Social:");
-        DialogClientes.getContentPane().add(lblRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, -1));
-        DialogClientes.getContentPane().add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 150, -1));
+        DialogClientes.getContentPane().add(lblRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
+        DialogClientes.getContentPane().add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, 150, -1));
 
         lblCif.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblCif.setForeground(new java.awt.Color(255, 255, 255));
         lblCif.setText("CIF:");
-        DialogClientes.getContentPane().add(lblCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, -1, -1));
-        DialogClientes.getContentPane().add(txtCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 150, -1));
+        DialogClientes.getContentPane().add(lblCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, -1, -1));
+        DialogClientes.getContentPane().add(txtCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 150, -1));
 
         lblContacto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblContacto.setForeground(new java.awt.Color(255, 255, 255));
         lblContacto.setText("Contacto:");
-        DialogClientes.getContentPane().add(lblContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, -1, -1));
-        DialogClientes.getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 150, -1));
+        DialogClientes.getContentPane().add(lblContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, -1, -1));
+        DialogClientes.getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 150, -1));
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Teléfono:");
-        DialogClientes.getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
-        DialogClientes.getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 150, -1));
+        DialogClientes.getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        DialogClientes.getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 150, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Email:");
-        DialogClientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-        DialogClientes.getContentPane().add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, -1));
+        DialogClientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
+        DialogClientes.getContentPane().add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 150, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Dirección:");
-        DialogClientes.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
-        DialogClientes.getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 160, -1));
+        DialogClientes.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
+        DialogClientes.getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 150, -1));
 
-        btnGuardarCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnGuardarCliente.setText("GUARDAR");
-        btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClienteActionPerformed(evt);
+        lblGuardarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarClientesMouseClicked(evt);
             }
         });
-        DialogClientes.getContentPane().add(btnGuardarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, -1));
+        DialogClientes.getContentPane().add(lblGuardarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 656, 70, 40));
 
-        btnCancelarCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCancelarCliente.setText("CANCELAR");
-        btnCancelarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarClienteActionPerformed(evt);
+        lblCancelarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCancelarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCancelarClientesMouseClicked(evt);
             }
         });
-        DialogClientes.getContentPane().add(btnCancelarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, -1, -1));
+        DialogClientes.getContentPane().add(lblCancelarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 656, 70, 40));
 
-        DialogVenta.setMinimumSize(new java.awt.Dimension(1000, 750));
+        lblFondoClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogclientes.png"))); // NOI18N
+        DialogClientes.getContentPane().add(lblFondoClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        DialogVenta.setMaximumSize(new java.awt.Dimension(1077, 745));
+        DialogVenta.setMinimumSize(new java.awt.Dimension(1077, 745));
+        DialogVenta.setPreferredSize(new java.awt.Dimension(1077, 745));
         DialogVenta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
-        jLabel16.setText("VENTAS");
-        DialogVenta.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, -1, -1));
-
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Cliente:");
-        DialogVenta.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        DialogVenta.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
         cmbClienteVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cmbClienteVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        DialogVenta.getContentPane().add(cmbClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 180, -1));
+        DialogVenta.getContentPane().add(cmbClienteVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 170, -1));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Método de Pago:");
-        DialogVenta.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        DialogVenta.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
         cmbMetodoPago.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cmbMetodoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "efectivo", "tarjeta", "transferencia", " " }));
-        DialogVenta.getContentPane().add(cmbMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 190, -1));
+        DialogVenta.getContentPane().add(cmbMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 170, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Producto:");
-        DialogVenta.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        DialogVenta.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, -1));
 
         cmbProductoVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DialogVenta.getContentPane().add(cmbProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 180, -1));
+        DialogVenta.getContentPane().add(cmbProductoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 170, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Cantidad:");
-        DialogVenta.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
+        DialogVenta.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, -1));
 
         txtCantidadVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCantidadVenta.setText("1");
-        DialogVenta.getContentPane().add(txtCantidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 180, -1));
+        DialogVenta.getContentPane().add(txtCantidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 170, -1));
 
         btnAgregarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAgregarVenta.setText("Agregar");
@@ -454,11 +479,12 @@ public class Pantalla extends javax.swing.JFrame {
                 btnAgregarVentaActionPerformed(evt);
             }
         });
-        DialogVenta.getContentPane().add(btnAgregarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 150, 50));
+        DialogVenta.getContentPane().add(btnAgregarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 580, 150, 50));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("CARRITO");
-        DialogVenta.getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, -1, -1));
+        DialogVenta.getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
 
         tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -470,33 +496,36 @@ public class Pantalla extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblCarrito);
 
-        DialogVenta.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 500, 350));
+        DialogVenta.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 500, 350));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Total:");
-        DialogVenta.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 580, -1, -1));
+        DialogVenta.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 580, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("0.00 €");
-        DialogVenta.getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 580, -1, -1));
+        DialogVenta.getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, -1, -1));
 
-        btnConfirmarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnConfirmarVenta.setText("CONFIRMAR");
-        btnConfirmarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarVentaActionPerformed(evt);
+        lblGuardarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarVentaMouseClicked(evt);
             }
         });
-        DialogVenta.getContentPane().add(btnConfirmarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 660, 150, 50));
+        DialogVenta.getContentPane().add(lblGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 650, 90, 40));
 
-        btnCancelarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCancelarVenta.setText("CANCELAR");
-        btnCancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarVentaActionPerformed(evt);
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
             }
         });
-        DialogVenta.getContentPane().add(btnCancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 660, 140, 50));
+        DialogVenta.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 650, 80, 40));
+
+        lblFondoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogventas.png"))); // NOI18N
+        DialogVenta.getContentPane().add(lblFondoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -505,7 +534,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         lblCerrarSesion.setForeground(new java.awt.Color(0, 102, 255));
         lblCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar-sesion.png"))); // NOI18N
-        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrarSesionMouseClicked(evt);
@@ -533,7 +562,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
@@ -543,7 +572,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevoproducto.png"))); // NOI18N
-        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevoProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoProductoActionPerformed(evt);
@@ -553,7 +582,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarproducto.png"))); // NOI18N
-        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProductoActionPerformed(evt);
@@ -563,7 +592,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarproducto.png"))); // NOI18N
-        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProductoActionPerformed(evt);
@@ -620,7 +649,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevaVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevaventa.png"))); // NOI18N
-        btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaVentaActionPerformed(evt);
@@ -630,7 +659,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnVerFactura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVerFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/factura.png"))); // NOI18N
-        btnVerFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVerFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerFacturaActionPerformed(evt);
@@ -665,7 +694,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarVentaActionPerformed(evt);
@@ -675,7 +704,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEditarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarventa.png"))); // NOI18N
-        btnEditarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarVentaActionPerformed(evt);
@@ -685,7 +714,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarventa.png"))); // NOI18N
-        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarVentaActionPerformed(evt);
@@ -695,7 +724,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/enviarcorreo.png"))); // NOI18N
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -710,7 +739,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnNuevoCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevocliente.png"))); // NOI18N
-        btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoClienteActionPerformed(evt);
@@ -728,7 +757,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/borrar.png"))); // NOI18N
-        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
@@ -738,7 +767,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEditarCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/editarcliente.png"))); // NOI18N
-        btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
@@ -748,7 +777,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnEliminarProducto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarProducto1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/eliminarcliente.png"))); // NOI18N
-        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminarProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProducto1ActionPerformed(evt);
@@ -779,6 +808,7 @@ public class Pantalla extends javax.swing.JFrame {
         btnExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/excel.png"))); // NOI18N
         btnExportarExcel.setText("Exportar");
+        btnExportarExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportarExcelActionPerformed(evt);
@@ -786,7 +816,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 540, 170, -1));
 
-        lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNavDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavDashboardMouseClicked(evt);
@@ -794,7 +824,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, 180, 40));
 
-        lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNavVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavVentasMouseClicked(evt);
@@ -802,7 +832,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 310, 180, 40));
 
-        lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNavProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavProductosMouseClicked(evt);
@@ -810,7 +840,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
         getContentPane().add(lblNavProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 360, 180, 40));
 
-        lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNavClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblNavClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblNavClientesMouseClicked(evt);
@@ -825,11 +855,12 @@ public class Pantalla extends javax.swing.JFrame {
         getContentPane().add(lblderecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 200, 520));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHeader.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         pnlHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCerrarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/cerrar.png"))); // NOI18N
         btnCerrarPantalla.setBorder(null);
-        btnCerrarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarPantallaActionPerformed(evt);
@@ -839,7 +870,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         btnMinimizarPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/minimizar.png"))); // NOI18N
         btnMinimizarPantalla.setBorder(null);
-        btnMinimizarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizarPantalla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizarPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizarPantallaActionPerformed(evt);
@@ -852,64 +883,9 @@ public class Pantalla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProductoActionPerformed
-        try {
-        Producto p = productoActual != null ? productoActual : new Producto();//operador ternario, si editamos usamos el producto actual
-        //si no utilizamos uno nuevo
-        p.setNombre(txtNombre.getText());
-        p.setDescripcion(txtDescripcion.getText());
-        p.setPrecioCompra(Double.parseDouble(txtPrecioCompra.getText()));
-        p.setPrecioVenta(Double.parseDouble(txtPrecioVenta.getText()));
-        p.setStock(Integer.parseInt(txtStock.getText()));
-        if (productoActual != null) productoDAO.actualizar(p);
-        else                        productoDAO.insertar(p);
-        DialogProductos.setVisible(false);
-        cargarTablaProductos();
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Revisa los campos numéricos.");
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-    }
-    }//GEN-LAST:event_btnGuardarProductoActionPerformed
-
-    private void btnCancelarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProductoActionPerformed
-        DialogProductos.setVisible(false);
-    }//GEN-LAST:event_btnCancelarProductoActionPerformed
-
-    private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        try {
-        Cliente c = clienteActual != null ? clienteActual : new Cliente();
-        c.setTelefono(txtTelefonoCliente.getText());
-        c.setEmail(txtEmailCliente.getText());
-        c.setDireccion(txtDireccionCliente.getText());
-        boolean esParticular = cmbTipoCliente.getSelectedItem().equals("particular");
-        if (esParticular) {
-            c.setNombre(txtNombreCliente.getText());
-            c.setApellidos(txtApellidos.getText());
-            c.setDni(txtDni.getText());
-            if (clienteActual != null) clienteDAO.actualizarParticular(c);
-            else                       clienteDAO.insertarParticular(c);
-        } else {
-            c.setRazonSocial(txtRazonSocial.getText());
-            c.setCif(txtCif.getText());
-            c.setContactoNombre(txtContacto.getText());
-            if (clienteActual != null) clienteDAO.actualizarEmpresa(c);
-            else                       clienteDAO.insertarEmpresa(c);
-        }
-        DialogClientes.setVisible(false);
-        cargarTablaClientes();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnGuardarClienteActionPerformed
-
     private void cmbTipoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoClienteActionPerformed
          actualizarVisibilidadCampos();
     }//GEN-LAST:event_cmbTipoClienteActionPerformed
-
-    private void btnCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteActionPerformed
-        DialogClientes.setVisible(false);
-    }//GEN-LAST:event_btnCancelarClienteActionPerformed
 
     private void btnAgregarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVentaActionPerformed
         int idxProducto = cmbProductoVenta.getSelectedIndex();
@@ -927,52 +903,6 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La cantidad debe ser un número.");
         }
     }//GEN-LAST:event_btnAgregarVentaActionPerformed
-
-    private void btnConfirmarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarVentaActionPerformed
-        DefaultTableModel m = (DefaultTableModel) tblCarrito.getModel();
-        if (m.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Añade productos al carrito.");
-            return;
-        }
-        try {
-            Venta v = ventaActual != null ? ventaActual : new Venta();
-            // cliente: usamos clientesCombo por índice (índice 0 = Sin cliente)
-            int idxCliente = cmbClienteVenta.getSelectedIndex();
-            if (idxCliente > 0 && idxCliente - 1 < clientesCombo.size()) {
-                v.setIdCliente(clientesCombo.get(idxCliente - 1).getIdCliente());
-            } else {
-                v.setIdCliente(0); // sin cliente
-            }
-            v.setIdEmpleado(Sesion.getEmpleado().getIdEmpleado());
-            v.setMetodoPago(cmbMetodoPago.getSelectedItem().toString());
-            // reconstruimos los detalles desde el carrito
-            v.getDetalles().clear();
-            for (int i = 0; i < m.getRowCount(); i++) {
-                String nombre = (String) m.getValueAt(i, 0);
-                int cantidad  = (int)    m.getValueAt(i, 1);
-                double precio = (double) m.getValueAt(i, 2);
-                // buscamos el producto por nombre exacto (guardamos getNombre() en el carrito)
-                List<Producto> lista = productoDAO.buscarPorNombre(nombre);
-                if (!lista.isEmpty()) {
-                    v.getDetalles().add(new DetalleVenta(lista.get(0).getIdProducto(), nombre, cantidad, precio));
-                }
-            }
-            if (ventaActual != null) ventaDAO.actualizar(v);//decidimos si actualiza o inserta
-            else                     ventaDAO.registrarVenta(v);
-            DialogVenta.setVisible(false);
-            cargarTablaVentas();
-            cargarTablaProductos(); // el stock cambia al registrar o editar una venta
-            cargarEstadisticas();
-            cargarGraficaDashboard(); // actualizamos el dashboard con los nuevos datos
-            JOptionPane.showMessageDialog(this, ventaActual != null ? "Venta actualizada correctamente." : "Venta registrada correctamente.");//operacion ternaria ahorramos espacio, mejor que hacer if else
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnConfirmarVentaActionPerformed
-
-    private void btnCancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVentaActionPerformed
-        DialogVenta.setVisible(false);
-    }//GEN-LAST:event_btnCancelarVentaActionPerformed
 
     private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
         int confirm = JOptionPane.showConfirmDialog(this, "¿Cerrar sesión?");
@@ -1281,6 +1211,134 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtBuscarClienteKeyReleased
 
+    private void lblGuardarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarProductoMouseClicked
+        String nombre = txtNombre.getText().trim();
+        String descripcion = txtDescripcion.getText().trim();
+        String precioCompraStr = txtPrecioCompra.getText().trim();
+        String precioVentaStr = txtPrecioVenta.getText().trim();
+        String stockStr = txtStock.getText().trim();
+
+        if (nombre.isEmpty() || precioCompraStr.isEmpty() || precioVentaStr.isEmpty() || stockStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Rellena todos los campos obligatorios.");
+            return;
+        }
+
+        try {
+            double precioCompra = Double.parseDouble(precioCompraStr);
+            double precioVenta  = Double.parseDouble(precioVentaStr);
+            int stock           = Integer.parseInt(stockStr);
+
+            Producto p = new Producto();
+            p.setNombre(nombre);
+            p.setDescripcion(descripcion);
+            p.setPrecioCompra(precioCompra);
+            p.setPrecioVenta(precioVenta);
+            p.setStock(stock);
+
+            if (productoActual == null) {
+                // NUEVO producto
+                productoDAO.insertar(p);
+                JOptionPane.showMessageDialog(this, "Producto añadido correctamente.");
+            } else {
+                // EDITAR producto existente
+                p.setIdProducto(productoActual.getIdProducto());
+                productoDAO.actualizar(p);
+                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.");
+            }
+
+            cargarTablaProductos();
+            limpiarCamposProducto();
+            DialogProductos.setVisible(false);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Precio y stock deben ser números válidos.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al guardar: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_lblGuardarProductoMouseClicked
+
+    private void lblCancelarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarProductoMouseClicked
+        limpiarCamposProducto();
+        DialogProductos.setVisible(false);
+    }//GEN-LAST:event_lblCancelarProductoMouseClicked
+
+    private void lblGuardarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarClientesMouseClicked
+        try {
+        Cliente c = clienteActual != null ? clienteActual : new Cliente();
+        c.setTelefono(txtTelefonoCliente.getText());
+        c.setEmail(txtEmailCliente.getText());
+        c.setDireccion(txtDireccionCliente.getText());
+        boolean esParticular = cmbTipoCliente.getSelectedItem().equals("particular");
+        if (esParticular) {
+            c.setNombre(txtNombreCliente.getText());
+            c.setApellidos(txtApellidos.getText());
+            c.setDni(txtDni.getText());
+            if (clienteActual != null) clienteDAO.actualizarParticular(c);
+            else                       clienteDAO.insertarParticular(c);
+        } else {
+            c.setRazonSocial(txtRazonSocial.getText());
+            c.setCif(txtCif.getText());
+            c.setContactoNombre(txtContacto.getText());
+            if (clienteActual != null) clienteDAO.actualizarEmpresa(c);
+            else                       clienteDAO.insertarEmpresa(c);
+        }
+        DialogClientes.setVisible(false);
+        cargarTablaClientes();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_lblGuardarClientesMouseClicked
+
+    private void lblCancelarClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarClientesMouseClicked
+        DialogClientes.setVisible(false);
+    }//GEN-LAST:event_lblCancelarClientesMouseClicked
+
+    private void lblGuardarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarVentaMouseClicked
+        DefaultTableModel m = (DefaultTableModel) tblCarrito.getModel();
+        if (m.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Añade productos al carrito.");
+            return;
+        }
+        try {
+            Venta v = ventaActual != null ? ventaActual : new Venta();
+            // cliente: usamos clientesCombo por índice (índice 0 = Sin cliente)
+            int idxCliente = cmbClienteVenta.getSelectedIndex();
+            if (idxCliente > 0 && idxCliente - 1 < clientesCombo.size()) {
+                v.setIdCliente(clientesCombo.get(idxCliente - 1).getIdCliente());
+            } else {
+                v.setIdCliente(0); // sin cliente
+            }
+            v.setIdEmpleado(Sesion.getEmpleado().getIdEmpleado());
+            v.setMetodoPago(cmbMetodoPago.getSelectedItem().toString());
+            // reconstruimos los detalles desde el carrito
+            v.getDetalles().clear();
+            for (int i = 0; i < m.getRowCount(); i++) {
+                String nombre = (String) m.getValueAt(i, 0);
+                int cantidad  = (int)    m.getValueAt(i, 1);
+                double precio = (double) m.getValueAt(i, 2);
+                // buscamos el producto por nombre exacto (guardamos getNombre() en el carrito)
+                List<Producto> lista = productoDAO.buscarPorNombre(nombre);
+                if (!lista.isEmpty()) {
+                    v.getDetalles().add(new DetalleVenta(lista.get(0).getIdProducto(), nombre, cantidad, precio));
+                }
+            }
+            if (ventaActual != null) ventaDAO.actualizar(v);//decidimos si actualiza o inserta
+            else                     ventaDAO.registrarVenta(v);
+            DialogVenta.setVisible(false);
+            cargarTablaVentas();
+            cargarTablaProductos(); // el stock cambia al registrar o editar una venta
+            cargarEstadisticas();
+            cargarGraficaDashboard(); // actualizamos el dashboard con los nuevos datos
+            JOptionPane.showMessageDialog(this, ventaActual != null ? "Venta actualizada correctamente." : "Venta registrada correctamente.");//operacion ternaria ahorramos espacio, mejor que hacer if else
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_lblGuardarVentaMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        DialogVenta.setVisible(false);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     private void cargarTablaProductos() {
         try {
             DefaultTableModel m = (DefaultTableModel) tblProductos.getModel();
@@ -1297,6 +1355,7 @@ public class Pantalla extends javax.swing.JFrame {
             //   amarillo      stock < 10 (bajo, avisar pronto)
             //   blanco        stock normal
             //   verde         stock > 25 (bien abastecido)
+            //   rojo          stock < 5 (critico)
             tblProductos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(
@@ -1309,7 +1368,7 @@ public class Pantalla extends javax.swing.JFrame {
                         int stock = ((Number) stockVal).intValue();
                         if (!isSelected) {
                             if (stock < 5) {
-                                c.setBackground(new Color(255, 180, 80));  // naranja: critico
+                                c.setBackground(new Color(220, 60, 60));   // rojo: critico
                             } else if (stock < 10) {
                                 c.setBackground(new Color(255, 245, 130)); // amarillo: stock bajo
                             } else if (stock > 25) {
@@ -1522,7 +1581,36 @@ public class Pantalla extends javax.swing.JFrame {
         new LoginFrame().setVisible(true);
         this.dispose();
     }
-     
+
+public ImageIcon calibrarBanner(String rutaImagen, int widthLabel, int heightLabel) {
+    // Carga la imagen original
+    java.net.URL imgURL = getClass().getResource(rutaImagen);
+    if (imgURL == null) {
+        return null; // Por si acaso la ruta falla
+    }
+    ImageIcon iconoOriginal = new ImageIcon(imgURL);
+    Image img = iconoOriginal.getImage();
+    
+    int anchoOriginal = img.getWidth(null);
+    int altoOriginal = img.getHeight(null);
+    
+    // Calculamos la proporción idónea basándonos en el ancho disponible
+    double proporcion = (double) widthLabel / anchoOriginal;
+    
+    // El nuevo alto respetará de forma estricta la relación de aspecto original
+    int nuevoAncho = widthLabel;
+    int nuevoAlto = (int) (altoOriginal * proporcion);
+    
+    // Si por algún motivo el alto calculado supera el del JLabel, ajustamos por el alto
+    if (nuevoAlto > heightLabel) {
+        proporcion = (double) heightLabel / altoOriginal;
+        nuevoAncho = (int) (anchoOriginal * proporcion);
+        nuevoAlto = heightLabel;
+    }
+    
+    Image imgEscalada = img.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+    return new ImageIcon(imgEscalada);
+}
    
     public static void main(String args[]) {
         
@@ -1537,11 +1625,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnBuscarVenta;
-    private javax.swing.JButton btnCancelarCliente;
-    private javax.swing.JButton btnCancelarProducto;
-    private javax.swing.JButton btnCancelarVenta;
     private javax.swing.JButton btnCerrarPantalla;
-    private javax.swing.JButton btnConfirmarVenta;
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEditarVenta;
@@ -1549,8 +1633,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarProducto1;
     private javax.swing.JButton btnEliminarVenta;
     private javax.swing.JButton btnExportarExcel;
-    private javax.swing.JButton btnGuardarCliente;
-    private javax.swing.JButton btnGuardarProducto;
     private javax.swing.JButton btnMinimizarPantalla;
     private javax.swing.JButton btnNuevaVenta;
     private javax.swing.JButton btnNuevoCliente;
@@ -1567,7 +1649,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1581,18 +1662,25 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblCancelarClientes;
+    private javax.swing.JLabel lblCancelarProducto;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblCif;
     private javax.swing.JLabel lblContacto;
     private javax.swing.JLabel lblDni;
     private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JLabel lblFondoClientes;
+    private javax.swing.JLabel lblFondoProductos;
+    private javax.swing.JLabel lblFondoVentas;
+    private javax.swing.JLabel lblGuardarClientes;
+    private javax.swing.JLabel lblGuardarProducto;
+    private javax.swing.JLabel lblGuardarVenta;
     private javax.swing.JLabel lblNavClientes;
     private javax.swing.JLabel lblNavDashboard;
     private javax.swing.JLabel lblNavProductos;
