@@ -24,3 +24,7 @@
 
 # credenciales del correo, nunca subir a GitHub
 **/email.properties
+
+# logs generados en tiempo de ejecución
+**/logs/
+**/*.log
