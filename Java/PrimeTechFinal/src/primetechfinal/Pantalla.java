@@ -192,12 +192,13 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
         txtPrecioCompra = new javax.swing.JTextField();
         txtPrecioVenta = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         lblGuardarProducto = new javax.swing.JLabel();
         lblCancelarProducto = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
         lblFondoProductos = new javax.swing.JLabel();
         DialogClientes = new javax.swing.JDialog();
         cmbTipoCliente = new javax.swing.JComboBox<>();
@@ -318,7 +319,6 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel6.setText("Stock:");
         DialogProductos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
         DialogProductos.getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 160, 30));
-        DialogProductos.getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 290, 90));
         DialogProductos.getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 110, 30));
         DialogProductos.getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 120, 30));
         DialogProductos.getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 120, 30));
@@ -338,6 +338,12 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
         DialogProductos.getContentPane().add(lblCancelarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 626, 70, 40));
+
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane6.setViewportView(txtDescripcion);
+
+        DialogProductos.getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 410, 260, -1));
 
         lblFondoProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogproductos.png"))); // NOI18N
         DialogProductos.getContentPane().add(lblFondoProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 720));
@@ -1667,6 +1673,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCancelarClientes;
     private javax.swing.JLabel lblCancelarProducto;
@@ -1709,7 +1716,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidadVenta;
     private javax.swing.JTextField txtCif;
     private javax.swing.JTextField txtContacto;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtDireccionCliente;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEmailCliente;
