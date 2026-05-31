@@ -282,6 +282,7 @@ public class LoginFrame extends javax.swing.JFrame {
         if (txtEmail.getText().equals("Ingrese su Email")) {
             txtEmail.setText("");
             txtEmail.setForeground(Color.BLACK);
+            txtEmail.setFont(new java.awt.Font("Roboto Light", 0, 24));
         }
     }//GEN-LAST:event_txtEmailMouseClicked
 
