@@ -161,6 +161,7 @@ public class Pantalla extends javax.swing.JFrame {
         } catch (SQLException ex) {
             // no interrumpimos el arranque si falla el aviso
         }
+        
         // Cambia 'jLabelBanner' por el nombre de variable exacto que le diste a tu JLabel superior
         int anchoReal = lblsuperior.getWidth();
         int altoReal = lblsuperior.getHeight();
@@ -168,7 +169,7 @@ public class Pantalla extends javax.swing.JFrame {
         // En NetBeans a veces el layout da 0 antes de renderizar la ventana por primera vez
         if (anchoReal == 0) anchoReal = 1010; // Pon aquí el ancho aproximado que tiene en tu diseñador
         if (altoReal == 0) altoReal = 100;
-
+            
         // Reemplaza la ruta por la ubicación exacta de tu archivo dentro de tu source package
         lblsuperior.setIcon(calibrarBanner("/primetechfinal/fotos/superiorrecortado (1).png", anchoReal, altoReal));
     }
@@ -191,12 +192,13 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
         txtPrecioCompra = new javax.swing.JTextField();
         txtPrecioVenta = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         lblGuardarProducto = new javax.swing.JLabel();
         lblCancelarProducto = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
         lblFondoProductos = new javax.swing.JLabel();
         DialogClientes = new javax.swing.JDialog();
         cmbTipoCliente = new javax.swing.JComboBox<>();
@@ -295,32 +297,31 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
-        DialogProductos.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        DialogProductos.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descripción:");
-        DialogProductos.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        DialogProductos.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Precio Compra:");
-        DialogProductos.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+        DialogProductos.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Precio Venta:");
-        DialogProductos.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+        DialogProductos.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Stock:");
-        DialogProductos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
-        DialogProductos.getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 180, 30));
-        DialogProductos.getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 180, 30));
-        DialogProductos.getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 180, 30));
-        DialogProductos.getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 180, 30));
-        DialogProductos.getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 180, 30));
+        DialogProductos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, -1));
+        DialogProductos.getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 160, 30));
+        DialogProductos.getContentPane().add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 110, 30));
+        DialogProductos.getContentPane().add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 230, 120, 30));
+        DialogProductos.getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 120, 30));
 
         lblGuardarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblGuardarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,6 +339,12 @@ public class Pantalla extends javax.swing.JFrame {
         });
         DialogProductos.getContentPane().add(lblCancelarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 626, 70, 40));
 
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane6.setViewportView(txtDescripcion);
+
+        DialogProductos.getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 410, 260, -1));
+
         lblFondoProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogproductos.png"))); // NOI18N
         DialogProductos.getContentPane().add(lblFondoProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 720));
 
@@ -352,66 +359,66 @@ public class Pantalla extends javax.swing.JFrame {
                 cmbTipoClienteActionPerformed(evt);
             }
         });
-        DialogClientes.getContentPane().add(cmbTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
+        DialogClientes.getContentPane().add(cmbTipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 150, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tipo:");
-        DialogClientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
+        DialogClientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre:");
-        DialogClientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
-        DialogClientes.getContentPane().add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 150, -1));
+        DialogClientes.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
+        DialogClientes.getContentPane().add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 150, -1));
 
         lblApellidos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblApellidos.setForeground(new java.awt.Color(255, 255, 255));
         lblApellidos.setText("Apellidos:");
-        DialogClientes.getContentPane().add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, -1, -1));
-        DialogClientes.getContentPane().add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 150, -1));
+        DialogClientes.getContentPane().add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
+        DialogClientes.getContentPane().add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 190, 150, -1));
 
         lblDni.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblDni.setForeground(new java.awt.Color(255, 255, 255));
         lblDni.setText("DNI:");
-        DialogClientes.getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, -1, -1));
-        DialogClientes.getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 150, -1));
+        DialogClientes.getContentPane().add(lblDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, -1, -1));
+        DialogClientes.getContentPane().add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 150, -1));
 
         lblRazonSocial.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblRazonSocial.setForeground(new java.awt.Color(255, 255, 255));
         lblRazonSocial.setText("Razón Social:");
-        DialogClientes.getContentPane().add(lblRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
-        DialogClientes.getContentPane().add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, 150, -1));
+        DialogClientes.getContentPane().add(lblRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, -1, -1));
+        DialogClientes.getContentPane().add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 150, -1));
 
         lblCif.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblCif.setForeground(new java.awt.Color(255, 255, 255));
         lblCif.setText("CIF:");
-        DialogClientes.getContentPane().add(lblCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, -1, -1));
-        DialogClientes.getContentPane().add(txtCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 150, -1));
+        DialogClientes.getContentPane().add(lblCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, -1, -1));
+        DialogClientes.getContentPane().add(txtCif, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 470, 150, -1));
 
         lblContacto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblContacto.setForeground(new java.awt.Color(255, 255, 255));
         lblContacto.setText("Contacto:");
-        DialogClientes.getContentPane().add(lblContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, -1, -1));
-        DialogClientes.getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 150, -1));
+        DialogClientes.getContentPane().add(lblContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
+        DialogClientes.getContentPane().add(txtContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 150, -1));
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Teléfono:");
-        DialogClientes.getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
-        DialogClientes.getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 150, -1));
+        DialogClientes.getContentPane().add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        DialogClientes.getContentPane().add(txtTelefonoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 140, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Email:");
-        DialogClientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
-        DialogClientes.getContentPane().add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 150, -1));
+        DialogClientes.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+        DialogClientes.getContentPane().add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 140, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Dirección:");
-        DialogClientes.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
-        DialogClientes.getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 150, -1));
+        DialogClientes.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, -1, -1));
+        DialogClientes.getContentPane().add(txtDireccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 140, -1));
 
         lblGuardarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblGuardarClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -432,9 +439,7 @@ public class Pantalla extends javax.swing.JFrame {
         lblFondoClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/fondodialogclientes.png"))); // NOI18N
         DialogClientes.getContentPane().add(lblFondoClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        DialogVenta.setMaximumSize(new java.awt.Dimension(1077, 745));
         DialogVenta.setMinimumSize(new java.awt.Dimension(1077, 745));
-        DialogVenta.setPreferredSize(new java.awt.Dimension(1077, 745));
         DialogVenta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -620,32 +625,32 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ventas Hoy:");
-        pnlVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        pnlVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         lblVentasHoy.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblVentasHoy.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasHoy.setText("0.00 €");
-        pnlVentas.add(lblVentasHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        pnlVentas.add(lblVentasHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ventas este mes:");
-        pnlVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        pnlVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
         lblVentasMes.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblVentasMes.setForeground(new java.awt.Color(0, 204, 255));
         lblVentasMes.setText("0");
-        pnlVentas.add(lblVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+        pnlVentas.add(lblVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Más vendido:");
-        pnlVentas.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        pnlVentas.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         lblProductoTop.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         lblProductoTop.setForeground(new java.awt.Color(0, 204, 255));
         lblProductoTop.setText("-");
-        pnlVentas.add(lblProductoTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 220, 20));
+        pnlVentas.add(lblProductoTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 560, 20));
 
         btnNuevaVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/primetechfinal/fotos/nuevaventa.png"))); // NOI18N
@@ -1582,35 +1587,36 @@ public class Pantalla extends javax.swing.JFrame {
         this.dispose();
     }
 
-public ImageIcon calibrarBanner(String rutaImagen, int widthLabel, int heightLabel) {
-    // Carga la imagen original
-    java.net.URL imgURL = getClass().getResource(rutaImagen);
-    if (imgURL == null) {
-        return null; // Por si acaso la ruta falla
+    public ImageIcon calibrarBanner(String rutaImagen, int widthLabel, int heightLabel) {
+        //AYUDADO CON IA para darle formato original a la imagen
+        // Carga la imagen original
+        java.net.URL imgURL = getClass().getResource(rutaImagen);
+        if (imgURL == null) {
+            return null; // Por si acaso la ruta falla
+        }
+        ImageIcon iconoOriginal = new ImageIcon(imgURL);
+        Image img = iconoOriginal.getImage();
+
+        int anchoOriginal = img.getWidth(null);
+        int altoOriginal = img.getHeight(null);
+
+        // Calculamos la proporción idónea basándonos en el ancho disponible
+        double proporcion = (double) widthLabel / anchoOriginal;
+
+        // El nuevo alto respetará de forma estricta la relación de aspecto original
+        int nuevoAncho = widthLabel;
+        int nuevoAlto = (int) (altoOriginal * proporcion);
+
+        // Si por algún motivo el alto calculado supera el del JLabel, ajustamos por el alto
+        if (nuevoAlto > heightLabel) {
+            proporcion = (double) heightLabel / altoOriginal;
+            nuevoAncho = (int) (anchoOriginal * proporcion);
+            nuevoAlto = heightLabel;
+        }
+
+        Image imgEscalada = img.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+        return new ImageIcon(imgEscalada);
     }
-    ImageIcon iconoOriginal = new ImageIcon(imgURL);
-    Image img = iconoOriginal.getImage();
-    
-    int anchoOriginal = img.getWidth(null);
-    int altoOriginal = img.getHeight(null);
-    
-    // Calculamos la proporción idónea basándonos en el ancho disponible
-    double proporcion = (double) widthLabel / anchoOriginal;
-    
-    // El nuevo alto respetará de forma estricta la relación de aspecto original
-    int nuevoAncho = widthLabel;
-    int nuevoAlto = (int) (altoOriginal * proporcion);
-    
-    // Si por algún motivo el alto calculado supera el del JLabel, ajustamos por el alto
-    if (nuevoAlto > heightLabel) {
-        proporcion = (double) heightLabel / altoOriginal;
-        nuevoAncho = (int) (anchoOriginal * proporcion);
-        nuevoAlto = heightLabel;
-    }
-    
-    Image imgEscalada = img.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
-    return new ImageIcon(imgEscalada);
-}
    
     public static void main(String args[]) {
         
@@ -1667,6 +1673,7 @@ public ImageIcon calibrarBanner(String rutaImagen, int widthLabel, int heightLab
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblCancelarClientes;
     private javax.swing.JLabel lblCancelarProducto;
@@ -1709,7 +1716,7 @@ public ImageIcon calibrarBanner(String rutaImagen, int widthLabel, int heightLab
     private javax.swing.JTextField txtCantidadVenta;
     private javax.swing.JTextField txtCif;
     private javax.swing.JTextField txtContacto;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtDireccionCliente;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEmailCliente;
