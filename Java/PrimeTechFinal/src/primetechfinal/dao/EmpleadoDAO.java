@@ -10,7 +10,7 @@ import primetechfinal.model.Empleado;
 import primetechfinal.util.BCrypt;
 
 public class EmpleadoDAO {
-
+    //git
     // logger para registrar todo lo que pasa con los empleados en el archivo de log
     private static final Logger logger = LogManager.getLogger(EmpleadoDAO.class);
 
